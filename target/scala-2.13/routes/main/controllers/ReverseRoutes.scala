@@ -1,6 +1,6 @@
 // @GENERATOR:play-routes-compiler
-// @SOURCE:/Users/vinniebrice/induction/play-template/conf/routes
-// @DATE:Mon May 23 22:16:23 BST 2022
+// @SOURCE:/Users/robyn.garlington/Documents/scalaTraining/assignments/gHub-example/gitHub-ex/conf/routes
+// @DATE:Fri Jul 01 15:24:28 BST 2022
 
 import play.api.mvc.Call
 
@@ -10,65 +10,41 @@ import _root_.controllers.Assets.Asset
 // @LINE:2
 package controllers {
 
-  // @LINE:4
+  // @LINE:3
   class ReverseApplicationController(_prefix: => String) {
     def _defaultPrefix: String = {
       if (_prefix.endsWith("/")) "" else "/"
     }
 
   
-    // @LINE:6
-    def read(id:String): Call = {
+    // @LINE:4
+    def read(login:String): Call = {
       
-      Call("GET", _prefix + { _defaultPrefix } + "api/" + play.core.routing.dynamicString(implicitly[play.api.mvc.PathBindable[String]].unbind("id", id)))
+      Call("GET", _prefix + { _defaultPrefix } + "github/users/" + play.core.routing.dynamicString(implicitly[play.api.mvc.PathBindable[String]].unbind("login", login)))
     }
   
     // @LINE:5
     def create(): Call = {
       
-      Call("POST", _prefix + { _defaultPrefix } + "api")
-    }
-  
-    // @LINE:12
-    def getGoogleBook(search:String, term:String): Call = {
-      
-      Call("GET", _prefix + { _defaultPrefix } + "api/google/book/" + play.core.routing.dynamicString(implicitly[play.api.mvc.PathBindable[String]].unbind("search", search)) + "/" + play.core.routing.dynamicString(implicitly[play.api.mvc.PathBindable[String]].unbind("term", term)))
-    }
-  
-    // @LINE:11
-    def readByBook(): Call = {
-      
-      Call("GET", _prefix + { _defaultPrefix } + "api/byBook")
-    }
-  
-    // @LINE:10
-    def deleteAll(): Call = {
-      
-      Call("DELETE", _prefix + { _defaultPrefix } + "api/allBook")
-    }
-  
-    // @LINE:9
-    def delete(id:String): Call = {
-      
-      Call("DELETE", _prefix + { _defaultPrefix } + "api/" + play.core.routing.dynamicString(implicitly[play.api.mvc.PathBindable[String]].unbind("id", id)))
+      Call("POST", _prefix + { _defaultPrefix } + "github/users")
     }
   
     // @LINE:7
-    def update(id:String): Call = {
+    def delete(login:String): Call = {
       
-      Call("PUT", _prefix + { _defaultPrefix } + "api/" + play.core.routing.dynamicString(implicitly[play.api.mvc.PathBindable[String]].unbind("id", id)))
+      Call("DELETE", _prefix + { _defaultPrefix } + "github/users/" + play.core.routing.dynamicString(implicitly[play.api.mvc.PathBindable[String]].unbind("login", login)))
     }
   
-    // @LINE:8
-    def upsert(id:String): Call = {
+    // @LINE:6
+    def update(login:String): Call = {
       
-      Call("PUT", _prefix + { _defaultPrefix } + "api/" + play.core.routing.dynamicString(implicitly[play.api.mvc.PathBindable[String]].unbind("id", id)))
+      Call("PUT", _prefix + { _defaultPrefix } + "github/users/" + play.core.routing.dynamicString(implicitly[play.api.mvc.PathBindable[String]].unbind("login", login)))
     }
   
-    // @LINE:4
+    // @LINE:3
     def index(): Call = {
       
-      Call("GET", _prefix + { _defaultPrefix } + "api")
+      Call("GET", _prefix + { _defaultPrefix } + "github")
     }
   
   }
@@ -88,14 +64,14 @@ package controllers {
   
   }
 
-  // @LINE:15
+  // @LINE:10
   class ReverseAssets(_prefix: => String) {
     def _defaultPrefix: String = {
       if (_prefix.endsWith("/")) "" else "/"
     }
 
   
-    // @LINE:15
+    // @LINE:10
     def versioned(file:Asset): Call = {
       implicit lazy val _rrc = new play.core.routing.ReverseRouteContext(Map(("path", "/public"))); _rrc
       Call("GET", _prefix + { _defaultPrefix } + "assets/" + implicitly[play.api.mvc.PathBindable[Asset]].unbind("file", file))

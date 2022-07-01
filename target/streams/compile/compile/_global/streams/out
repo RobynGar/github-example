@@ -1,27 +1,23 @@
-[0m[[0m[33mwarn[0m] [0m[0m/Users/vinniebrice/induction/play-template/app/repositories/BookRepository.scala:39:35: Auto-application to `()` is deprecated. Supply the empty argument list `()` explicitly to invoke method headOption,[0m
-[0m[[0m[33mwarn[0m] [0m[0mor remove the empty argument list from its definition (Java-defined methods are exempt).[0m
-[0m[[0m[33mwarn[0m] [0m[0mIn Scala 3, an unapplied method like this will be eta-expanded into a function.[0m
-[0m[[0m[33mwarn[0m] [0m[0m    collection.find(byBook(book)).headOption flatMap {[0m
-[0m[[0m[33mwarn[0m] [0m[0m                                  ^[0m
-[0m[[0m[33mwarn[0m] [0m[0m/Users/vinniebrice/induction/play-template/app/repositories/BookRepository.scala:47:31: Auto-application to `()` is deprecated. Supply the empty argument list `()` explicitly to invoke method headOption,[0m
-[0m[[0m[33mwarn[0m] [0m[0mor remove the empty argument list from its definition (Java-defined methods are exempt).[0m
-[0m[[0m[33mwarn[0m] [0m[0mIn Scala 3, an unapplied method like this will be eta-expanded into a function.[0m
-[0m[[0m[33mwarn[0m] [0m[0m    collection.find(byID(id)).headOption flatMap {[0m
-[0m[[0m[33mwarn[0m] [0m[0m                              ^[0m
-[0m[[0m[33mwarn[0m] [0m[0m/Users/vinniebrice/induction/play-template/conf/routes:10:1: Auto-application to `()` is deprecated. Supply the empty argument list `()` explicitly to invoke method deleteAll,[0m
-[0m[[0m[33mwarn[0m] [0m[0mor remove the empty argument list from its definition (Java-defined methods are exempt).[0m
-[0m[[0m[33mwarn[0m] [0m[0mIn Scala 3, an unapplied method like this will be eta-expanded into a function.[0m
-[0m[[0m[33mwarn[0m] [0m[0mDELETE  /api/allBook                        controllers.ApplicationController.deleteAll[0m
-[0m[[0m[33mwarn[0m] [0m[0m/Users/vinniebrice/induction/play-template/conf/routes:11:1: Auto-application to `()` is deprecated. Supply the empty argument list `()` explicitly to invoke method readByBook,[0m
-[0m[[0m[33mwarn[0m] [0m[0mor remove the empty argument list from its definition (Java-defined methods are exempt).[0m
-[0m[[0m[33mwarn[0m] [0m[0mIn Scala 3, an unapplied method like this will be eta-expanded into a function.[0m
-[0m[[0m[33mwarn[0m] [0m[0mGET     /api/byBook                         controllers.ApplicationController.readByBook[0m
-[0m[[0m[33mwarn[0m] [0m[0m/Users/vinniebrice/induction/play-template/conf/routes:10:1: Auto-application to `()` is deprecated. Supply the empty argument list `()` explicitly to invoke method deleteAll,[0m
-[0m[[0m[33mwarn[0m] [0m[0mor remove the empty argument list from its definition (Java-defined methods are exempt).[0m
-[0m[[0m[33mwarn[0m] [0m[0mIn Scala 3, an unapplied method like this will be eta-expanded into a function.[0m
-[0m[[0m[33mwarn[0m] [0m[0mDELETE  /api/allBook                        controllers.ApplicationController.deleteAll[0m
-[0m[[0m[33mwarn[0m] [0m[0m/Users/vinniebrice/induction/play-template/conf/routes:11:1: Auto-application to `()` is deprecated. Supply the empty argument list `()` explicitly to invoke method readByBook,[0m
-[0m[[0m[33mwarn[0m] [0m[0mor remove the empty argument list from its definition (Java-defined methods are exempt).[0m
-[0m[[0m[33mwarn[0m] [0m[0mIn Scala 3, an unapplied method like this will be eta-expanded into a function.[0m
-[0m[[0m[33mwarn[0m] [0m[0mGET     /api/byBook                         controllers.ApplicationController.readByBook[0m
-[0m[[0m[33mwarn[0m] [0m[0m6 warnings found[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/robyn.garlington/Documents/scalaTraining/assignments/gHub-example/gitHub-ex/app/connectors/ApplicationConnector.scala:36:42: type mismatch;[0m
+[0m[[0m[31merror[0m] [0m[0m found   : Seq[Unit][0m
+[0m[[0m[31merror[0m] [0m[0m required: Either[models.APIError,Seq[models.User]][0m
+[0m[[0m[31merror[0m] [0m[0m          response.json.as[Seq[User]].map{[0m
+[0m[[0m[31merror[0m] [0m[0m                                         ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/robyn.garlington/Documents/scalaTraining/assignments/gHub-example/gitHub-ex/app/connectors/ApplicationConnector.scala:34:18: Cannot find an implicit ExecutionContext. You might add[0m
+[0m[[0m[31merror[0m] [0m[0man (implicit ec: ExecutionContext) parameter to your method.[0m
+[0m[[0m[31merror[0m] [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0mThe ExecutionContext is used to configure how and on which[0m
+[0m[[0m[31merror[0m] [0m[0mthread pools asynchronous tasks (such as Futures) will run,[0m
+[0m[[0m[31merror[0m] [0m[0mso the specific ExecutionContext that is selected is important.[0m
+[0m[[0m[31merror[0m] [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0mIf your application does not define an ExecutionContext elsewhere,[0m
+[0m[[0m[31merror[0m] [0m[0mconsider using Scala's global ExecutionContext by defining[0m
+[0m[[0m[31merror[0m] [0m[0mthe following:[0m
+[0m[[0m[31merror[0m] [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0mimplicit val ec: scala.concurrent.ExecutionContext = scala.concurrent.ExecutionContext.global[0m
+[0m[[0m[31merror[0m] [0m[0m      request.map{[0m
+[0m[[0m[31merror[0m] [0m[0m                 ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/robyn.garlington/Documents/scalaTraining/assignments/gHub-example/gitHub-ex/app/services/ApplicationService.scala:18:21: method getAll: (url: String)(ec: scala.concurrent.ExecutionContext): scala.concurrent.Future[Either[models.APIError,Seq[models.User]]] does not take type parameters.[0m
+[0m[[0m[31merror[0m] [0m[0m    connector.getAll[Seq[User]](urlOverride.getOrElse(s"https://api.github.com/users"))[0m
+[0m[[0m[31merror[0m] [0m[0m                    ^[0m
+[0m[[0m[31merror[0m] [0m[0mthree errors found[0m
