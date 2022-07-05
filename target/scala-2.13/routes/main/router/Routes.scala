@@ -1,6 +1,6 @@
 // @GENERATOR:play-routes-compiler
 // @SOURCE:/Users/robyn.garlington/Documents/scalaTraining/assignments/gHub-example/gitHub-ex/conf/routes
-// @DATE:Fri Jul 01 15:24:28 BST 2022
+// @DATE:Tue Jul 05 12:22:40 BST 2022
 
 package router
 
@@ -17,7 +17,7 @@ class Routes(
   HomeController_2: controllers.HomeController,
   // @LINE:3
   ApplicationController_0: controllers.ApplicationController,
-  // @LINE:10
+  // @LINE:12
   Assets_1: controllers.Assets,
   val prefix: String
 ) extends GeneratedRouter {
@@ -28,7 +28,7 @@ class Routes(
     HomeController_2: controllers.HomeController,
     // @LINE:3
     ApplicationController_0: controllers.ApplicationController,
-    // @LINE:10
+    // @LINE:12
     Assets_1: controllers.Assets
   ) = this(errorHandler, HomeController_2, ApplicationController_0, Assets_1, "/")
 
@@ -46,6 +46,8 @@ class Routes(
     ("""GET""", this.prefix, """controllers.HomeController.index()"""),
     ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """github""", """controllers.ApplicationController.index()"""),
     ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """github/users/""" + "$" + """login<[^/]+>""", """controllers.ApplicationController.read(login:String)"""),
+    ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """github/users/api/""" + "$" + """login<[^/]+>""", """controllers.ApplicationController.readFromAPI(login:String)"""),
+    ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """github/users/add/""" + "$" + """login<[^/]+>""", """controllers.ApplicationController.addFromAPI(login:String)"""),
     ("""POST""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """github/users""", """controllers.ApplicationController.create()"""),
     ("""PUT""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """github/users/""" + "$" + """login<[^/]+>""", """controllers.ApplicationController.update(login:String)"""),
     ("""DELETE""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """github/users/""" + "$" + """login<[^/]+>""", """controllers.ApplicationController.delete(login:String)"""),
@@ -112,10 +114,46 @@ class Routes(
   )
 
   // @LINE:5
-  private[this] lazy val controllers_ApplicationController_create3_route = Route("POST",
+  private[this] lazy val controllers_ApplicationController_readFromAPI3_route = Route("GET",
+    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("github/users/api/"), DynamicPart("login", """[^/]+""",true)))
+  )
+  private[this] lazy val controllers_ApplicationController_readFromAPI3_invoker = createInvoker(
+    ApplicationController_0.readFromAPI(fakeValue[String]),
+    play.api.routing.HandlerDef(this.getClass.getClassLoader,
+      "router",
+      "controllers.ApplicationController",
+      "readFromAPI",
+      Seq(classOf[String]),
+      "GET",
+      this.prefix + """github/users/api/""" + "$" + """login<[^/]+>""",
+      """""",
+      Seq()
+    )
+  )
+
+  // @LINE:6
+  private[this] lazy val controllers_ApplicationController_addFromAPI4_route = Route("GET",
+    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("github/users/add/"), DynamicPart("login", """[^/]+""",true)))
+  )
+  private[this] lazy val controllers_ApplicationController_addFromAPI4_invoker = createInvoker(
+    ApplicationController_0.addFromAPI(fakeValue[String]),
+    play.api.routing.HandlerDef(this.getClass.getClassLoader,
+      "router",
+      "controllers.ApplicationController",
+      "addFromAPI",
+      Seq(classOf[String]),
+      "GET",
+      this.prefix + """github/users/add/""" + "$" + """login<[^/]+>""",
+      """""",
+      Seq()
+    )
+  )
+
+  // @LINE:7
+  private[this] lazy val controllers_ApplicationController_create5_route = Route("POST",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("github/users")))
   )
-  private[this] lazy val controllers_ApplicationController_create3_invoker = createInvoker(
+  private[this] lazy val controllers_ApplicationController_create5_invoker = createInvoker(
     ApplicationController_0.create(),
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
@@ -129,11 +167,11 @@ class Routes(
     )
   )
 
-  // @LINE:6
-  private[this] lazy val controllers_ApplicationController_update4_route = Route("PUT",
+  // @LINE:8
+  private[this] lazy val controllers_ApplicationController_update6_route = Route("PUT",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("github/users/"), DynamicPart("login", """[^/]+""",true)))
   )
-  private[this] lazy val controllers_ApplicationController_update4_invoker = createInvoker(
+  private[this] lazy val controllers_ApplicationController_update6_invoker = createInvoker(
     ApplicationController_0.update(fakeValue[String]),
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
@@ -147,11 +185,11 @@ class Routes(
     )
   )
 
-  // @LINE:7
-  private[this] lazy val controllers_ApplicationController_delete5_route = Route("DELETE",
+  // @LINE:9
+  private[this] lazy val controllers_ApplicationController_delete7_route = Route("DELETE",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("github/users/"), DynamicPart("login", """[^/]+""",true)))
   )
-  private[this] lazy val controllers_ApplicationController_delete5_invoker = createInvoker(
+  private[this] lazy val controllers_ApplicationController_delete7_invoker = createInvoker(
     ApplicationController_0.delete(fakeValue[String]),
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
@@ -165,11 +203,11 @@ class Routes(
     )
   )
 
-  // @LINE:10
-  private[this] lazy val controllers_Assets_versioned6_route = Route("GET",
+  // @LINE:12
+  private[this] lazy val controllers_Assets_versioned8_route = Route("GET",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("assets/"), DynamicPart("file", """.+""",false)))
   )
-  private[this] lazy val controllers_Assets_versioned6_invoker = createInvoker(
+  private[this] lazy val controllers_Assets_versioned8_invoker = createInvoker(
     Assets_1.versioned(fakeValue[String], fakeValue[Asset]),
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
@@ -205,27 +243,39 @@ class Routes(
       }
   
     // @LINE:5
-    case controllers_ApplicationController_create3_route(params@_) =>
-      call { 
-        controllers_ApplicationController_create3_invoker.call(ApplicationController_0.create())
+    case controllers_ApplicationController_readFromAPI3_route(params@_) =>
+      call(params.fromPath[String]("login", None)) { (login) =>
+        controllers_ApplicationController_readFromAPI3_invoker.call(ApplicationController_0.readFromAPI(login))
       }
   
     // @LINE:6
-    case controllers_ApplicationController_update4_route(params@_) =>
+    case controllers_ApplicationController_addFromAPI4_route(params@_) =>
       call(params.fromPath[String]("login", None)) { (login) =>
-        controllers_ApplicationController_update4_invoker.call(ApplicationController_0.update(login))
+        controllers_ApplicationController_addFromAPI4_invoker.call(ApplicationController_0.addFromAPI(login))
       }
   
     // @LINE:7
-    case controllers_ApplicationController_delete5_route(params@_) =>
-      call(params.fromPath[String]("login", None)) { (login) =>
-        controllers_ApplicationController_delete5_invoker.call(ApplicationController_0.delete(login))
+    case controllers_ApplicationController_create5_route(params@_) =>
+      call { 
+        controllers_ApplicationController_create5_invoker.call(ApplicationController_0.create())
       }
   
-    // @LINE:10
-    case controllers_Assets_versioned6_route(params@_) =>
+    // @LINE:8
+    case controllers_ApplicationController_update6_route(params@_) =>
+      call(params.fromPath[String]("login", None)) { (login) =>
+        controllers_ApplicationController_update6_invoker.call(ApplicationController_0.update(login))
+      }
+  
+    // @LINE:9
+    case controllers_ApplicationController_delete7_route(params@_) =>
+      call(params.fromPath[String]("login", None)) { (login) =>
+        controllers_ApplicationController_delete7_invoker.call(ApplicationController_0.delete(login))
+      }
+  
+    // @LINE:12
+    case controllers_Assets_versioned8_route(params@_) =>
       call(Param[String]("path", Right("/public")), params.fromPath[Asset]("file", None)) { (path, file) =>
-        controllers_Assets_versioned6_invoker.call(Assets_1.versioned(path, file))
+        controllers_Assets_versioned8_invoker.call(Assets_1.versioned(path, file))
       }
   }
 }

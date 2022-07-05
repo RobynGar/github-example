@@ -29,14 +29,18 @@ class ApplicationConnector @Inject()(ws: WSClient) {
   }
 
 
-    def getAll(url: String)(ec: ExecutionContext): Future[Either[APIError, Seq[User]]] = {
-      val request = ws.url(url).get()
-      request.map{
-        response =>
-          response.json.as[Seq[User]].map{
-            user =>
-          }
-      }
-    }
+//    def getAll(url: String)(ec: ExecutionContext): Future[Either[APIError, Seq[User]]] = {
+//      val request = ws.url(url).get()
+//      request.map{
+//        response =>
+//          response.json.as[Seq[User]].map{
+//            user =>
+//          }
+//      }
+//    }
+
+
+
+
 }
 

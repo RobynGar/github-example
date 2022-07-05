@@ -1,6 +1,6 @@
 // @GENERATOR:play-routes-compiler
 // @SOURCE:/Users/robyn.garlington/Documents/scalaTraining/assignments/gHub-example/gitHub-ex/conf/routes
-// @DATE:Fri Jul 01 15:24:28 BST 2022
+// @DATE:Tue Jul 05 12:22:40 BST 2022
 
 package controllers;
 
