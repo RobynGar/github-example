@@ -30,7 +30,7 @@ Seq[Any](format.raw/*1.1*/("""<!DOCTYPE html>
     <title>user</title>
 </head>
 <body>
-
+<h2>Github Users</h2>
 </body>
 </html>"""))
       }
@@ -48,9 +48,9 @@ Seq[Any](format.raw/*1.1*/("""<!DOCTYPE html>
 
               /*
                   -- GENERATED --
-                  DATE: 2022-07-05T12:22:41.186
+                  DATE: 2022-07-05T15:33:39.926
                   SOURCE: /Users/robyn.garlington/Documents/scalaTraining/assignments/gHub-example/gitHub-ex/app/views/user.scala.html
-                  HASH: 10796ca0184a3b2772a038694d8ee5bbe452a157
+                  HASH: 2948fa642ce3c68e311cda51357cf93afa670487
                   MATRIX: 810->0
                   LINES: 26->1
                   -- GENERATED --

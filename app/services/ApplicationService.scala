@@ -57,11 +57,14 @@ class ApplicationService @Inject()(connector: ApplicationConnector, dataReposito
     }
   }
 
-  def delete(login: String): Future[Either[APIError, Int]] = {
+  def delete(login: String): Future[Either[APIError, String]] = {
     dataRepository.delete(login).map{
-      case Right(deleted: Int) => Right(deleted)
+      case Right(deleted: String) => Right(deleted)
       case Left(error) => Left(error)
     }
   }
+
+
+
 
 }

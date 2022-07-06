@@ -1,21 +1,21 @@
 package controllers
 import models.{APIError, User}
 import play.api.libs.json.{JsValue, Json}
-import play.api.mvc.{Action, AnyContent, BaseController, ControllerComponents}
+import play.api.mvc.{Action, AnyContent, BaseController, ControllerComponents, Request}
 import services.ApplicationService
-
 import javax.inject.{Inject, Singleton}
-import scala.concurrent.ExecutionContext
+import scala.concurrent.{ExecutionContext, Future}
 
 @Singleton
 class ApplicationController @Inject()(val controllerComponents: ControllerComponents, service: ApplicationService)(implicit val ec: ExecutionContext) extends BaseController {
 
-  //val users = Map.empty[String, models.User]
 
-  def index(): Action[AnyContent] = Action.async { implicit request =>
-//    val models = users.values
-//    val json = Json.toJson(models)
-//    Future(Ok(json))
+
+  def index(): Action[AnyContent] = Action.async { implicit request: Request[AnyContent] =>
+    Future.successful(Ok(views.html.user()))
+  }
+
+  def readAll(): Action[AnyContent] = Action.async { implicit request =>
     service.index().map{
       case Right(users: Seq[User])=> Ok(Json.toJson(users))
       case Left(error) => Status(error.httpResponseStatus)(Json.toJson(error.reason))
@@ -64,5 +64,7 @@ class ApplicationController @Inject()(val controllerComponents: ControllerCompon
       case Left(value) => Status(value.httpResponseStatus)(Json.toJson(value.reason))
     }
   }
+
+
 
 }

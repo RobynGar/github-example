@@ -1,6 +1,6 @@
 // @GENERATOR:play-routes-compiler
 // @SOURCE:/Users/robyn.garlington/Documents/scalaTraining/assignments/gHub-example/gitHub-ex/conf/routes
-// @DATE:Tue Jul 05 12:22:40 BST 2022
+// @DATE:Wed Jul 06 10:21:43 BST 2022
 
 import play.api.mvc.Call
 
@@ -18,36 +18,42 @@ package controllers {
 
   
     // @LINE:4
+    def readAll(): Call = {
+      
+      Call("GET", _prefix + { _defaultPrefix } + "github/users")
+    }
+  
+    // @LINE:5
     def read(login:String): Call = {
       
       Call("GET", _prefix + { _defaultPrefix } + "github/users/" + play.core.routing.dynamicString(implicitly[play.api.mvc.PathBindable[String]].unbind("login", login)))
     }
   
-    // @LINE:7
+    // @LINE:8
     def create(): Call = {
       
-      Call("POST", _prefix + { _defaultPrefix } + "github/users")
+      Call("POST", _prefix + { _defaultPrefix } + "github/users/create")
     }
   
-    // @LINE:5
+    // @LINE:6
     def readFromAPI(login:String): Call = {
       
       Call("GET", _prefix + { _defaultPrefix } + "github/users/api/" + play.core.routing.dynamicString(implicitly[play.api.mvc.PathBindable[String]].unbind("login", login)))
     }
   
-    // @LINE:6
+    // @LINE:7
     def addFromAPI(login:String): Call = {
       
       Call("GET", _prefix + { _defaultPrefix } + "github/users/add/" + play.core.routing.dynamicString(implicitly[play.api.mvc.PathBindable[String]].unbind("login", login)))
     }
   
-    // @LINE:9
+    // @LINE:10
     def delete(login:String): Call = {
       
       Call("DELETE", _prefix + { _defaultPrefix } + "github/users/" + play.core.routing.dynamicString(implicitly[play.api.mvc.PathBindable[String]].unbind("login", login)))
     }
   
-    // @LINE:8
+    // @LINE:9
     def update(login:String): Call = {
       
       Call("PUT", _prefix + { _defaultPrefix } + "github/users/" + play.core.routing.dynamicString(implicitly[play.api.mvc.PathBindable[String]].unbind("login", login)))
@@ -76,14 +82,14 @@ package controllers {
   
   }
 
-  // @LINE:12
+  // @LINE:14
   class ReverseAssets(_prefix: => String) {
     def _defaultPrefix: String = {
       if (_prefix.endsWith("/")) "" else "/"
     }
 
   
-    // @LINE:12
+    // @LINE:14
     def versioned(file:Asset): Call = {
       implicit lazy val _rrc = new play.core.routing.ReverseRouteContext(Map(("path", "/public"))); _rrc
       Call("GET", _prefix + { _defaultPrefix } + "assets/" + implicitly[play.api.mvc.PathBindable[Asset]].unbind("file", file))

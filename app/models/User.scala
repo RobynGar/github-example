@@ -1,6 +1,5 @@
 package models
-import org.joda.time.format.{DateTimeFormat, DateTimeFormatter}
-//import org.joda.time.{DateTime, _}
+
 import play.api.libs.json.{Json, OFormat}
 
 

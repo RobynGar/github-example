@@ -7,12 +7,9 @@
   <div class="jumbotron my-auto">
 
     <div class="container mb-5">
-      <h1 class="display-3 row">Play Scala API Demo</h1>
+      <h1 class="display-3 row">Play Scala API GitHub Demo</h1>
     </div>
 
-    <p class="lead">
-      A demo project based off the <a href="https://github.com/miranda-hawkes/induction-tutorials/blob/master/Building-A-RESTful-API-With-Scala-Play/README.md"> Building a RESTful API with Scala and Play </a> tutorial.
-    </p>
 
     <p class="lead mb-5">This project is deployed via Heroku.</p>
 
@@ -29,47 +26,51 @@
         </thead>
         <tbody>
         <tr>
-          <th scope="row">/api</th>
+          <th scope="row">/github/users</th>
           <td><code>GET</code></td>
           <td>None</td>
           <td>N/A</td>
         </tr>
         <tr>
-          <th scope="row">/api</th>
+          <th scope="row">/github/users</th>
           <td><code>POST</code></td>
           <td>Content-Type: application/json</td>
           <td><code>
-            "_id" : String
+            "login" : String
             <br>
-            "name" : String
+            "created_at" : DateTime
             <br>
-            "description" : String
+            "location" : String
             <br>
-            "numSales" : Int
+            "followers" : Int
+            <br>
+            "following" : Int
           </code></td>
         </tr>
         <tr>
-          <th scope="row">/api/:id</th>
+          <th scope="row">/github/users/:username</th>
           <td><code>GET</code></td>
           <td>None</td>
           <td>N/A</td>
         </tr>
         <tr>
-          <th scope="row">/api/:id</th>
+          <th scope="row">/github/users/:username</th>
           <td><code>PUT</code></td>
           <td>Content-Type: application/json</td>
           <td><code>
-            "_id" : String
+            "login" : String
             <br>
-            "name" : String
+            "created_at" : DateTime
             <br>
-            "description" : String
+            "location" : String
             <br>
-            "numSales" : Int
+            "followers" : Int
+            <br>
+            "following" : Int
           </code></td>
         </tr>
         <tr>
-          <th scope="row">/api/:id</th>
+          <th scope="row">/github/users/:username</th>
           <td><code>DELETE</code></td>
           <td>Content-Type: application/json</td>
           <td>N/A</td>
