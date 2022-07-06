@@ -1,3 +1,6 @@
+@import models.User
+@(users: Seq[User])
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,5 +9,15 @@
 </head>
 <body>
 <h2>Github Users</h2>
+<div>
+    @users.map { user =>
+    <ul>
+        <li>@user.login</li>
+        <li>@user.followers</li>
+        <li>@user.following</li>
+        <li>--------------------------</li>
+    </ul>
+    }
+</div>
 </body>
 </html>

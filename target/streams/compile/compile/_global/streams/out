@@ -1,6 +1,4 @@
-[0m[[0m[33mwarn[0m] [0m[0m/Users/robyn.garlington/Documents/scalaTraining/assignments/gHub-example/gitHub-ex/app/repositories/DataRepository.scala:35:37: Auto-application to `()` is deprecated. Supply the empty argument list `()` explicitly to invoke method headOption,[0m
-[0m[[0m[33mwarn[0m] [0m[0mor remove the empty argument list from its definition (Java-defined methods are exempt).[0m
-[0m[[0m[33mwarn[0m] [0m[0mIn Scala 3, an unapplied method like this will be eta-expanded into a function.[0m
-[0m[[0m[33mwarn[0m] [0m[0m    collection.find(byLogin(login)).headOption flatMap {[0m
-[0m[[0m[33mwarn[0m] [0m[0m                                    ^[0m
-[0m[[0m[33mwarn[0m] [0m[0mone warning found[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/robyn.garlington/Documents/scalaTraining/assignments/gHub-example/gitHub-ex/app/views/user.scala.html:1:9: not found: object model[0m
+[0m[[0m[31merror[0m] [0m[0m@import model.User[0m
+[0m[[0m[31merror[0m] [0m[0m        ^[0m
+[0m[[0m[31merror[0m] [0m[0mone error found[0m

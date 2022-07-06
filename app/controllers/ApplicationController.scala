@@ -1,8 +1,10 @@
 package controllers
+import data.Data
 import models.{APIError, User}
 import play.api.libs.json.{JsValue, Json}
 import play.api.mvc.{Action, AnyContent, BaseController, ControllerComponents, Request}
 import services.ApplicationService
+
 import javax.inject.{Inject, Singleton}
 import scala.concurrent.{ExecutionContext, Future}
 
@@ -12,7 +14,7 @@ class ApplicationController @Inject()(val controllerComponents: ControllerCompon
 
 
   def index(): Action[AnyContent] = Action.async { implicit request: Request[AnyContent] =>
-    Future.successful(Ok(views.html.user()))
+    Future.successful(Ok(views.html.user(Data.users)))
   }
 
   def readAll(): Action[AnyContent] = Action.async { implicit request =>
