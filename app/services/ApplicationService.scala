@@ -1,7 +1,7 @@
 package services
 
 import connectors.ApplicationConnector
-import models.{APIError, User}
+import models.{APIError, User, Repository}
 import play.api.libs.json.{JsError, JsSuccess, JsValue}
 import play.api.mvc.Request
 import repositories.DataRepository
@@ -14,13 +14,24 @@ class ApplicationService @Inject()(connector: ApplicationConnector, dataReposito
 
   def getUser(urlOverride: Option[String] = None, login: String)(implicit ec: ExecutionContext): Future[Either[APIError, User]] = {
     connector.get[User](urlOverride.getOrElse(s"https://api.github.com/users/$login"))
-
   }
 
-  //  def getAllUsers(urlOverride: Option[String] = None)(implicit ec: ExecutionContext): Unit ={
-  //    connector.getAll[Seq[User]](urlOverride.getOrElse(s"https://api.github.com/users"))
-  //
-  //  }
+//  def getRepoContent(urlOverride: Option[String] = None, login: String, repo: String)(implicit ec: ExecutionContext) = {
+//    connector.getRepoContent[Repositories](urlOverride.getOrElse(s"https://api.github.com/repos/$login/$repo/contents"))
+//  }
+
+  def getUsersRepo(urlOverride: Option[String] = None, login: String)(implicit ec: ExecutionContext): Future[Either[APIError, List[String]]] = {
+    connector.getUserRepo[Repository](urlOverride.getOrElse(s"https://api.github.com/users/$login/repos"))
+  }
+
+  def getUsersRepoInfo(urlOverride: Option[String] = None, login: String, repoName: String)(implicit ec: ExecutionContext): Future[Either[APIError, Repository]] = {
+    connector.getUserRepoInfo[Repository](urlOverride.getOrElse(s"https://api.github.com/repos/$login/$repoName"))
+  }
+
+  def getRepoContent(urlOverride: Option[String] = None, login: String, repoName: String)(implicit ec: ExecutionContext): Future[Either[APIError, List[String]]] = {
+    connector.getRepoContent[Repository](urlOverride.getOrElse(s"https://api.github.com/repos/$login/$repoName/contents"))
+  }
+
 
   def index(): Future[Either[APIError, Seq[User]]] = {
     dataRepository.index().map {

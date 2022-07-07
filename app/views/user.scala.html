@@ -1,5 +1,5 @@
 @import models.User
-@(users: Seq[User])
+@(user: User)
 
 <!DOCTYPE html>
 <html lang="en">
@@ -8,16 +8,19 @@
     <title>user</title>
 </head>
 <body>
-<h2>Github Users</h2>
+<h2>Github User Page</h2>
 <div>
-    @users.map { user =>
+
     <ul>
-        <li>@user.login</li>
+        <h3>@user.login</h3>
+        <li>@user.created_at</li>
+        <li>@user.location.getOrElse("unknown")</li>
         <li>@user.followers</li>
         <li>@user.following</li>
-        <li>--------------------------</li>
+        <button href="@controllers.routes.ApplicationController.usersRepos(user.login)">Repositories</button>
+
     </ul>
-    }
+
 </div>
 </body>
 </html>

@@ -1,4 +1,11 @@
-[0m[[0m[31merror[0m] [0m[0m/Users/robyn.garlington/Documents/scalaTraining/assignments/gHub-example/gitHub-ex/app/views/user.scala.html:1:9: not found: object model[0m
-[0m[[0m[31merror[0m] [0m[0m@import model.User[0m
-[0m[[0m[31merror[0m] [0m[0m        ^[0m
-[0m[[0m[31merror[0m] [0m[0mone error found[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/robyn.garlington/Documents/scalaTraining/assignments/gHub-example/gitHub-ex/app/controllers/ApplicationController.scala:17:47: type mismatch;[0m
+[0m[[0m[31merror[0m] [0m[0m found   : Seq[models.User][0m
+[0m[[0m[31merror[0m] [0m[0m required: models.User[0m
+[0m[[0m[31merror[0m] [0m[0m    Future.successful(Ok(views.html.user(Data.users)))[0m
+[0m[[0m[31merror[0m] [0m[0m                                              ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/robyn.garlington/Documents/scalaTraining/assignments/gHub-example/gitHub-ex/app/controllers/ApplicationController.scala:22:50: type mismatch;[0m
+[0m[[0m[31merror[0m] [0m[0m found   : scala.concurrent.Future[play.api.mvc.Result][0m
+[0m[[0m[31merror[0m] [0m[0m required: play.api.mvc.Result[0m
+[0m[[0m[31merror[0m] [0m[0m      case Right(user: User) => Future.successful(Ok(views.html.user(user)))[0m
+[0m[[0m[31merror[0m] [0m[0m                                                 ^[0m
+[0m[[0m[31merror[0m] [0m[0mtwo errors found[0m

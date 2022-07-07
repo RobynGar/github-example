@@ -11,18 +11,19 @@ import scala.concurrent.{ExecutionContext, Future}
 @Singleton
 class ApplicationController @Inject()(val controllerComponents: ControllerComponents, service: ApplicationService)(implicit val ec: ExecutionContext) extends BaseController {
 
+//  def index(): Action[AnyContent] = Action.async { implicit request: Request[AnyContent] =>
+//    Future.successful(Ok(views.html.user(Data.users)))
+//  }
 
 
-  def index(): Action[AnyContent] = Action.async { implicit request: Request[AnyContent] =>
-    Future.successful(Ok(views.html.user(Data.users)))
-  }
 
-  def readAll(): Action[AnyContent] = Action.async { implicit request =>
+  def index(): Action[AnyContent] = Action.async { implicit request =>
     service.index().map{
       case Right(users: Seq[User])=> Ok(Json.toJson(users))
       case Left(error) => Status(error.httpResponseStatus)(Json.toJson(error.reason))
     }
   }
+
 
   def read(login: String): Action[AnyContent] = Action.async { implicit request =>
     service.read(login).map{
@@ -68,5 +69,31 @@ class ApplicationController @Inject()(val controllerComponents: ControllerCompon
   }
 
 
+  def showUser(login: String): Action[AnyContent] = Action.async { implicit request: Request[AnyContent] =>
+    service.getUser(login = login).map {
+      case Right(user: User) => Ok(views.html.user(user))
+      case Left(value) => Status(value.httpResponseStatus)(Json.toJson(value.reason))
+    }
+  }
+  def usersRepos(login: String): Action[AnyContent] = Action.async { implicit request =>
+    service.getUsersRepo(login = login).map{
+      case Right(repo) => Ok(views.html.repositories(repo))
+      case Left(error) => Status(error.httpResponseStatus)(Json.toJson(error.reason))
+    }
+  }
+
+  def usersRepoInfo(login: String, repoName: String): Action[AnyContent] = Action.async { implicit request =>
+    service.getUsersRepoInfo(login = login, repoName = repoName).map{
+      case Right(repo) => Ok(Json.toJson(repo))
+      case Left(error) => Status(error.httpResponseStatus)(Json.toJson(error.reason))
+    }
+  }
+
+  def repoContent(login: String, repoName: String): Action[AnyContent] = Action.async { implicit request =>
+    service.getRepoContent(login = login, repoName = repoName).map{
+      case Right(repo) => Ok(Json.toJson(repo))
+      case Left(error) => Status(error.httpResponseStatus)(Json.toJson(error.reason))
+    }
+  }
 
 }

@@ -1,6 +1,6 @@
 // @GENERATOR:play-routes-compiler
 // @SOURCE:/Users/robyn.garlington/Documents/scalaTraining/assignments/gHub-example/gitHub-ex/conf/routes
-// @DATE:Wed Jul 06 10:21:43 BST 2022
+// @DATE:Thu Jul 07 14:59:58 BST 2022
 
 import play.api.routing.JavaScriptReverseRoute
 
@@ -10,23 +10,13 @@ import _root_.controllers.Assets.Asset
 // @LINE:2
 package controllers.javascript {
 
-  // @LINE:3
+  // @LINE:4
   class ReverseApplicationController(_prefix: => String) {
 
     def _defaultPrefix: String = {
       if (_prefix.endsWith("/")) "" else "/"
     }
 
-  
-    // @LINE:4
-    def readAll: JavaScriptReverseRoute = JavaScriptReverseRoute(
-      "controllers.ApplicationController.readAll",
-      """
-        function() {
-          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "github/users"})
-        }
-      """
-    )
   
     // @LINE:5
     def read: JavaScriptReverseRoute = JavaScriptReverseRoute(
@@ -38,7 +28,7 @@ package controllers.javascript {
       """
     )
   
-    // @LINE:8
+    // @LINE:6
     def create: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.ApplicationController.create",
       """
@@ -48,7 +38,7 @@ package controllers.javascript {
       """
     )
   
-    // @LINE:6
+    // @LINE:10
     def readFromAPI: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.ApplicationController.readFromAPI",
       """
@@ -58,7 +48,7 @@ package controllers.javascript {
       """
     )
   
-    // @LINE:7
+    // @LINE:11
     def addFromAPI: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.ApplicationController.addFromAPI",
       """
@@ -68,7 +58,17 @@ package controllers.javascript {
       """
     )
   
-    // @LINE:10
+    // @LINE:16
+    def repoContent: JavaScriptReverseRoute = JavaScriptReverseRoute(
+      "controllers.ApplicationController.repoContent",
+      """
+        function(login0,repoName1) {
+          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "github/users/" + encodeURIComponent((""" + implicitly[play.api.mvc.PathBindable[String]].javascriptUnbind + """)("login", login0)) + "/repos/" + encodeURIComponent((""" + implicitly[play.api.mvc.PathBindable[String]].javascriptUnbind + """)("repoName", repoName1))})
+        }
+      """
+    )
+  
+    // @LINE:8
     def delete: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.ApplicationController.delete",
       """
@@ -78,7 +78,17 @@ package controllers.javascript {
       """
     )
   
-    // @LINE:9
+    // @LINE:13
+    def showUser: JavaScriptReverseRoute = JavaScriptReverseRoute(
+      "controllers.ApplicationController.showUser",
+      """
+        function(login0) {
+          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "github/userspage/" + encodeURIComponent((""" + implicitly[play.api.mvc.PathBindable[String]].javascriptUnbind + """)("login", login0))})
+        }
+      """
+    )
+  
+    // @LINE:7
     def update: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.ApplicationController.update",
       """
@@ -88,12 +98,32 @@ package controllers.javascript {
       """
     )
   
-    // @LINE:3
+    // @LINE:15
+    def usersRepoInfo: JavaScriptReverseRoute = JavaScriptReverseRoute(
+      "controllers.ApplicationController.usersRepoInfo",
+      """
+        function(login0,repoName1) {
+          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "github/users/" + encodeURIComponent((""" + implicitly[play.api.mvc.PathBindable[String]].javascriptUnbind + """)("login", login0)) + "/" + encodeURIComponent((""" + implicitly[play.api.mvc.PathBindable[String]].javascriptUnbind + """)("repoName", repoName1))})
+        }
+      """
+    )
+  
+    // @LINE:4
     def index: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.ApplicationController.index",
       """
         function() {
-          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "github"})
+          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "github/users"})
+        }
+      """
+    )
+  
+    // @LINE:14
+    def usersRepos: JavaScriptReverseRoute = JavaScriptReverseRoute(
+      "controllers.ApplicationController.usersRepos",
+      """
+        function(login0) {
+          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "github/users/" + encodeURIComponent((""" + implicitly[play.api.mvc.PathBindable[String]].javascriptUnbind + """)("login", login0)) + "/repositories"})
         }
       """
     )
@@ -120,7 +150,7 @@ package controllers.javascript {
   
   }
 
-  // @LINE:14
+  // @LINE:20
   class ReverseAssets(_prefix: => String) {
 
     def _defaultPrefix: String = {
@@ -128,7 +158,7 @@ package controllers.javascript {
     }
 
   
-    // @LINE:14
+    // @LINE:20
     def versioned: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.Assets.versioned",
       """

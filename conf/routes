@@ -1,13 +1,19 @@
 # An example controller showing a sample home page
 GET     /                           controllers.HomeController.index()
-GET     /github                           controllers.ApplicationController.index()
-GET     /github/users                     controllers.ApplicationController.readAll()
+
+GET     /github/users                     controllers.ApplicationController.index()
 GET     /github/users/:login               controllers.ApplicationController.read(login: String)
-GET     /github/users/api/:login               controllers.ApplicationController.readFromAPI(login: String)
-GET     /github/users/add/:login               controllers.ApplicationController.addFromAPI(login: String)
 POST     /github/users/create              controllers.ApplicationController.create()
 PUT    /github/users/:login     controllers.ApplicationController.update(login: String)
 DELETE     /github/users/:login     controllers.ApplicationController.delete(login: String)
+
+GET     /github/users/api/:login               controllers.ApplicationController.readFromAPI(login: String)
+GET     /github/users/add/:login               controllers.ApplicationController.addFromAPI(login: String)
+
+GET     /github/userspage/:login               controllers.ApplicationController.showUser(login: String)
+GET     /github/users/:login/repositories                    controllers.ApplicationController.usersRepos(login: String)
+GET     /github/users/:login/:repoName                    controllers.ApplicationController.usersRepoInfo(login: String, repoName: String)
+GET     /github/users/:login/repos/:repoName                    controllers.ApplicationController.repoContent(login: String, repoName: String)
 
 
 # Map static resources from the /public folder to the /assets URL path
