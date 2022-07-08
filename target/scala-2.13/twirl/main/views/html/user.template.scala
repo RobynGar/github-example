@@ -41,7 +41,7 @@ Seq[Any](format.raw/*3.1*/("""
         <li>"""),_display_(/*17.14*/user/*17.18*/.location.getOrElse("unknown")),format.raw/*17.48*/("""</li>
         <li>"""),_display_(/*18.14*/user/*18.18*/.followers),format.raw/*18.28*/("""</li>
         <li>"""),_display_(/*19.14*/user/*19.18*/.following),format.raw/*19.28*/("""</li>
-        <button href=""""),_display_(/*20.24*/controllers/*20.35*/.routes.ApplicationController.usersRepos(user.login)),format.raw/*20.87*/("""">Repositories</button>
+        <a href="""),_display_(/*20.18*/controllers/*20.29*/.routes.ApplicationController.usersRepos(user.login)),format.raw/*20.81*/(""">Repositories</a>
 
     </ul>
 
@@ -63,10 +63,10 @@ Seq[Any](format.raw/*3.1*/("""
 
               /*
                   -- GENERATED --
-                  DATE: 2022-07-07T15:02:38.665
+                  DATE: 2022-07-08T11:33:37.981
                   SOURCE: /Users/robyn.garlington/Documents/scalaTraining/assignments/gHub-example/gitHub-ex/app/views/user.scala.html
-                  HASH: 423c1bf13b4ad896186fc15509d3253752e1c84a
-                  MATRIX: 432->1|752->21|858->34|885->35|1073->196|1086->200|1113->206|1159->225|1172->229|1204->240|1250->259|1263->263|1314->293|1360->312|1373->316|1404->326|1450->345|1463->349|1494->359|1550->388|1570->399|1643->451
+                  HASH: 875acdf9d39ef342f3025cf99e1ebd33169529a3
+                  MATRIX: 432->1|752->21|858->34|885->35|1073->196|1086->200|1113->206|1159->225|1172->229|1204->240|1250->259|1263->263|1314->293|1360->312|1373->316|1404->326|1450->345|1463->349|1494->359|1544->382|1564->393|1637->445
                   LINES: 17->1|22->2|27->3|28->4|39->15|39->15|39->15|40->16|40->16|40->16|41->17|41->17|41->17|42->18|42->18|42->18|43->19|43->19|43->19|44->20|44->20|44->20
                   -- GENERATED --
               */

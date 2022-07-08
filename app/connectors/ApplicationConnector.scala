@@ -35,16 +35,8 @@ class ApplicationConnector @Inject()(ws: WSClient) {
 
         val allRepos = result.json
         val allRepoNames = (allRepos \\ "name").map(_.as[String])
-        Right(allRepoNames.toList)
-
-
-//        result.json.validate[ListRepositories] match {
-//          case JsSuccess(value, _) =>
-//            Right(Repository(value.name.head, value.privateStatus.head, value.repoURL.head, value.html_url.head))
-//          case JsError(errors) =>
-//            Left(APIError.BadAPIResponse(400, "could not find any repositories associated with that user"))
-//
-//        }
+        val repoOwner = (allRepos.head \ "owner" \ "login").as[String]
+        Right(repoOwner +: allRepoNames.toList)
   }
       .recover{
         case _ =>
@@ -52,12 +44,6 @@ class ApplicationConnector @Inject()(ws: WSClient) {
       }
   }
 
-    //def getRepoContent[Response](url: String)(implicit rds: OFormat[Response], ec: ExecutionContext) = {
-    //    val request = ws.url(url).get()
-    //    request.map {
-    //      result =>
-    //        val gitRepo = result.json
-    //  }
 
 
   def getRepoContent[Response](url: String)(implicit rds: OFormat[Response], ec: ExecutionContext): Future[Either[APIError, List[String]]] = {

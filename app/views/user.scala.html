@@ -17,7 +17,7 @@
         <li>@user.location.getOrElse("unknown")</li>
         <li>@user.followers</li>
         <li>@user.following</li>
-        <button href="@controllers.routes.ApplicationController.usersRepos(user.login)">Repositories</button>
+        <a href=@controllers.routes.ApplicationController.usersRepos(user.login)>Repositories</a>
 
     </ul>
 

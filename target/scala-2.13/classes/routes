@@ -11,7 +11,7 @@ GET     /github/users/api/:login               controllers.ApplicationController
 GET     /github/users/add/:login               controllers.ApplicationController.addFromAPI(login: String)
 
 GET     /github/userspage/:login               controllers.ApplicationController.showUser(login: String)
-GET     /github/users/:login/repositories                    controllers.ApplicationController.usersRepos(login: String)
+GET     /github/users/:login/repositories      controllers.ApplicationController.usersRepos(login: String)
 GET     /github/users/:login/:repoName                    controllers.ApplicationController.usersRepoInfo(login: String, repoName: String)
 GET     /github/users/:login/repos/:repoName                    controllers.ApplicationController.repoContent(login: String, repoName: String)
 

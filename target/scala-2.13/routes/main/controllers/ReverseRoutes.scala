@@ -1,6 +1,6 @@
 // @GENERATOR:play-routes-compiler
 // @SOURCE:/Users/robyn.garlington/Documents/scalaTraining/assignments/gHub-example/gitHub-ex/conf/routes
-// @DATE:Thu Jul 07 14:59:58 BST 2022
+// @DATE:Fri Jul 08 11:25:15 BST 2022
 
 import play.api.mvc.Call
 

@@ -1,5 +1,5 @@
 @import models.Repository
-@ (repo: Repository)
+@(repo: List[String])
 
 <!DOCTYPE html>
 <html lang="en">
@@ -8,10 +8,12 @@
     <title>repos</title>
 </head>
 <body>
-  <h3>@repo.name</h3>
+<h3>@repo.head's Repositories</h3>
 <ul>
-  <li>@repo.repoURL</li>
-  <li>@repo.htmlURL</li>
+  @repo.tail.map{name =>
+    <li><a href=@controllers.routes.ApplicationController.usersRepoInfo(repo.head, name)> @name </a></li>
+      }
+
 </ul>
 
 </body>
