@@ -1,5 +1,24 @@
-[0m[[0m[31merror[0m] [0m[0m/Users/robyn.garlington/Documents/scalaTraining/assignments/gHub-example/gitHub-ex/app/views/repositories.scala.html:14:73: not enough arguments for method usersRepoInfo: (login: String, repoName: String): play.api.mvc.Call.[0m
-[0m[[0m[31merror[0m] [0m[0mUnspecified value parameter repoName.[0m
-[0m[[0m[31merror[0m] [0m[0m    <li> <a href=@controllers.routes.ApplicationController.usersRepoInfo(repo.head)>@name</a></li>[0m
-[0m[[0m[31merror[0m] [0m[0m                                                                        ^[0m
-[0m[[0m[31merror[0m] [0m[0mone error found[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/robyn.garlington/Documents/scalaTraining/assignments/gHub-example/gitHub-ex/app/controllers/ApplicationController.scala:99:26: not enough arguments for method getDirContent: (urlOverride: Option[String], dirName: String, urlPath: String)(implicit ec: scala.concurrent.ExecutionContext): scala.concurrent.Future[Either[models.APIError,Seq[models.FFitems]]].[0m
+[0m[[0m[31merror[0m] [0m[0mUnspecified value parameters dirName, urlPath.[0m
+[0m[[0m[31merror[0m] [0m[0m    service.getDirContent(dirName).map{[0m
+[0m[[0m[31merror[0m] [0m[0m                         ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/robyn.garlington/Documents/scalaTraining/assignments/gHub-example/gitHub-ex/app/controllers/ApplicationController.scala:100:55: not enough arguments for method apply: (contents: Seq[models.FFitems], login: String, repoName: String)(implicit request: play.api.mvc.RequestHeader): play.twirl.api.HtmlFormat.Appendable in object foldersAndFiles.[0m
+[0m[[0m[31merror[0m] [0m[0mUnspecified value parameters login, repoName.[0m
+[0m[[0m[31merror[0m] [0m[0m      case Right(dir) => Ok(views.html.foldersAndFiles(dir))[0m
+[0m[[0m[31merror[0m] [0m[0m                                                      ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/robyn.garlington/Documents/scalaTraining/assignments/gHub-example/gitHub-ex/app/controllers/ApplicationController.scala:101:40: value httpResponseStatus is not a member of Any[0m
+[0m[[0m[31merror[0m] [0m[0m      case Left(error) => Status(error.httpResponseStatus)(Json.toJson(error.reason))[0m
+[0m[[0m[31merror[0m] [0m[0m                                       ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/robyn.garlington/Documents/scalaTraining/assignments/gHub-example/gitHub-ex/app/controllers/ApplicationController.scala:101:78: value reason is not a member of Any[0m
+[0m[[0m[31merror[0m] [0m[0m      case Left(error) => Status(error.httpResponseStatus)(Json.toJson(error.reason))[0m
+[0m[[0m[31merror[0m] [0m[0m                                                                             ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/robyn.garlington/Documents/scalaTraining/assignments/gHub-example/gitHub-ex/app/services/ApplicationService.scala:36:95: not found: value login[0m
+[0m[[0m[31merror[0m] [0m[0m    connector.getDirContent[Repository](urlOverride.getOrElse(s"https://api.github.com/repos/$login/$repoName/contents/$dirName"))[0m
+[0m[[0m[31merror[0m] [0m[0m                                                                                              ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/robyn.garlington/Documents/scalaTraining/assignments/gHub-example/gitHub-ex/app/services/ApplicationService.scala:36:102: not found: value repoName[0m
+[0m[[0m[31merror[0m] [0m[0m    connector.getDirContent[Repository](urlOverride.getOrElse(s"https://api.github.com/repos/$login/$repoName/contents/$dirName"))[0m
+[0m[[0m[31merror[0m] [0m[0m                                                                                                     ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/robyn.garlington/Documents/scalaTraining/assignments/gHub-example/gitHub-ex/app/views/foldersAndFiles.scala.html:16:89: too many arguments (found 3, expected 1) for method dirContent: (dirName: String): play.api.mvc.Call[0m
+[0m[[0m[31merror[0m] [0m[0m            <li><a href=@controllers.routes.ApplicationController.dirContent(item.name, login, repoName)> @item.name </a></li>[0m
+[0m[[0m[31merror[0m] [0m[0m                                                                                        ^[0m
+[0m[[0m[31merror[0m] [0m[0m7 errors found[0m

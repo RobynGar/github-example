@@ -14,7 +14,6 @@ import views.html._
 import play.api.templates.PlayMagic._
 import play.api.mvc._
 import play.api.data._
-/*1.2*/import models.Repository
 
 object repositories extends _root_.play.twirl.api.BaseScalaTemplate[play.twirl.api.HtmlFormat.Appendable,_root_.play.twirl.api.Format[play.twirl.api.HtmlFormat.Appendable]](play.twirl.api.HtmlFormat) with _root_.play.twirl.api.Template1[List[String],play.twirl.api.HtmlFormat.Appendable] {
 
@@ -57,11 +56,11 @@ Seq[Any](format.raw/*3.1*/("""
 
               /*
                   -- GENERATED --
-                  DATE: 2022-07-08T11:58:15.817
+                  DATE: 2022-07-08T12:28:14.098
                   SOURCE: /Users/robyn.garlington/Documents/scalaTraining/assignments/gHub-example/gitHub-ex/app/views/repositories.scala.html
-                  HASH: f0d88cf245e3e518d1c0d4bf04f462454fad648c
-                  MATRIX: 432->1|774->27|888->48|915->49|1053->161|1066->165|1092->170|1147->199|1159->203|1177->212|1223->220|1255->225|1295->238|1315->249|1396->309|1426->312|1451->316|1480->317|1527->334|1556->336
-                  LINES: 17->1|22->2|27->3|28->4|35->11|35->11|35->11|37->13|37->13|37->13|37->13|38->14|38->14|38->14|38->14|38->14|38->14|38->14|39->15|41->17
+                  HASH: 7e99207baa9f06a57541d495e216721566a467ac
+                  MATRIX: 742->2|856->23|883->24|1021->136|1034->140|1060->145|1115->174|1127->178|1145->187|1191->195|1223->200|1263->213|1283->224|1364->284|1394->287|1419->291|1448->292|1495->309|1524->311
+                  LINES: 21->2|26->3|27->4|34->11|34->11|34->11|36->13|36->13|36->13|36->13|37->14|37->14|37->14|37->14|37->14|37->14|37->14|38->15|40->17
                   -- GENERATED --
               */
           

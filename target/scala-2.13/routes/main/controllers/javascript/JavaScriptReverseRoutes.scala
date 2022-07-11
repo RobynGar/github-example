@@ -1,6 +1,6 @@
 // @GENERATOR:play-routes-compiler
 // @SOURCE:/Users/robyn.garlington/Documents/scalaTraining/assignments/gHub-example/gitHub-ex/conf/routes
-// @DATE:Fri Jul 08 11:25:15 BST 2022
+// @DATE:Mon Jul 11 15:15:12 BST 2022
 
 import play.api.routing.JavaScriptReverseRoute
 
@@ -54,6 +54,16 @@ package controllers.javascript {
       """
         function(login0) {
           return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "github/users/add/" + encodeURIComponent((""" + implicitly[play.api.mvc.PathBindable[String]].javascriptUnbind + """)("login", login0))})
+        }
+      """
+    )
+  
+    // @LINE:17
+    def dirContent: JavaScriptReverseRoute = JavaScriptReverseRoute(
+      "controllers.ApplicationController.dirContent",
+      """
+        function(dirName0,login1,repoName2) {
+          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "github/users/" + encodeURIComponent((""" + implicitly[play.api.mvc.PathBindable[String]].javascriptUnbind + """)("login", login1)) + "/repos/" + encodeURIComponent((""" + implicitly[play.api.mvc.PathBindable[String]].javascriptUnbind + """)("repoName", repoName2)) + "/" + encodeURIComponent((""" + implicitly[play.api.mvc.PathBindable[String]].javascriptUnbind + """)("dirName", dirName0))})
         }
       """
     )
@@ -150,7 +160,7 @@ package controllers.javascript {
   
   }
 
-  // @LINE:20
+  // @LINE:21
   class ReverseAssets(_prefix: => String) {
 
     def _defaultPrefix: String = {
@@ -158,7 +168,7 @@ package controllers.javascript {
     }
 
   
-    // @LINE:20
+    // @LINE:21
     def versioned: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.Assets.versioned",
       """

@@ -1,7 +1,7 @@
 package services
 
 import connectors.ApplicationConnector
-import models.{APIError, User, Repository}
+import models.{APIError, FFitems, Repository, User}
 import play.api.libs.json.{JsError, JsSuccess, JsValue}
 import play.api.mvc.Request
 import repositories.DataRepository
@@ -28,10 +28,13 @@ class ApplicationService @Inject()(connector: ApplicationConnector, dataReposito
     connector.getUserRepoInfo[Repository](urlOverride.getOrElse(s"https://api.github.com/repos/$login/$repoName"))
   }
 
-  def getRepoContent(urlOverride: Option[String] = None, login: String, repoName: String)(implicit ec: ExecutionContext): Future[Either[APIError, List[String]]] = {
+  def getRepoContent(urlOverride: Option[String] = None, login: String, repoName: String)(implicit ec: ExecutionContext): Future[Either[APIError, Seq[FFitems]]] = {
     connector.getRepoContent[Repository](urlOverride.getOrElse(s"https://api.github.com/repos/$login/$repoName/contents"))
   }
 
+  def getDirContent(urlOverride: Option[String] = None, dirName: String, login: String, repoName: String)(implicit ec: ExecutionContext): Future[Either[APIError, Seq[FFitems]]] = {
+    connector.getDirContent[Repository](urlOverride.getOrElse(s"https://api.github.com/repos/$login/$repoName/contents/$dirName"))
+  }
 
   def index(): Future[Either[APIError, Seq[User]]] = {
     dataRepository.index().map {

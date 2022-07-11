@@ -1,6 +1,6 @@
 // @GENERATOR:play-routes-compiler
 // @SOURCE:/Users/robyn.garlington/Documents/scalaTraining/assignments/gHub-example/gitHub-ex/conf/routes
-// @DATE:Fri Jul 08 11:25:15 BST 2022
+// @DATE:Mon Jul 11 15:15:12 BST 2022
 
 package router
 
@@ -17,7 +17,7 @@ class Routes(
   HomeController_2: controllers.HomeController,
   // @LINE:4
   ApplicationController_0: controllers.ApplicationController,
-  // @LINE:20
+  // @LINE:21
   Assets_1: controllers.Assets,
   val prefix: String
 ) extends GeneratedRouter {
@@ -28,7 +28,7 @@ class Routes(
     HomeController_2: controllers.HomeController,
     // @LINE:4
     ApplicationController_0: controllers.ApplicationController,
-    // @LINE:20
+    // @LINE:21
     Assets_1: controllers.Assets
   ) = this(errorHandler, HomeController_2, ApplicationController_0, Assets_1, "/")
 
@@ -55,6 +55,7 @@ class Routes(
     ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """github/users/""" + "$" + """login<[^/]+>/repositories""", """controllers.ApplicationController.usersRepos(login:String)"""),
     ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """github/users/""" + "$" + """login<[^/]+>/""" + "$" + """repoName<[^/]+>""", """controllers.ApplicationController.usersRepoInfo(login:String, repoName:String)"""),
     ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """github/users/""" + "$" + """login<[^/]+>/repos/""" + "$" + """repoName<[^/]+>""", """controllers.ApplicationController.repoContent(login:String, repoName:String)"""),
+    ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """github/users/""" + "$" + """login<[^/]+>/repos/""" + "$" + """repoName<[^/]+>/""" + "$" + """dirName<[^/]+>""", """controllers.ApplicationController.dirContent(dirName:String, login:String, repoName:String)"""),
     ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """assets/""" + "$" + """file<.+>""", """controllers.Assets.versioned(path:String = "/public", file:Asset)"""),
     Nil
   ).foldLeft(List.empty[(String,String,String)]) { (s,e) => e.asInstanceOf[Any] match {
@@ -279,11 +280,29 @@ class Routes(
     )
   )
 
-  // @LINE:20
-  private[this] lazy val controllers_Assets_versioned12_route = Route("GET",
+  // @LINE:17
+  private[this] lazy val controllers_ApplicationController_dirContent12_route = Route("GET",
+    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("github/users/"), DynamicPart("login", """[^/]+""",true), StaticPart("/repos/"), DynamicPart("repoName", """[^/]+""",true), StaticPart("/"), DynamicPart("dirName", """[^/]+""",true)))
+  )
+  private[this] lazy val controllers_ApplicationController_dirContent12_invoker = createInvoker(
+    ApplicationController_0.dirContent(fakeValue[String], fakeValue[String], fakeValue[String]),
+    play.api.routing.HandlerDef(this.getClass.getClassLoader,
+      "router",
+      "controllers.ApplicationController",
+      "dirContent",
+      Seq(classOf[String], classOf[String], classOf[String]),
+      "GET",
+      this.prefix + """github/users/""" + "$" + """login<[^/]+>/repos/""" + "$" + """repoName<[^/]+>/""" + "$" + """dirName<[^/]+>""",
+      """""",
+      Seq()
+    )
+  )
+
+  // @LINE:21
+  private[this] lazy val controllers_Assets_versioned13_route = Route("GET",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("assets/"), DynamicPart("file", """.+""",false)))
   )
-  private[this] lazy val controllers_Assets_versioned12_invoker = createInvoker(
+  private[this] lazy val controllers_Assets_versioned13_invoker = createInvoker(
     Assets_1.versioned(fakeValue[String], fakeValue[Asset]),
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
@@ -372,10 +391,16 @@ class Routes(
         controllers_ApplicationController_repoContent11_invoker.call(ApplicationController_0.repoContent(login, repoName))
       }
   
-    // @LINE:20
-    case controllers_Assets_versioned12_route(params@_) =>
+    // @LINE:17
+    case controllers_ApplicationController_dirContent12_route(params@_) =>
+      call(params.fromPath[String]("dirName", None), params.fromPath[String]("login", None), params.fromPath[String]("repoName", None)) { (dirName, login, repoName) =>
+        controllers_ApplicationController_dirContent12_invoker.call(ApplicationController_0.dirContent(dirName, login, repoName))
+      }
+  
+    // @LINE:21
+    case controllers_Assets_versioned13_route(params@_) =>
       call(Param[String]("path", Right("/public")), params.fromPath[Asset]("file", None)) { (path, file) =>
-        controllers_Assets_versioned12_invoker.call(Assets_1.versioned(path, file))
+        controllers_Assets_versioned13_invoker.call(Assets_1.versioned(path, file))
       }
   }
 }

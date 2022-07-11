@@ -3,7 +3,7 @@ package connectors
 import models.APIError.BadAPIResponse
 import play.api.libs.json.{JsError, JsSuccess, OFormat}
 import play.api.libs.ws.{WSClient, WSResponse}
-import models.{APIError, Repository, User}
+import models.{APIError, FFitems, Repository, User}
 import play.api.http.Status
 
 import javax.inject.Inject
@@ -46,13 +46,31 @@ class ApplicationConnector @Inject()(ws: WSClient) {
 
 
 
-  def getRepoContent[Response](url: String)(implicit rds: OFormat[Response], ec: ExecutionContext): Future[Either[APIError, List[String]]] = {
+  def getRepoContent[Response](url: String)(implicit rds: OFormat[Response], ec: ExecutionContext): Future[Either[APIError, Seq[FFitems]]] = {
     val request = ws.url(url).get()
     request.map {
       result =>
-        val allFiles = result.json
-        val allFileNames = (allFiles \\ "name").map(_.as[String])
-        Right(allFileNames.toList)
+//        val allFiles = result.json
+//        val allFileNames = (allFiles \\ "name").map(_.as[String])
+//        Right(allFileNames.toList)
+        val response = result.json
+        val seqOfFolderFiles = response.as[Seq[FFitems]]
+        Right(seqOfFolderFiles)
+
+    }
+      .recover{
+        case _ =>
+          Left(APIError.BadAPIResponse(400, "could not find any repository files"))
+      }
+  }
+
+  def getDirContent[Response](url: String)(implicit rds: OFormat[Response], ec: ExecutionContext): Future[Either[APIError, Seq[FFitems]]] = {
+    val request = ws.url(url).get()
+    request.map {
+      result =>
+        val response = result.json
+        val seqOfFolderFiles = response.as[Seq[FFitems]]
+        Right(seqOfFolderFiles)
 
     }
       .recover{

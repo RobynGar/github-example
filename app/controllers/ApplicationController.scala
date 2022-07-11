@@ -83,14 +83,21 @@ class ApplicationController @Inject()(val controllerComponents: ControllerCompon
 
   def usersRepoInfo(login: String, repoName: String): Action[AnyContent] = Action.async { implicit request =>
     service.getUsersRepoInfo(login = login, repoName = repoName).map{
-      case Right(repo) => Ok(Json.toJson(repo))
+      case Right(repo) => Ok(views.html.repoInfo(repo))
       case Left(error) => Status(error.httpResponseStatus)(Json.toJson(error.reason))
     }
   }
 
   def repoContent(login: String, repoName: String): Action[AnyContent] = Action.async { implicit request =>
     service.getRepoContent(login = login, repoName = repoName).map{
-      case Right(repo) => Ok(Json.toJson(repo))
+      case Right(repo) => Ok(views.html.foldersAndFiles(repo, login, repoName))
+      case Left(error) => Status(error.httpResponseStatus)(Json.toJson(error.reason))
+    }
+  }
+
+  def dirContent(dirName: String, login: String, repoName: String): Action[AnyContent] = Action.async { implicit request =>
+    service.getDirContent(dirName= dirName, login = login, repoName = repoName).map{
+      case Right(dir) => Ok(views.html.foldersAndFiles(dir, login, repoName))
       case Left(error) => Status(error.httpResponseStatus)(Json.toJson(error.reason))
     }
   }
