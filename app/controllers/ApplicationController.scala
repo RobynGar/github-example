@@ -102,4 +102,11 @@ class ApplicationController @Inject()(val controllerComponents: ControllerCompon
     }
   }
 
+  def fileContent(filePath: String, login: String, repoName: String): Action[AnyContent] = Action.async { implicit request =>
+    service.getFileContent(filePath= filePath, login = login, repoName = repoName).map{
+      case Right(file) => Ok(views.html.file(file, login, repoName))
+      case Left(error) => Status(error.httpResponseStatus)(Json.toJson(error.reason))
+    }
+  }
+
 }

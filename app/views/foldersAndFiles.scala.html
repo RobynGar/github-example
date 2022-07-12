@@ -9,20 +9,23 @@
 <body>
 
 
-<h3>Folders</h3>
+<h2>Folders</h2>
     @contents.map{item =>
         @if(item.fType == "dir"){
-            <h5>path: @item.path</h5>
+            <h4>path: @item.path</h4>
             <li><a href=@controllers.routes.ApplicationController.dirContent(item.path, login, repoName)> @item.name </a></li>
         }
     }
-<h3>Files</h3>
+
+
+<h2>Files</h2>
 
     @contents.map{item =>
         @if(item.fType == "file"){
             <h4>path: @item.path</h4>
-            <li> @item.name </li>
+            <li><a href=@controllers.routes.ApplicationController.fileContent(item.path, login, repoName)> @item.name </a></li>
         }
     }
+
 </body>
 </html>

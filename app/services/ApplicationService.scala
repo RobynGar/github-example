@@ -1,7 +1,8 @@
 package services
 
 import connectors.ApplicationConnector
-import models.{APIError, FFitems, Repository, User}
+import models.File.jsonReads
+import models.{APIError, FFitems, File, Repository, User}
 import play.api.libs.json.{JsError, JsSuccess, JsValue}
 import play.api.mvc.Request
 import repositories.DataRepository
@@ -29,11 +30,15 @@ class ApplicationService @Inject()(connector: ApplicationConnector, dataReposito
   }
 
   def getRepoContent(urlOverride: Option[String] = None, login: String, repoName: String)(implicit ec: ExecutionContext): Future[Either[APIError, Seq[FFitems]]] = {
-    connector.getRepoContent[Repository](urlOverride.getOrElse(s"https://api.github.com/repos/$login/$repoName/contents"))
+    connector.getRepoContent[FFitems](urlOverride.getOrElse(s"https://api.github.com/repos/$login/$repoName/contents"))
   }
 
   def getDirContent(urlOverride: Option[String] = None, dirName: String, login: String, repoName: String)(implicit ec: ExecutionContext): Future[Either[APIError, Seq[FFitems]]] = {
-    connector.getDirContent[Repository](urlOverride.getOrElse(s"https://api.github.com/repos/$login/$repoName/contents/$dirName"))
+    connector.getDirContent[FFitems](urlOverride.getOrElse(s"https://api.github.com/repos/$login/$repoName/contents/$dirName"))
+  }
+
+  def getFileContent(urlOverride: Option[String] = None, filePath: String, login: String, repoName: String)(implicit ec: ExecutionContext): Future[Either[APIError, File]] = {
+    connector.getFileContent[File](urlOverride.getOrElse(s"https://api.github.com/repos/$login/$repoName/contents/$filePath"))
   }
 
   def index(): Future[Either[APIError, Seq[User]]] = {

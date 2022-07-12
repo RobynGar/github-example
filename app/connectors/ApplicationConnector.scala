@@ -3,11 +3,12 @@ package connectors
 import models.APIError.BadAPIResponse
 import play.api.libs.json.{JsError, JsSuccess, OFormat}
 import play.api.libs.ws.{WSClient, WSResponse}
-import models.{APIError, FFitems, Repository, User}
+import models.{APIError, FFitems, File, Repository, User}
 import play.api.http.Status
 
 import javax.inject.Inject
 import scala.concurrent.{ExecutionContext, Future}
+import scala.util.Right
 
 class ApplicationConnector @Inject()(ws: WSClient) {
   def get[Response](url: String)(implicit rds: OFormat[Response], ec: ExecutionContext): Future[Either[APIError, User]] = {
@@ -77,6 +78,18 @@ class ApplicationConnector @Inject()(ws: WSClient) {
         case _ =>
           Left(APIError.BadAPIResponse(400, "could not find any repository files"))
       }
+  }
+
+  def getFileContent[Response](url: String)(implicit rds: OFormat[Response], ec: ExecutionContext): Future[Either[APIError, File]] = {
+    val request = ws.url(url).get()
+    request.map {
+      result =>
+        result.json.validate[File] match {
+          case JsSuccess(value, _) => Right(File(value.name, value.sha, value.fType, value.path, value.url, value.download_url, value.content))
+          case JsError(errors) => Left(APIError.BadAPIResponse(400, "could not find any file contents"))
+        }
+    }
+
   }
 
   def getUserRepoInfo[Response](url: String)(implicit rds: OFormat[Response], ec: ExecutionContext): Future[Either[APIError, Repository]] = {

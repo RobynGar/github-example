@@ -1,6 +1,6 @@
 // @GENERATOR:play-routes-compiler
 // @SOURCE:/Users/robyn.garlington/Documents/scalaTraining/assignments/gHub-example/gitHub-ex/conf/routes
-// @DATE:Mon Jul 11 15:15:12 BST 2022
+// @DATE:Tue Jul 12 12:52:10 BST 2022
 
 import play.api.routing.JavaScriptReverseRoute
 
@@ -44,6 +44,16 @@ package controllers.javascript {
       """
         function(login0) {
           return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "github/users/api/" + encodeURIComponent((""" + implicitly[play.api.mvc.PathBindable[String]].javascriptUnbind + """)("login", login0))})
+        }
+      """
+    )
+  
+    // @LINE:18
+    def fileContent: JavaScriptReverseRoute = JavaScriptReverseRoute(
+      "controllers.ApplicationController.fileContent",
+      """
+        function(filePath0,login1,repoName2) {
+          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "github/users/" + encodeURIComponent((""" + implicitly[play.api.mvc.PathBindable[String]].javascriptUnbind + """)("login", login1)) + "/repos/" + encodeURIComponent((""" + implicitly[play.api.mvc.PathBindable[String]].javascriptUnbind + """)("repoName", repoName2)) + "/file/" + encodeURIComponent((""" + implicitly[play.api.mvc.PathBindable[String]].javascriptUnbind + """)("filePath", filePath0))})
         }
       """
     )
@@ -133,7 +143,7 @@ package controllers.javascript {
       "controllers.ApplicationController.usersRepos",
       """
         function(login0) {
-          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "github/users/" + encodeURIComponent((""" + implicitly[play.api.mvc.PathBindable[String]].javascriptUnbind + """)("login", login0)) + "/repositories"})
+          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "github/users/" + encodeURIComponent((""" + implicitly[play.api.mvc.PathBindable[String]].javascriptUnbind + """)("login", login0)) + "/repos"})
         }
       """
     )
@@ -160,7 +170,7 @@ package controllers.javascript {
   
   }
 
-  // @LINE:21
+  // @LINE:22
   class ReverseAssets(_prefix: => String) {
 
     def _defaultPrefix: String = {
@@ -168,7 +178,7 @@ package controllers.javascript {
     }
 
   
-    // @LINE:21
+    // @LINE:22
     def versioned: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.Assets.versioned",
       """

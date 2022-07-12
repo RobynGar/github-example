@@ -1,7 +1,7 @@
 package models
 
 import play.api.libs.functional.syntax.toFunctionalBuilderOps
-import play.api.libs.json.{JsPath, Json, OFormat, Reads, Writes}
+import play.api.libs.json.{JsPath, Json, OFormat, OWrites, Reads, Writes}
 
 case class FFitems(name: String, fType: String, path: String, url: String)
 
@@ -14,4 +14,6 @@ object FFitems{
       (JsPath \ "path").read[String] and
       (JsPath \ "url").read[String]
   )(FFitems.apply _)
+
+ implicit val write: OWrites[FFitems] = Json.format[FFitems]
 }
