@@ -1,7 +1,7 @@
-[0m[[0m[31merror[0m] [0m[0m/Users/robyn.garlington/Documents/scalaTraining/assignments/gHub-example/gitHub-ex/app/models/File.scala:15:46: overloaded method apply with alternatives:[0m
-[0m[[0m[31merror[0m] [0m[0m  [B](f: B => (String, String, String, String, String, String, String))(implicit fu: play.api.libs.functional.ContravariantFunctor[play.api.libs.json.Reads]): play.api.libs.json.Reads[B] <and>[0m
-[0m[[0m[31merror[0m] [0m[0m  [B](f: (String, String, String, String, String, String, String) => B)(implicit fu: play.api.libs.functional.Functor[play.api.libs.json.Reads]): play.api.libs.json.Reads[B][0m
-[0m[[0m[31merror[0m] [0m[0m cannot be applied to ((String, String, String, String) => models.FFitems)[0m
-[0m[[0m[31merror[0m] [0m[0m      (JsPath \ "download_url").read[String] and[0m
-[0m[[0m[31merror[0m] [0m[0m                                             ^[0m
-[0m[[0m[31merror[0m] [0m[0mone error found[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/robyn.garlington/Documents/scalaTraining/assignments/gHub-example/gitHub-ex/app/views/file.scala.html:18:8: identifier expected but ')' found.[0m
+[0m[[0m[31merror[0m] [0m[0m<p>@new String(java.util.Base64.getDecoder.decode(fileContents.content))</p>[0m
+[0m[[0m[31merror[0m] [0m[0m       ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/robyn.garlington/Documents/scalaTraining/assignments/gHub-example/gitHub-ex/app/views/file.scala.html:21:8: ')' expected but '}' found.[0m
+[0m[[0m[31merror[0m] [0m[0m</html>[0m
+[0m[[0m[31merror[0m] [0m[0m       ^[0m
+[0m[[0m[31merror[0m] [0m[0mtwo errors found[0m

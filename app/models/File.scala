@@ -1,9 +1,10 @@
 package models
 
+import java.util.Base64
 import play.api.libs.functional.syntax.toFunctionalBuilderOps
 import play.api.libs.json.{JsPath, Json, OWrites, Reads}
 
-case class File(name: String, sha: String, fType: String, path: String, url: String, download_url: String, content: String)
+case class File(name: String, sha: String, fType: String, path: String, url: String, download_url: String, content: String, decodedContent: String)
 
 object File{
   implicit val jsonReads: Reads[File] = (
@@ -13,6 +14,7 @@ object File{
       (JsPath \ "path").read[String] and
       (JsPath \ "url").read[String] and
       (JsPath \ "download_url").read[String] and
+      (JsPath \ "content").read[String] and
       (JsPath \ "content").read[String]
     )(File.apply _)
 

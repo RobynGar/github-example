@@ -5,6 +5,7 @@ import play.api.libs.json.{JsError, JsSuccess, OFormat}
 import play.api.libs.ws.{WSClient, WSResponse}
 import models.{APIError, FFitems, File, Repository, User}
 import play.api.http.Status
+import java.util.Base64
 
 import javax.inject.Inject
 import scala.concurrent.{ExecutionContext, Future}
@@ -85,7 +86,9 @@ class ApplicationConnector @Inject()(ws: WSClient) {
     request.map {
       result =>
         result.json.validate[File] match {
-          case JsSuccess(value, _) => Right(File(value.name, value.sha, value.fType, value.path, value.url, value.download_url, value.content))
+          case JsSuccess(value, _) => Right(File(value.name, value.sha, value.fType, value.path, value.url, value.download_url, value.content, Base64.getMimeDecoder().decode(value.content).map(_.toChar).mkString))
+          //new String(Base64.getDecoder.decode(value.content.replaceAll("\n", ""))) other option for the decoded byte string in file parameter
+          //OR new String(Base64.getMimeDecoder().decode(value.content))
           case JsError(errors) => Left(APIError.BadAPIResponse(400, "could not find any file contents"))
         }
     }
