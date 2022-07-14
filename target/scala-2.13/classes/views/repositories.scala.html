@@ -1,0 +1,20 @@
+
+@(repo: List[String])
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>repos</title>
+</head>
+<body>
+<h3>@repo.head's Repositories</h3>
+<ul>
+  @repo.tail.map{name =>
+    <li><a href=@controllers.routes.ApplicationController.usersRepoInfo(repo.head, name)> @name </a></li>
+      }
+
+</ul>
+
+</body>
+</html>

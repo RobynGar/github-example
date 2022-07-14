@@ -39,7 +39,7 @@ class ApplicationController @Inject()(val controllerComponents: ControllerCompon
   }
 
   def addFromAPI(login: String): Action[AnyContent] = Action.async { implicit request =>
-    service.addUser(login = login)
+    service.addApiUser(login = login)
       .map{
       case Right(user: User) => Created(Json.toJson(user))
       case Left(error: APIError) => Status(error.httpResponseStatus)(Json.toJson(error.reason))
@@ -62,7 +62,7 @@ class ApplicationController @Inject()(val controllerComponents: ControllerCompon
 
   def delete(login: String): Action[AnyContent] = Action.async { implicit request =>
     service.delete(login).map{
-      case Right(value) => Accepted
+      case Right(value: String) => Accepted
       case Left(value) => Status(value.httpResponseStatus)(Json.toJson(value.reason))
     }
   }
@@ -74,6 +74,7 @@ class ApplicationController @Inject()(val controllerComponents: ControllerCompon
       case Left(value) => Status(value.httpResponseStatus)(Json.toJson(value.reason))
     }
   }
+
   def usersRepos(login: String): Action[AnyContent] = Action.async { implicit request =>
     service.getUsersRepo(login = login).map{
       case Right(repo) => Ok(views.html.repositories(repo))

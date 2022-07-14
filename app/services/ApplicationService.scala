@@ -62,7 +62,8 @@ class ApplicationService @Inject()(connector: ApplicationConnector, dataReposito
     }
   }
 
-  def addUser(login: String):Future[Either[APIError, User]]= {
+
+  def addApiUser(login: String):Future[Either[APIError, User]]= {
     getUser(login = login) flatMap  {
       case Right(user: User) => dataRepository.create(user)
       case Left(error) => Future(Left(APIError.BadAPIResponse(400, "could not add user")))
