@@ -122,7 +122,7 @@ Seq[Any](format.raw/*2.1*/("""
 
               /*
                   -- GENERATED --
-                  DATE: 2022-07-01T12:52:33.931
+                  DATE: 2022-07-08T09:51:34.281
                   SOURCE: /Users/robyn.garlington/Documents/scalaTraining/assignments/gHub-example/gitHub-ex/app/views/index.scala.html
                   HASH: fe1c7ae6f3ec5e48975e4516a572144731a98609
                   MATRIX: 722->1|818->4|845->6|880->33|919->35|947->37|3027->2087

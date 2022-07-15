@@ -1,69 +1,97 @@
 [0m[[0m[0mdebug[0m] [0m[0mjavaOptions: Vector()[0m
 [0m[[0m[0mdebug[0m] [0m[0mForking tests - parallelism = false[0m
 [0m[[0m[0mdebug[0m] [0m[0mCreate a single-thread test executor[0m
-[0m[[0m[0mdebug[0m] [0m[0mRunner for org.scalatest.tools.Framework produced 4 initial tasks for 4 tests.[0m
-[0m[[0m[0mdebug[0m] [0m[0m  Running TaskDef(controllers.ApplicationControllerMockitoSpec, sbt.ForkMain$SubclassFingerscan@f79222e, false, [SuiteSelector])[0m
-[0m[[0m[0minfo[0m] [0m[0m[32mApplicationControllerMockitoSpec:[0m[0m
-[0m[[0m[0mdebug[0m] [0m[0m  Running TaskDef(controllers.HomeControllerSpec, sbt.ForkMain$SubclassFingerscan@47e409db, false, [SuiteSelector])[0m
-[0m[[0m[0minfo[0m] [0m[0m[32mHomeControllerSpec:[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[32mHomeController GET[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m- should render the index page from a new instance of controller *** FAILED ***[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  None was not equal to Some("text/html") (HomeControllerSpec.scala:28)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m- should render the index page from the application *** FAILED ***[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  None was not equal to Some("text/html") (HomeControllerSpec.scala:37)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m- should render the index page from the router *** FAILED ***[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  400 was not equal to 200 (HomeControllerSpec.scala:45)[0m[0m
-[0m[[0m[0mdebug[0m] [0m[0m    Produced 0 nested tasks and 3 events.[0m
-[0m[[0m[0mdebug[0m] [0m[0m  Running TaskDef(controllers.ApplicationControllerSpec, sbt.ForkMain$SubclassFingerscan@16a023fc, false, [SuiteSelector])[0m
+[0m[[0m[0mdebug[0m] [0m[0mRunner for org.scalatest.tools.Framework produced 2 initial tasks for 2 tests.[0m
+[0m[[0m[0mdebug[0m] [0m[0m  Running TaskDef(controllers.ApplicationControllerSpec, sbt.ForkMain$SubclassFingerscan@53dff4cd, false, [SuiteSelector])[0m
 [0m[[0m[0minfo[0m] [0m[0m[32mApplicationControllerSpec:[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[32mApplicationController .index[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[32m- should return OK[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[32m- should load the main page[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[32mApplicationController .create[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[32m- should create a book in the database[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[32m- should return an error when a book already exists[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[32m- should validate a json body[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[32m- should return an error for invalid json[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[32mApplicationController .read[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[32m- should find a book in the database by id[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[32m- should find a book in the database by book[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[32m- should find all books by author's lastname[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[32m- should return an error when a book doesn't exist for a given id[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[32mApplicationController .update[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[32m- should update a book's name by their id[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[32m- should return an error when an id doesn't exist[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[32m- should return an error when a key doesn't exist[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[32m- should update the number of copies available[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[32mApplicationController .upsert[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[32m- should update an existing book[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[32m- should create a book when one doesn't exist in[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[32m- should return an error for incorrect json[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[32mApplicationController .delete[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[32m- should delete a book by id[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[32m- should give an error when no id exists[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[32mApplicationController .deleteAll[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[32m- should return an empty database[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[32m- should Optional: return a message when the database was already empty?[0m[0m
-[0m[[0m[0mdebug[0m] [0m[0m    Produced 0 nested tasks and 21 events.[0m
-[0m[[0m[0mdebug[0m] [0m[0m  Running TaskDef(services.LibraryServiceSpec, sbt.ForkMain$SubclassFingerscan@6018dbc3, false, [SuiteSelector])[0m
-[0m[[0m[0minfo[0m] [0m[0m[32mLibraryServiceSpec:[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[32mgetGoogleBook[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[32m- should return a book[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[32m- should return an error[0m[0m
-[0m[[0m[0mdebug[0m] [0m[0m    Produced 0 nested tasks and 2 events.[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should return[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mApplicationController .create()[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should create a user in the database[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should try to create a user in the database with wrong format[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mApplicationController .read()[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m- should find a user in the database by login *** FAILED ***[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  400 was not equal to 200 (ApplicationControllerSpec.scala:88)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should cannot find a user in the database as login does not exist[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mApplicationController .index()[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should return all users in the database[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mApplicationController .update()[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should find a user in the database by login and update all fields[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should try update a user by an login that does not exist and in a non-conforming format[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mApplicationController .delete()[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should find a user in the database by login and delete[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should cannot find a user in the database as login does not exist do not delete[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mApplicationController .readFromAPI()[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m- should use username/login to find user from api and return that user *** FAILED ***[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  400 was not equal to 200 (ApplicationControllerSpec.scala:186)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should unknown username/login used to find user from api cannot return that user[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mApplicationController .addFromAPI()[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m- should use username/login to find user from api and return that user *** FAILED ***[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  400 was not equal to 201 (ApplicationControllerSpec.scala:215)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should unknown username/login used to find user from api cannot return that user[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mApplicationController .showUser()[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m- should use username/login to find user from api and return that user *** FAILED ***[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  400 was not equal to 200 (ApplicationControllerSpec.scala:244)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should use incorrect username/login return api error[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m- should render the userPage from the router *** FAILED ***[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  400 was not equal to 200 (ApplicationControllerSpec.scala:263)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should unable to render the userPage incorrect username from the router[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mApplicationController .usersRepos()[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m- should login to find user's repositories and return their names in list  *** FAILED ***[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  400 was not equal to 200 (ApplicationControllerSpec.scala:286)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should use incorrect login return api error[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should use login for user with no repositories, return api error[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m- should render the repositories page from the router *** FAILED ***[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  400 was not equal to 200 (ApplicationControllerSpec.scala:316)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should unable to render the repositories Page due to incorrect username from the router[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mApplicationController() .usersRepoInfo()[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m- should login to find user's repositories under the name specified and return info about that repo  *** FAILED ***[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  400 was not equal to 200 (ApplicationControllerSpec.scala:339)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should use incorrect login return api error[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should use login for user with no repositories, return api error[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m- should render the repoInfo page from the router *** FAILED ***[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  400 was not equal to 200 (ApplicationControllerSpec.scala:369)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should unable to render the repositories Page due to incorrect username from the router[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mApplicationController() .repoContent()[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m- should login to find user's repositories under the name specified and return info about that repo  *** FAILED ***[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  400 was not equal to 200 (ApplicationControllerSpec.scala:392)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should use incorrect login return api error[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should use login for user with no repositories, return api error[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m- should render the repoInfo page from the router *** FAILED ***[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  400 was not equal to 200 (ApplicationControllerSpec.scala:422)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should unable to render the repositories Page due to incorrect username from the router[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mApplicationController() .dirContent()[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m- should login to find user's repositories under the name specified and return folders and files form that repo  *** FAILED ***[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  400 was not equal to 200 (ApplicationControllerSpec.scala:446)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should use incorrect login return api error[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should use login for user with no repositories, return api error[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m- should render the foldersAndFiles page from the router *** FAILED ***[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  400 was not equal to 200 (ApplicationControllerSpec.scala:476)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should unable to render the foldersAndFiles Page due to incorrect username from the router[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mApplicationController() .fileContent()[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m- should login to find user's repositories under the name specified and return folders and files form that repo  *** FAILED ***[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  400 was not equal to 200 (ApplicationControllerSpec.scala:499)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should use incorrect login return api error[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should use login for user with no repositories, return api error[0m[0m
+[0m[[0m[0mdebug[0m] [0m[0m    Produced 0 nested tasks and 41 events.[0m
+[0m[[0m[0mdebug[0m] [0m[0m  Running TaskDef(controllers.HomeControllerSpec, sbt.ForkMain$SubclassFingerscan@7e441353, false, [SuiteSelector])[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mHomeControllerSpec:[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mHomeController GET[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should render the index page from a new instance of controller[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should render the index page from the application[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should render the index page from the router[0m[0m
+[0m[[0m[0mdebug[0m] [0m[0m    Produced 0 nested tasks and 3 events.[0m
 [0m[[0m[0mdebug[0m] [0m[0mRunner for com.novocode.junit.JUnitFramework produced 0 initial tasks for 0 tests.[0m
 [0m[[0m[0minfo[0m] [0m[0mScalaTest[0m
-[0m[[0m[0minfo[0m] [0m[0m[36mRun completed in 11 seconds, 701 milliseconds.[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[36mTotal number of tests run: 26[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[36mSuites: completed 4, aborted 0[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[36mTests: succeeded 23, failed 3, canceled 0, ignored 0, pending 0[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m*** 3 TESTS FAILED ***[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[36mRun completed in 10 seconds, 378 milliseconds.[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[36mTotal number of tests run: 44[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[36mSuites: completed 2, aborted 0[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[36mTests: succeeded 30, failed 14, canceled 0, ignored 0, pending 0[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m*** 14 TESTS FAILED ***[0m[0m
 [0m[[0m[0mdebug[0m] [0m[0mSummary for JUnit not available.[0m
-[0m[[0m[31merror[0m] [0m[0mFailed: Total 26, Failed 3, Errors 0, Passed 23[0m
+[0m[[0m[31merror[0m] [0m[0mFailed: Total 44, Failed 14, Errors 0, Passed 30[0m
 [0m[[0m[0mdebug[0m] [0m[0mPassed tests:[0m
-[0m[[0m[0mdebug[0m] [0m[0m	controllers.ApplicationControllerSpec[0m
-[0m[[0m[0mdebug[0m] [0m[0m	services.LibraryServiceSpec[0m
-[0m[[0m[0mdebug[0m] [0m[0m	controllers.ApplicationControllerMockitoSpec[0m
+[0m[[0m[0mdebug[0m] [0m[0m	controllers.HomeControllerSpec[0m
 [0m[[0m[31merror[0m] [0m[0mFailed tests:[0m
-[0m[[0m[31merror[0m] [0m[0m	controllers.HomeControllerSpec[0m
+[0m[[0m[31merror[0m] [0m[0m	controllers.ApplicationControllerSpec[0m
 [0m[[0m[31merror[0m] [0m[0m(Test / [31mtest[0m) sbt.TestsFailedException: Tests unsuccessful[0m

@@ -1,0 +1,31 @@
+@import models.FFitems
+@(contents: Seq[FFitems], login: String, repoName: String)
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>folders and files</title>
+</head>
+<body>
+
+
+<h2>Folders</h2>
+    @contents.map{item =>
+        @if(item.fType == "dir"){
+            <h4>path: @item.path</h4>
+            <li><a href=@controllers.routes.ApplicationController.dirContent(item.path, login, repoName)> @item.name </a></li>
+        }
+    }
+
+
+<h2>Files</h2>
+
+    @contents.map{item =>
+        @if(item.fType == "file"){
+            <h4>path: @item.path</h4>
+            <li><a href=@controllers.routes.ApplicationController.fileContent(item.path, login, repoName)> @item.name </a></li>
+        }
+    }
+
+</body>
+</html>
