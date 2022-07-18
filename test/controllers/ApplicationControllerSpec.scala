@@ -6,8 +6,7 @@ import models.User
 import play.api.libs.json.{JsValue, Json}
 import play.api.mvc.{AnyContentAsEmpty, Result}
 import play.api.test.FakeRequest
-import play.api.test.Helpers.{GET, POST, contentAsJson, contentAsString, contentType, defaultAwaitTimeout, route, status, writeableOf_AnyContentAsEmpty}
-
+import play.api.test.Helpers.{DELETE, GET, POST, PUT, contentAsJson, contentAsString, contentType, defaultAwaitTimeout, route, status, writeableOf_AnyContentAsEmpty}
 import java.net.URLEncoder
 import scala.concurrent.Future
 
@@ -146,7 +145,7 @@ class ApplicationControllerSpec extends BaseSpecWithApplication {
       contentType(createResponse) shouldBe Some("application/json")
       status(readResponse) shouldBe Status.OK
       contentType(readResponse) shouldBe Some("application/json")
-      beforeEach()
+      afterEach()
     }
 
   }
@@ -178,6 +177,20 @@ class ApplicationControllerSpec extends BaseSpecWithApplication {
       afterEach()
     }
 
+    "return json from the router" in {
+      beforeEach()
+      val apiCreateRequest = FakeRequest(POST, "/github/users/create").withBody[JsValue](Json.toJson(user))
+      val apiUpdateRequest = FakeRequest(PUT, "/github/users/test").withBody[JsValue](Json.toJson(updatedUser))
+      val createResponse = route(app, apiCreateRequest).get
+      val updateResponse = route(app, apiUpdateRequest).get
+
+      status(createResponse) shouldBe Status.CREATED
+      contentType(createResponse) shouldBe Some("application/json")
+      status(updateResponse) shouldBe Status.ACCEPTED
+      contentType(updateResponse) shouldBe Some("application/json")
+      afterEach()
+    }
+
   }
 
   "ApplicationController .delete()" should {
@@ -202,6 +215,20 @@ class ApplicationControllerSpec extends BaseSpecWithApplication {
 
       status(deleteResult) shouldBe Status.BAD_REQUEST
       contentAsJson(deleteResult) shouldBe Json.toJson("could not delete user")
+      afterEach()
+    }
+
+    "return accepted status from the router" in {
+      beforeEach()
+      val apiCreateRequest = FakeRequest(POST, "/github/users/create").withBody[JsValue](Json.toJson(user))
+      val apiDeleteRequest =  FakeRequest(DELETE, "/github/users/test")
+      val createResponse = route(app, apiCreateRequest).get
+      val deleteResponse = route(app, apiDeleteRequest).get
+
+      status(createResponse) shouldBe Status.CREATED
+      contentType(createResponse) shouldBe Some("application/json")
+      status(deleteResponse) shouldBe Status.ACCEPTED
+
       afterEach()
     }
 
