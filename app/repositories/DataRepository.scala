@@ -1,13 +1,24 @@
 package repositories
 
+import com.google.inject.ImplementedBy
 import models.{APIError, User}
 import org.mongodb.scala.bson.conversions.Bson
 import org.mongodb.scala.model.Filters.{empty, equal}
 import org.mongodb.scala.model.{Filters, FindOneAndUpdateOptions, IndexModel, IndexOptions, Indexes, ReplaceOptions, ReturnDocument}
 import uk.gov.hmrc.mongo.MongoComponent
 import uk.gov.hmrc.mongo.play.json.PlayMongoRepository
+
 import javax.inject.{Inject, Singleton}
 import scala.concurrent.{ExecutionContext, Future}
+
+@ImplementedBy(classOf[DataRepository])
+trait TraitDataRepo{
+  def index(): Future[Either[APIError, Seq[User]]]
+  def read(login: String): Future[Either[APIError, User]]
+  def create(user: User): Future[Either[APIError, User]]
+  def update(login: String, newUser: User): Future[Either[APIError, User]]
+  def delete(login: String): Future[Either[APIError, String]]
+}
 
 @Singleton
 class DataRepository @Inject()(mongoComponent: MongoComponent)(implicit ec: ExecutionContext) extends PlayMongoRepository[User](
@@ -16,7 +27,7 @@ class DataRepository @Inject()(mongoComponent: MongoComponent)(implicit ec: Exec
   domainFormat = User.formats,
   indexes = Seq(IndexModel(
     Indexes.ascending("login"), IndexOptions().unique(true)
-  ))) {
+  ))) with TraitDataRepo {
 
 
   private def byLogin(login: String): Bson =

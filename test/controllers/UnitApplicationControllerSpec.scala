@@ -180,8 +180,35 @@ class UnitApplicationControllerSpec extends BaseSpecWithApplication with MockFac
 
   }
 
+//  "ApplicationController .readFromAPI()" should {
+//
+//    "use username/login to find user from api and return that user" in {
+//
+//      val apiRequest: FakeRequest[AnyContent] = buildGet("/github/users/api/bla")
+//      (mockService.getUser(_: Option[String], _: String)).expects(None, *).returning(Future(Right(apiUser))).once()
+//      val apiResult = UnitTestApplicationController.readFromAPI("bla")(apiRequest)
+//
+//      status(apiResult) shouldBe Status.OK
+//      contentAsJson(apiResult) shouldBe Json.toJson(apiUser)
+//
+//
+//    }
+//
+//    "unknown username/login used to find user from api cannot return that user" in {
+//
+//      val apiRequest: FakeRequest[AnyContent] = buildGet("/github/users/api/meeptot")
+//      (mockService.getUser(_: Option[String], _: String)).expects(None, *).returning(Future(Left(APIError.BadAPIResponse(400, "could not find user")))).once()
+//      val apiResult = UnitTestApplicationController.readFromAPI("meeptot")(apiRequest)
+//
+//      status(apiResult) shouldBe Status.BAD_REQUEST
+//      contentAsJson(apiResult) shouldBe Json.toJson("could not find user")
+//
+//    }
+//  }
 
-//  override def beforeEach(): Unit = repository.deleteAll()
+
+
+  //  override def beforeEach(): Unit = repository.deleteAll()
 // AS MOCKING I AM NOT ACTUALLY INTERACTING WITH DATABASE SO DO NOT NEED TO CLEAR IT EACH TEST
 //  override def afterEach(): Unit = repository.deleteAll()
 }

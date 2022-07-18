@@ -5,21 +5,18 @@ import models.File.jsonReads
 import models.{APIError, FFitems, File, Repository, User}
 import play.api.libs.json.{JsError, JsSuccess, JsValue}
 import play.api.mvc.Request
-import repositories.DataRepository
+import repositories.{DataRepository, TraitDataRepo}
 
 import javax.inject.{Inject, Singleton}
 import scala.concurrent.{ExecutionContext, Future}
 
 @Singleton
-class ApplicationService @Inject()(connector: ApplicationConnector, dataRepository: DataRepository)(implicit ec: ExecutionContext) {
+class ApplicationService @Inject()(connector: ApplicationConnector, dataRepository: TraitDataRepo)(implicit ec: ExecutionContext) {
 
   def getUser(urlOverride: Option[String] = None, login: String)(implicit ec: ExecutionContext): Future[Either[APIError, User]] = {
     connector.get[User](urlOverride.getOrElse(s"https://api.github.com/users/$login"))
   }
 
-//  def getRepoContent(urlOverride: Option[String] = None, login: String, repo: String)(implicit ec: ExecutionContext) = {
-//    connector.getRepoContent[Repositories](urlOverride.getOrElse(s"https://api.github.com/repos/$login/$repo/contents"))
-//  }
 
   def getUsersRepo(urlOverride: Option[String] = None, login: String)(implicit ec: ExecutionContext): Future[Either[APIError, List[String]]] = {
     connector.getUserRepo[Repository](urlOverride.getOrElse(s"https://api.github.com/users/$login/repos"))
@@ -63,7 +60,7 @@ class ApplicationService @Inject()(connector: ApplicationConnector, dataReposito
   }
 
 
-  def addApiUser(login: String):Future[Either[APIError, User]]= {
+  def addApiUser(login: String): Future[Either[APIError, User]]= {
     getUser(login = login) flatMap  {
       case Right(user: User) => dataRepository.create(user)
       case Left(error) => Future(Left(APIError.BadAPIResponse(400, "could not add user")))

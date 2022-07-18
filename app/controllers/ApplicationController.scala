@@ -39,8 +39,7 @@ class ApplicationController @Inject()(val controllerComponents: ControllerCompon
   }
 
   def addFromAPI(login: String): Action[AnyContent] = Action.async { implicit request =>
-    service.addApiUser(login = login)
-      .map{
+    service.addApiUser(login = login).map{
       case Right(user: User) => Created(Json.toJson(user))
       case Left(error: APIError) => Status(error.httpResponseStatus)(Json.toJson(error.reason))
     }
