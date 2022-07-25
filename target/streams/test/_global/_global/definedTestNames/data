@@ -1,1 +1,1 @@
-["controllers.ApplicationControllerSpec","controllers.HomeControllerSpec"]
+["controllers.UnitApplicationControllerSpec","controllers.HomeControllerSpec","controllers.ApplicationControllerSpec","service.ApplicationServiceUnitSpec"]

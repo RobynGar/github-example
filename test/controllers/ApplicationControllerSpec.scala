@@ -2,14 +2,15 @@ package controllers
 
 import baseSpec.BaseSpecWithApplication
 import play.api.http.Status
-import models.User
+import models.{CreateFile, User}
 import play.api.libs.json.{JsValue, Json}
 import play.api.mvc.{AnyContentAsEmpty, Result}
 import play.api.test.FakeRequest
 import play.api.test.Helpers.{DELETE, GET, POST, PUT, contentAsJson, contentAsString, contentType, defaultAwaitTimeout, route, status, writeableOf_AnyContentAsEmpty}
+
 import java.net.URLEncoder
 import scala.concurrent.Future
-
+//token- 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
 class ApplicationControllerSpec extends BaseSpecWithApplication {
 
   val TestApplicationController = new ApplicationController(
@@ -38,6 +39,11 @@ class ApplicationControllerSpec extends BaseSpecWithApplication {
     None,
     2,
     0
+  )
+
+  private val createFile: CreateFile = CreateFile(
+    "add readme",
+    "read me"
   )
 
 
@@ -600,6 +606,23 @@ class ApplicationControllerSpec extends BaseSpecWithApplication {
     }
 
   }
+
+  "ApplicationController() .createFile()" should {
+
+    "login to find user's repositories under the name specified and create files" in {
+
+      val apiRequest: FakeRequest[JsValue] = buildPut("/github/users/RobynGar/repos/git_practice/file/create/newFile2.txt").withBody[JsValue](Json.toJson(createFile))
+      println(apiRequest.headers)
+      val apiResult = TestApplicationController.createFile("RobynGar", "git_practice", "newFile2.txt")(apiRequest)
+
+      status(apiResult) shouldBe Status.OK
+
+
+    }
+
+
+  }
+
 
   override def beforeEach(): Unit = repository.deleteAll()
 

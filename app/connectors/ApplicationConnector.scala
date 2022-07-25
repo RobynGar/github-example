@@ -1,14 +1,16 @@
 package connectors
 
 import models.APIError.BadAPIResponse
-import play.api.libs.json.{JsError, JsSuccess, OFormat}
-import play.api.libs.ws.{WSClient, WSResponse}
-import models.{APIError, FFitems, File, Repository, User}
+import play.api.libs.json.{JsError, JsSuccess, JsValue, Json, OFormat}
+import play.api.libs.ws.{WSAuthScheme, WSClient, WSResponse}
+import models.{APIError, Content, CreateFile, FFitems, File, Repository, ReturnCreatedFile, User}
 import play.api.http.Status
-import java.util.Base64
+import play.api.mvc.Request
 
+import java.util.Base64
 import javax.inject.Inject
 import scala.concurrent.{ExecutionContext, Future}
+import scala.sys.env
 import scala.util.Right
 
 class ApplicationConnector @Inject()(ws: WSClient) {
@@ -112,6 +114,35 @@ class ApplicationConnector @Inject()(ws: WSClient) {
         case _ =>
           Left(APIError.BadAPIResponse(400, "could not find any repositories information"))
       }
+  }
+
+  def createFile[Response](newFile: CreateFile, url: String)(implicit rds: OFormat[Response], ec: ExecutionContext): Future[Either[APIError, ReturnCreatedFile]] = {
+    val password = env.get("AuthPassword") //match {
+//      case Some(token) => token
+//      case None => "error Auth token not found"
+//    }
+    //can also use this instead of .getOrElse for the
+    val addFile = CreateFile(newFile.message, Base64.getEncoder.encodeToString(newFile.content.getBytes()))
+    val request =  ws.url(url)
+      .withHttpHeaders("Accept" -> "application/vnd.github+json")
+      .withHttpHeaders("Authorization" -> s"token ${password.getOrElse("error no token")}")
+    println(request.headers)
+    val response: Future[WSResponse] = request
+      .put(CreateFile.formats.writes(addFile))
+
+    response.map {
+      result =>
+        result.json.validate[ReturnCreatedFile] match {
+          case JsSuccess(value, _) => Right(value)
+          case JsError(errors) =>
+//            println(Json.prettyPrint(result.json))
+//            println(s"moose ${errors}")
+            Left(APIError.BadAPIResponse(400, "could not find create file"))
+        }
+
+    }
+
+
   }
 
 }

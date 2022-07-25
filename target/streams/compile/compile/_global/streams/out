@@ -1,6 +1,11 @@
-[0m[[0m[33mwarn[0m] [0m[0m/Users/robyn.garlington/Documents/scalaTraining/assignments/gHub-example/gitHub-ex/app/repositories/DataRepository.scala:35:37: Auto-application to `()` is deprecated. Supply the empty argument list `()` explicitly to invoke method headOption,[0m
-[0m[[0m[33mwarn[0m] [0m[0mor remove the empty argument list from its definition (Java-defined methods are exempt).[0m
-[0m[[0m[33mwarn[0m] [0m[0mIn Scala 3, an unapplied method like this will be eta-expanded into a function.[0m
-[0m[[0m[33mwarn[0m] [0m[0m    collection.find(byLogin(login)).headOption flatMap {[0m
-[0m[[0m[33mwarn[0m] [0m[0m                                    ^[0m
-[0m[[0m[33mwarn[0m] [0m[0mone warning found[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/robyn.garlington/Documents/scalaTraining/assignments/gHub-example/gitHub-ex/app/services/ApplicationService.scala:5:8: object createFile is not a member of package models[0m
+[0m[[0m[31merror[0m] [0m[0mdid you mean CreateFile?[0m
+[0m[[0m[31merror[0m] [0m[0mimport models.{APIError, FFitems, File, Repository, User, createFile}[0m
+[0m[[0m[31merror[0m] [0m[0m       ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/robyn.garlington/Documents/scalaTraining/assignments/gHub-example/gitHub-ex/app/services/ApplicationService.scala:86:188: not found: type createFile[0m
+[0m[[0m[31merror[0m] [0m[0m  def createFile(urlOverride: Option[String] = None, login: String, repoName: String, filePath: String, newFile: Request[JsValue])(implicit ec: ExecutionContext): Future[Either[APIError, createFile]] = {[0m
+[0m[[0m[31merror[0m] [0m[0m                                                                                                                                                                                           ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/robyn.garlington/Documents/scalaTraining/assignments/gHub-example/gitHub-ex/app/models/CreateFile.scala:10:58: No instance of play.api.libs.json.Format is available for java.util.Base64 in the implicit scope (Hint: if declared in the same file, make sure it's declared before)[0m
+[0m[[0m[31merror[0m] [0m[0m  implicit val formats: OFormat[CreateFile] = Json.format[CreateFile][0m
+[0m[[0m[31merror[0m] [0m[0m                                                         ^[0m
+[0m[[0m[31merror[0m] [0m[0mthree errors found[0m

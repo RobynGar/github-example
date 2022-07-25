@@ -2,10 +2,10 @@ package services
 
 import connectors.ApplicationConnector
 import models.File.jsonReads
-import models.{APIError, FFitems, File, Repository, User}
+import models.{APIError, Content, CreateFile, FFitems, File, Repository, ReturnCreatedFile, User}
 import play.api.libs.json.{JsError, JsSuccess, JsValue}
 import play.api.mvc.Request
-import repositories.{DataRepository, TraitDataRepo}
+import repositories.TraitDataRepo
 
 import javax.inject.{Inject, Singleton}
 import scala.concurrent.{ExecutionContext, Future}
@@ -13,30 +13,7 @@ import scala.concurrent.{ExecutionContext, Future}
 @Singleton
 class ApplicationService @Inject()(connector: ApplicationConnector, dataRepository: TraitDataRepo)(implicit ec: ExecutionContext) {
 
-  def getUser(urlOverride: Option[String] = None, login: String)(implicit ec: ExecutionContext): Future[Either[APIError, User]] = {
-    connector.get[User](urlOverride.getOrElse(s"https://api.github.com/users/$login"))
-  }
 
-
-  def getUsersRepo(urlOverride: Option[String] = None, login: String)(implicit ec: ExecutionContext): Future[Either[APIError, List[String]]] = {
-    connector.getUserRepo[Repository](urlOverride.getOrElse(s"https://api.github.com/users/$login/repos"))
-  }
-
-  def getUsersRepoInfo(urlOverride: Option[String] = None, login: String, repoName: String)(implicit ec: ExecutionContext): Future[Either[APIError, Repository]] = {
-    connector.getUserRepoInfo[Repository](urlOverride.getOrElse(s"https://api.github.com/repos/$login/$repoName"))
-  }
-
-  def getRepoContent(urlOverride: Option[String] = None, login: String, repoName: String)(implicit ec: ExecutionContext): Future[Either[APIError, Seq[FFitems]]] = {
-    connector.getRepoContent[FFitems](urlOverride.getOrElse(s"https://api.github.com/repos/$login/$repoName/contents"))
-  }
-
-  def getDirContent(urlOverride: Option[String] = None, dirName: String, login: String, repoName: String)(implicit ec: ExecutionContext): Future[Either[APIError, Seq[FFitems]]] = {
-    connector.getDirContent[FFitems](urlOverride.getOrElse(s"https://api.github.com/repos/$login/$repoName/contents/$dirName"))
-  }
-
-  def getFileContent(urlOverride: Option[String] = None, filePath: String, login: String, repoName: String)(implicit ec: ExecutionContext): Future[Either[APIError, File]] = {
-    connector.getFileContent[File](urlOverride.getOrElse(s"https://api.github.com/repos/$login/$repoName/contents/$filePath"))
-  }
 
   def index(): Future[Either[APIError, Seq[User]]] = {
     dataRepository.index().map {
@@ -81,7 +58,38 @@ class ApplicationService @Inject()(connector: ApplicationConnector, dataReposito
     }
   }
 
+  def getUser(urlOverride: Option[String] = None, login: String)(implicit ec: ExecutionContext): Future[Either[APIError, User]] = {
+    connector.get[User](urlOverride.getOrElse(s"https://api.github.com/users/$login"))
+  }
 
+
+  def getUsersRepo(urlOverride: Option[String] = None, login: String)(implicit ec: ExecutionContext): Future[Either[APIError, List[String]]] = {
+    connector.getUserRepo[Repository](urlOverride.getOrElse(s"https://api.github.com/users/$login/repos"))
+  }
+
+  def getUsersRepoInfo(urlOverride: Option[String] = None, login: String, repoName: String)(implicit ec: ExecutionContext): Future[Either[APIError, Repository]] = {
+    connector.getUserRepoInfo[Repository](urlOverride.getOrElse(s"https://api.github.com/repos/$login/$repoName"))
+  }
+
+  def getRepoContent(urlOverride: Option[String] = None, login: String, repoName: String)(implicit ec: ExecutionContext): Future[Either[APIError, Seq[FFitems]]] = {
+    connector.getRepoContent[FFitems](urlOverride.getOrElse(s"https://api.github.com/repos/$login/$repoName/contents"))
+  }
+
+  def getDirContent(urlOverride: Option[String] = None, dirName: String, login: String, repoName: String)(implicit ec: ExecutionContext): Future[Either[APIError, Seq[FFitems]]] = {
+    connector.getDirContent[FFitems](urlOverride.getOrElse(s"https://api.github.com/repos/$login/$repoName/contents/$dirName"))
+  }
+
+  def getFileContent(urlOverride: Option[String] = None, filePath: String, login: String, repoName: String)(implicit ec: ExecutionContext): Future[Either[APIError, File]] = {
+    connector.getFileContent[File](urlOverride.getOrElse(s"https://api.github.com/repos/$login/$repoName/contents/$filePath"))
+  }
+
+  def createFile(urlOverride: Option[String] = None, login: String, repoName: String, filePath: String, newFile: Request[JsValue])(implicit ec: ExecutionContext): Future[Either[APIError, ReturnCreatedFile]] = {
+    newFile.body.validate[CreateFile] match {
+      case JsSuccess(newFile, _) => connector.createFile[File](newFile, urlOverride.getOrElse(s"https://api.github.com/repos/$login/$repoName/contents/$filePath"))
+      case JsError(errors) => Future(Left(APIError.BadAPIResponse(400, "could not validate file")))
+    }
+
+  }
 
 
 }

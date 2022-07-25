@@ -1,6 +1,6 @@
 package models
 
-import java.util.Base64
+
 import play.api.libs.functional.syntax.toFunctionalBuilderOps
 import play.api.libs.json.{JsPath, Json, OWrites, Reads}
 

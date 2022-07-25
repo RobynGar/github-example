@@ -16,6 +16,7 @@ GET     /github/users/:login/:repoName                    controllers.Applicatio
 GET     /github/users/:login/repos/:repoName                    controllers.ApplicationController.repoContent(login: String, repoName: String)
 GET     /github/users/:login/repos/:repoName/:dirName                   controllers.ApplicationController.dirContent(dirName: String, login: String, repoName: String)
 GET     /github/users/:login/repos/:repoName/file/:filePath                   controllers.ApplicationController.fileContent(filePath: String, login: String, repoName: String)
+PUT     /github/users/:login/repos/:repoName/file/create/:filePath                   controllers.ApplicationController.createFile(login: String, repoName: String, filePath: String)
 
 
 # Map static resources from the /public folder to the /assets URL path
