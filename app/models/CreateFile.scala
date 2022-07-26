@@ -1,7 +1,7 @@
 package models
 
 import play.api.libs.json.{Json, OFormat}
-import java.util.Base64
+
 
 //case class Committer(name: String, email: String)
 case class CreateFile(message: String, content: String)

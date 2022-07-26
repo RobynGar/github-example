@@ -1,6 +1,6 @@
 // @GENERATOR:play-routes-compiler
 // @SOURCE:/Users/robyn.garlington/Documents/scalaTraining/assignments/gHub-example/gitHub-ex/conf/routes
-// @DATE:Tue Jul 19 12:01:18 BST 2022
+// @DATE:Tue Jul 26 11:29:15 BST 2022
 
 import play.api.routing.JavaScriptReverseRoute
 
@@ -38,6 +38,16 @@ package controllers.javascript {
       """
     )
   
+    // @LINE:21
+    def deleteFile: JavaScriptReverseRoute = JavaScriptReverseRoute(
+      "controllers.ApplicationController.deleteFile",
+      """
+        function(login0,repoName1,filePath2) {
+          return _wA({method:"DELETE", url:"""" + _prefix + { _defaultPrefix } + """" + "github/users/" + encodeURIComponent((""" + implicitly[play.api.mvc.PathBindable[String]].javascriptUnbind + """)("login", login0)) + "/repos/" + encodeURIComponent((""" + implicitly[play.api.mvc.PathBindable[String]].javascriptUnbind + """)("repoName", repoName1)) + "/file/delete/" + encodeURIComponent((""" + implicitly[play.api.mvc.PathBindable[String]].javascriptUnbind + """)("filePath", filePath2))})
+        }
+      """
+    )
+  
     // @LINE:10
     def readFromAPI: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.ApplicationController.readFromAPI",
@@ -68,6 +78,16 @@ package controllers.javascript {
       """
     )
   
+    // @LINE:20
+    def updateFile: JavaScriptReverseRoute = JavaScriptReverseRoute(
+      "controllers.ApplicationController.updateFile",
+      """
+        function(login0,repoName1,filePath2) {
+          return _wA({method:"PUT", url:"""" + _prefix + { _defaultPrefix } + """" + "github/users/" + encodeURIComponent((""" + implicitly[play.api.mvc.PathBindable[String]].javascriptUnbind + """)("login", login0)) + "/repos/" + encodeURIComponent((""" + implicitly[play.api.mvc.PathBindable[String]].javascriptUnbind + """)("repoName", repoName1)) + "/file/update/" + encodeURIComponent((""" + implicitly[play.api.mvc.PathBindable[String]].javascriptUnbind + """)("filePath", filePath2))})
+        }
+      """
+    )
+  
     // @LINE:17
     def dirContent: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.ApplicationController.dirContent",
@@ -83,7 +103,7 @@ package controllers.javascript {
       "controllers.ApplicationController.createFile",
       """
         function(login0,repoName1,filePath2) {
-          return _wA({method:"PUT", url:"""" + _prefix + { _defaultPrefix } + """" + "github/users/" + encodeURIComponent((""" + implicitly[play.api.mvc.PathBindable[String]].javascriptUnbind + """)("login", login0)) + "/repos/" + encodeURIComponent((""" + implicitly[play.api.mvc.PathBindable[String]].javascriptUnbind + """)("repoName", repoName1)) + "/file/" + encodeURIComponent((""" + implicitly[play.api.mvc.PathBindable[String]].javascriptUnbind + """)("filePath", filePath2))})
+          return _wA({method:"PUT", url:"""" + _prefix + { _defaultPrefix } + """" + "github/users/" + encodeURIComponent((""" + implicitly[play.api.mvc.PathBindable[String]].javascriptUnbind + """)("login", login0)) + "/repos/" + encodeURIComponent((""" + implicitly[play.api.mvc.PathBindable[String]].javascriptUnbind + """)("repoName", repoName1)) + "/file/create/" + encodeURIComponent((""" + implicitly[play.api.mvc.PathBindable[String]].javascriptUnbind + """)("filePath", filePath2))})
         }
       """
     )
@@ -180,7 +200,7 @@ package controllers.javascript {
   
   }
 
-  // @LINE:23
+  // @LINE:25
   class ReverseAssets(_prefix: => String) {
 
     def _defaultPrefix: String = {
@@ -188,7 +208,7 @@ package controllers.javascript {
     }
 
   
-    // @LINE:23
+    // @LINE:25
     def versioned: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.Assets.versioned",
       """

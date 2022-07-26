@@ -3,8 +3,9 @@ package connectors
 import models.APIError.BadAPIResponse
 import play.api.libs.json.{JsError, JsSuccess, JsValue, Json, OFormat}
 import play.api.libs.ws.{WSAuthScheme, WSClient, WSResponse}
-import models.{APIError, Content, CreateFile, FFitems, File, Repository, ReturnCreatedFile, User}
+import models.{APIError, Content, CreateFile, DeletedReturn, FFitems, File, Repository, RequestDelete, ReturnCreatedFile, UpdatedFile, User}
 import play.api.http.Status
+import play.api.http.Status.OK
 import play.api.mvc.Request
 
 import java.util.Base64
@@ -41,28 +42,27 @@ class ApplicationConnector @Inject()(ws: WSClient) {
         val allRepoNames = (allRepos \\ "name").map(_.as[String])
         val repoOwner = (allRepos.head \ "owner" \ "login").as[String]
         Right(repoOwner +: allRepoNames.toList)
-  }
-      .recover{
+    }
+      .recover {
         case _ =>
           Left(APIError.BadAPIResponse(400, "could not find any repositories associated with that user"))
       }
   }
 
 
-
   def getRepoContent[Response](url: String)(implicit rds: OFormat[Response], ec: ExecutionContext): Future[Either[APIError, Seq[FFitems]]] = {
     val request = ws.url(url).get()
     request.map {
       result =>
-//        val allFiles = result.json
-//        val allFileNames = (allFiles \\ "name").map(_.as[String])
-//        Right(allFileNames.toList)
+        //        val allFiles = result.json
+        //        val allFileNames = (allFiles \\ "name").map(_.as[String])
+        //        Right(allFileNames.toList)
         val response = result.json
         val seqOfFolderFiles = response.as[Seq[FFitems]]
         Right(seqOfFolderFiles)
 
     }
-      .recover{
+      .recover {
         case _ =>
           Left(APIError.BadAPIResponse(400, "could not find any repository files"))
       }
@@ -77,7 +77,7 @@ class ApplicationConnector @Inject()(ws: WSClient) {
         Right(seqOfFolderFiles)
 
     }
-      .recover{
+      .recover {
         case _ =>
           Left(APIError.BadAPIResponse(400, "could not find any repository files"))
       }
@@ -108,25 +108,24 @@ class ApplicationConnector @Inject()(ws: WSClient) {
         val repoURL = (gitRepo \ "url").as[String]
         val htmlURL = (gitRepo \ "html_url").as[String]
         Right(Repository(owner, name, privateStatus, repoURL, htmlURL))
-
     }
-      .recover{
+      .recover {
         case _ =>
           Left(APIError.BadAPIResponse(400, "could not find any repositories information"))
       }
   }
 
   def createFile[Response](newFile: CreateFile, url: String)(implicit rds: OFormat[Response], ec: ExecutionContext): Future[Either[APIError, ReturnCreatedFile]] = {
-    val password = env.get("AuthPassword") //match {
-//      case Some(token) => token
-//      case None => "error Auth token not found"
-//    }
+    val password = env.get("AuthPassword") match {
+      case Some(token) => token
+      case None => "error Auth token not found"
+    }
     //can also use this instead of .getOrElse for the
     val addFile = CreateFile(newFile.message, Base64.getEncoder.encodeToString(newFile.content.getBytes()))
-    val request =  ws.url(url)
+    val request = ws.url(url)
       .withHttpHeaders("Accept" -> "application/vnd.github+json")
-      .withHttpHeaders("Authorization" -> s"token ${password.getOrElse("error no token")}")
-    println(request.headers)
+      .withHttpHeaders("Authorization" -> s"token $password")
+    //${password.getOrElse("error no token")}
     val response: Future[WSResponse] = request
       .put(CreateFile.formats.writes(addFile))
 
@@ -135,14 +134,58 @@ class ApplicationConnector @Inject()(ws: WSClient) {
         result.json.validate[ReturnCreatedFile] match {
           case JsSuccess(value, _) => Right(value)
           case JsError(errors) =>
-//            println(Json.prettyPrint(result.json))
-//            println(s"moose ${errors}")
+            //            println(Json.prettyPrint(result.json))
+            //            println(s"moose ${errors}")
             Left(APIError.BadAPIResponse(400, "could not find create file"))
         }
 
     }
+  }
 
 
+  def updateFile[Response](updatedFile: CreateFile, url: String, sha: String)(implicit rds: OFormat[Response], ec: ExecutionContext): Future[Either[APIError, ReturnCreatedFile]] = {
+    val password = env.getOrElse("AuthPassword", "no Auth token found")
+    val addFile = UpdatedFile(updatedFile.message, Base64.getEncoder.encodeToString(updatedFile.content.getBytes()), sha)
+    val request = ws.url(url)
+      .withHttpHeaders("Accept" -> "application/vnd.github+json")
+      .withHttpHeaders("Authorization" -> s"token $password")
+    val response: Future[WSResponse] = request
+      .put(UpdatedFile.formats.writes(addFile))
+
+    response.map {
+      result =>
+        result.json.validate[ReturnCreatedFile] match {
+          case JsSuccess(value, _) => Right(value)
+          case JsError(errors) => Left(APIError.BadAPIResponse(400, "could not find create file"))
+        }
+    }
+  }
+
+  def deleteFile[Response](url: String, deleteRequest: RequestDelete)(implicit rds: OFormat[Response], ec: ExecutionContext): Future[Either[APIError, String]] = {
+    val password = env.getOrElse("AuthPassword", "no Auth token found")
+    println(url)
+    val request = ws.url(url)
+      .withHttpHeaders("Accept" -> "application/vnd.github+json")
+      .withHttpHeaders("Authorization" -> s"token $password")
+      .withBody(RequestDelete.formats.writes(deleteRequest))
+    val response: Future[WSResponse] = request.execute("DELETE") //.delete()
+   // println("headers" + request.headers)
+
+    response.map {
+      result =>
+        println("result" + result)
+        result.status match {
+          case OK =>
+            Right("DELETED")
+//            result.json.validate[DeletedReturn] match {
+//            case JsSuccess(deleted, _) => Right(deleted)
+//            case _ =>
+//              println(Json.prettyPrint(result.json))
+//              Left(APIError.BadAPIResponse(500, "could not delete file"))
+//          }
+          case _ => Left(APIError.BadAPIResponse(404, "could not delete file"))
+        }
+    }
   }
 
 }

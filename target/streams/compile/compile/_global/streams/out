@@ -1,11 +1,14 @@
-[0m[[0m[31merror[0m] [0m[0m/Users/robyn.garlington/Documents/scalaTraining/assignments/gHub-example/gitHub-ex/app/services/ApplicationService.scala:5:8: object createFile is not a member of package models[0m
-[0m[[0m[31merror[0m] [0m[0mdid you mean CreateFile?[0m
-[0m[[0m[31merror[0m] [0m[0mimport models.{APIError, FFitems, File, Repository, User, createFile}[0m
-[0m[[0m[31merror[0m] [0m[0m       ^[0m
-[0m[[0m[31merror[0m] [0m[0m/Users/robyn.garlington/Documents/scalaTraining/assignments/gHub-example/gitHub-ex/app/services/ApplicationService.scala:86:188: not found: type createFile[0m
-[0m[[0m[31merror[0m] [0m[0m  def createFile(urlOverride: Option[String] = None, login: String, repoName: String, filePath: String, newFile: Request[JsValue])(implicit ec: ExecutionContext): Future[Either[APIError, createFile]] = {[0m
-[0m[[0m[31merror[0m] [0m[0m                                                                                                                                                                                           ^[0m
-[0m[[0m[31merror[0m] [0m[0m/Users/robyn.garlington/Documents/scalaTraining/assignments/gHub-example/gitHub-ex/app/models/CreateFile.scala:10:58: No instance of play.api.libs.json.Format is available for java.util.Base64 in the implicit scope (Hint: if declared in the same file, make sure it's declared before)[0m
-[0m[[0m[31merror[0m] [0m[0m  implicit val formats: OFormat[CreateFile] = Json.format[CreateFile][0m
-[0m[[0m[31merror[0m] [0m[0m                                                         ^[0m
-[0m[[0m[31merror[0m] [0m[0mthree errors found[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/robyn.garlington/Documents/scalaTraining/assignments/gHub-example/gitHub-ex/app/controllers/ApplicationController.scala:125:92: unknown parameter name: updatedFile[0m
+[0m[[0m[31merror[0m] [0m[0m    service.deleteFile(filePath= filePath, login = login, repoName = repoName, updatedFile = request ).map{[0m
+[0m[[0m[31merror[0m] [0m[0m                                                                                           ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/robyn.garlington/Documents/scalaTraining/assignments/gHub-example/gitHub-ex/app/controllers/ApplicationController.scala:126:41: diverging implicit expansion for type play.api.libs.json.Writes[Any][0m
+[0m[[0m[31merror[0m] [0m[0mstarting with method Tuple22W in trait GeneratedWrites[0m
+[0m[[0m[31merror[0m] [0m[0m      case Right(file) => Ok(Json.toJson(file))[0m
+[0m[[0m[31merror[0m] [0m[0m                                        ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/robyn.garlington/Documents/scalaTraining/assignments/gHub-example/gitHub-ex/app/controllers/ApplicationController.scala:127:40: value httpResponseStatus is not a member of Any[0m
+[0m[[0m[31merror[0m] [0m[0m      case Left(error) => Status(error.httpResponseStatus)(Json.toJson(error.reason))[0m
+[0m[[0m[31merror[0m] [0m[0m                                       ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/robyn.garlington/Documents/scalaTraining/assignments/gHub-example/gitHub-ex/app/controllers/ApplicationController.scala:127:78: value reason is not a member of Any[0m
+[0m[[0m[31merror[0m] [0m[0m      case Left(error) => Status(error.httpResponseStatus)(Json.toJson(error.reason))[0m
+[0m[[0m[31merror[0m] [0m[0m                                                                             ^[0m
+[0m[[0m[31merror[0m] [0m[0mfour errors found[0m

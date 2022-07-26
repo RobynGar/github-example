@@ -2,7 +2,7 @@ package controllers
 
 import baseSpec.BaseSpecWithApplication
 import play.api.http.Status
-import models.{CreateFile, User}
+import models.{CreateFile, RequestDelete, User}
 import play.api.libs.json.{JsValue, Json}
 import play.api.mvc.{AnyContentAsEmpty, Result}
 import play.api.test.FakeRequest
@@ -44,6 +44,15 @@ class ApplicationControllerSpec extends BaseSpecWithApplication {
   private val createFile: CreateFile = CreateFile(
     "add readme",
     "read me"
+  )
+
+  private val updateFile: CreateFile = CreateFile(
+    "test update method",
+    "new content"
+  )
+  private val deleteFile: RequestDelete = RequestDelete(
+    "delete file",
+    "47d2739ba2c34690248c8f91b84bb54e8936899a"
   )
 
 
@@ -609,23 +618,49 @@ class ApplicationControllerSpec extends BaseSpecWithApplication {
 
   "ApplicationController() .createFile()" should {
 
-    "login to find user's repositories under the name specified and create files" in {
+    "login to find user's repositories under the name specified and create file" in {
 
-      val apiRequest: FakeRequest[JsValue] = buildPut("/github/users/RobynGar/repos/git_practice/file/create/newFile2.txt").withBody[JsValue](Json.toJson(createFile))
-      println(apiRequest.headers)
-      val apiResult = TestApplicationController.createFile("RobynGar", "git_practice", "newFile2.txt")(apiRequest)
+      val apiCreatedRequest: FakeRequest[JsValue] = buildPut("/github/users/RobynGar/repos/git_practice/file/create/newFile3.txt").withBody[JsValue](Json.toJson(createFile))
+      val apiCreatedResult = TestApplicationController.createFile("RobynGar", "git_practice", "newFile3.txt")(apiCreatedRequest)
 
-      status(apiResult) shouldBe Status.OK
+      status(apiCreatedResult) shouldBe Status.OK
 
+      val apiDeleteRequest: FakeRequest[JsValue] = buildDelete("/github/users/RobynGar/repos/git_practice/file/delete/newFile3.txt").withBody[JsValue](Json.toJson("delete file"))
+      val apiDeleteResult = TestApplicationController.deleteFile("RobynGar", "git_practice", "newFile3.txt")(apiDeleteRequest)
+
+      status(apiDeleteResult) shouldBe Status.ACCEPTED
+    }
+  }
+
+  "ApplicationController() .updateFile()" should {
+
+    "login to find user's repositories under the name specified and update file" in {
+      val apiCreatedRequest: FakeRequest[JsValue] = buildPut("/github/users/RobynGar/repos/git_practice/file/create/newFile.txt").withBody[JsValue](Json.toJson(createFile))
+      val apiCreatedResult = TestApplicationController.createFile("RobynGar", "git_practice", "newFile.txt")(apiCreatedRequest)
+
+      status(apiCreatedResult) shouldBe Status.OK
+
+      val apiUpdateRequest: FakeRequest[JsValue] = buildPut("/github/users/RobynGar/repos/git_practice/file/update/newFile.txt").withBody[JsValue](Json.toJson(updateFile))
+      val apiUpdateResult = TestApplicationController.updateFile("RobynGar", "git_practice", "newFile.txt")(apiUpdateRequest)
+
+      status(apiUpdateResult) shouldBe Status.OK
 
     }
+  }
 
+  "ApplicationController() .deleteFile()" should {
 
+    "login to find user's repositories under the name specified and delete file" in {
+
+      val apiDeleteRequest: FakeRequest[JsValue] = buildDelete("/github/users/RobynGar/repos/git_practice/file/delete/newFile.txt").withBody[JsValue](Json.toJson("delete file"))
+      val apiDeleteResult = TestApplicationController.deleteFile("RobynGar", "git_practice", "newFile.txt")(apiDeleteRequest)
+
+      status(apiDeleteResult) shouldBe Status.ACCEPTED
+    }
   }
 
 
   override def beforeEach(): Unit = repository.deleteAll()
-
   override def afterEach(): Unit = repository.deleteAll()
 
 }

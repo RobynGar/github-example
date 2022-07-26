@@ -17,6 +17,8 @@ GET     /github/users/:login/repos/:repoName                    controllers.Appl
 GET     /github/users/:login/repos/:repoName/:dirName                   controllers.ApplicationController.dirContent(dirName: String, login: String, repoName: String)
 GET     /github/users/:login/repos/:repoName/file/:filePath                   controllers.ApplicationController.fileContent(filePath: String, login: String, repoName: String)
 PUT     /github/users/:login/repos/:repoName/file/create/:filePath                   controllers.ApplicationController.createFile(login: String, repoName: String, filePath: String)
+PUT     /github/users/:login/repos/:repoName/file/update/:filePath                   controllers.ApplicationController.updateFile(login: String, repoName: String, filePath: String)
+DELETE  /github/users/:login/repos/:repoName/file/delete/:filePath                   controllers.ApplicationController.deleteFile(login: String, repoName: String, filePath: String)
 
 
 # Map static resources from the /public folder to the /assets URL path

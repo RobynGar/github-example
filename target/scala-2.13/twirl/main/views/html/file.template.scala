@@ -36,12 +36,13 @@ Seq[Any](format.raw/*3.1*/("""<!DOCTYPE html>
         <li>path: """),_display_(/*12.20*/fileContents/*12.32*/.path),format.raw/*12.37*/("""</li>
         <li>type: """),_display_(/*13.20*/fileContents/*13.32*/.fType),format.raw/*13.38*/("""</li>
         <li>url: """),_display_(/*14.19*/fileContents/*14.31*/.url),format.raw/*14.35*/("""</li>
-        <li><a href="""),_display_(/*15.22*/fileContents/*15.34*/.download_url),format.raw/*15.47*/("""> view files contents </a></li>
+        <li>sha: """),_display_(/*15.19*/fileContents/*15.31*/.sha),format.raw/*15.35*/("""</li>
+        <li><a href="""),_display_(/*16.22*/fileContents/*16.34*/.download_url),format.raw/*16.47*/("""> view files contents </a></li>
 
     </ul>
 
-<h4>"""),_display_(/*19.6*/fileContents/*19.18*/.name),format.raw/*19.23*/(""" """),format.raw/*19.24*/("""Content's:</h4>
-<p>"""),_display_(/*20.5*/fileContents/*20.17*/.decodedContent),format.raw/*20.32*/("""</p>
+<h4>"""),_display_(/*20.6*/fileContents/*20.18*/.name),format.raw/*20.23*/(""" """),format.raw/*20.24*/("""Content's:</h4>
+<p>"""),_display_(/*21.5*/fileContents/*21.17*/.decodedContent),format.raw/*21.32*/("""</p>
 
 
 </body>
@@ -61,11 +62,11 @@ Seq[Any](format.raw/*3.1*/("""<!DOCTYPE html>
 
               /*
                   -- GENERATED --
-                  DATE: 2022-07-12T15:56:21.317
+                  DATE: 2022-07-25T13:01:31.418
                   SOURCE: /Users/robyn.garlington/Documents/scalaTraining/assignments/gHub-example/gitHub-ex/app/views/file.scala.html
-                  HASH: b76747e44ab52be5317644f82ccbe3f552dd4dd4
-                  MATRIX: 432->1|766->21|913->75|1055->190|1076->202|1102->207|1163->241|1184->253|1210->258|1262->283|1283->295|1310->301|1361->325|1382->337|1407->341|1461->368|1482->380|1516->393|1591->442|1612->454|1638->459|1667->460|1713->480|1734->492|1770->507
-                  LINES: 17->1|22->2|27->3|34->10|34->10|34->10|36->12|36->12|36->12|37->13|37->13|37->13|38->14|38->14|38->14|39->15|39->15|39->15|43->19|43->19|43->19|43->19|44->20|44->20|44->20
+                  HASH: d62fe42de3d13ff10380d457e57924010a7bc2a2
+                  MATRIX: 432->1|766->21|913->75|1055->190|1076->202|1102->207|1163->241|1184->253|1210->258|1262->283|1283->295|1310->301|1361->325|1382->337|1407->341|1458->365|1479->377|1504->381|1558->408|1579->420|1613->433|1688->482|1709->494|1735->499|1764->500|1810->520|1831->532|1867->547
+                  LINES: 17->1|22->2|27->3|34->10|34->10|34->10|36->12|36->12|36->12|37->13|37->13|37->13|38->14|38->14|38->14|39->15|39->15|39->15|40->16|40->16|40->16|44->20|44->20|44->20|44->20|45->21|45->21|45->21
                   -- GENERATED --
               */
           

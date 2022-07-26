@@ -2,8 +2,8 @@ package services
 
 import connectors.ApplicationConnector
 import models.File.jsonReads
-import models.{APIError, Content, CreateFile, FFitems, File, Repository, ReturnCreatedFile, User}
-import play.api.libs.json.{JsError, JsSuccess, JsValue}
+import models.{APIError, Content, CreateFile, DeletedReturn, FFitems, File, Repository, RequestDelete, ReturnCreatedFile, User}
+import play.api.libs.json.{JsError, JsSuccess, JsValue, Json}
 import play.api.mvc.Request
 import repositories.TraitDataRepo
 
@@ -85,11 +85,35 @@ class ApplicationService @Inject()(connector: ApplicationConnector, dataReposito
 
   def createFile(urlOverride: Option[String] = None, login: String, repoName: String, filePath: String, newFile: Request[JsValue])(implicit ec: ExecutionContext): Future[Either[APIError, ReturnCreatedFile]] = {
     newFile.body.validate[CreateFile] match {
-      case JsSuccess(newFile, _) => connector.createFile[File](newFile, urlOverride.getOrElse(s"https://api.github.com/repos/$login/$repoName/contents/$filePath"))
+      case JsSuccess(newFile, _) => connector.createFile[ReturnCreatedFile](newFile, urlOverride.getOrElse(s"https://api.github.com/repos/$login/$repoName/contents/$filePath"))
       case JsError(errors) => Future(Left(APIError.BadAPIResponse(400, "could not validate file")))
     }
-
   }
+
+  def updateFile(login: String, repoName: String, filePath: String, updatedFile: Request[JsValue])(implicit ec: ExecutionContext): Future[Either[APIError, ReturnCreatedFile]] = {
+    updatedFile.body.validate[CreateFile] match {
+      case JsSuccess(validatedFile, _) => getFileContent(filePath= filePath, login = login, repoName = repoName).flatMap {
+        case Right(file) =>
+          connector.updateFile[ReturnCreatedFile](validatedFile, s"https://api.github.com/repos/$login/$repoName/contents/$filePath", file.sha)
+        case Left(value) =>
+          Future(Left(APIError.BadAPIResponse(400, "could not update file")))
+      }
+    case JsError(errors) => Future(Left(APIError.BadAPIResponse(400, "could not update file")))
+    }
+  }
+
+
+  def deleteFile(login: String, repoName: String, filePath: String, deleteCommitMessage: Request[JsValue])(implicit ec: ExecutionContext): Future[Either[APIError, String]] = {
+    getFileContent(filePath= filePath, login = login, repoName = repoName).flatMap {
+      case Right(file) =>
+        val deletedRequest = RequestDelete(deleteCommitMessage.body.as[String], file.sha)
+//        println(Json.toJson(deletedRequest))
+        connector.deleteFile[DeletedReturn](s"https://api.github.com/repos/$login/$repoName/contents/$filePath", deletedRequest)
+      case Left(value) =>
+        Future(Left(APIError.BadAPIResponse(400, "could not delete file")))
+        }
+    }
+
 
 
 }

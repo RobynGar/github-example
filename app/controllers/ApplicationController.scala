@@ -114,4 +114,18 @@ class ApplicationController @Inject()(val controllerComponents: ControllerCompon
     }
   }
 
+  def updateFile(login: String, repoName: String, filePath: String): Action[JsValue] = Action.async(parse.json) { implicit request =>
+    service.updateFile(filePath= filePath, login = login, repoName = repoName, updatedFile = request ).map{
+      case Right(file) => Ok(Json.toJson(file))
+      case Left(error) => Status(error.httpResponseStatus)(Json.toJson(error.reason))
+    }
+  }
+
+  def deleteFile(login: String, repoName: String, filePath: String): Action[JsValue] = Action.async(parse.json) { implicit request =>
+    service.deleteFile(filePath= filePath, login = login, repoName = repoName, deleteCommitMessage = request).map{
+      case Right(deleteConformation: String) => Accepted
+      case Left(error) => Status(error.httpResponseStatus)(Json.toJson(error.reason))
+    }
+  }
+
 }
