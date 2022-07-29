@@ -98,7 +98,7 @@ class ApplicationService @Inject()(connector: ApplicationConnector, dataReposito
         case Left(value) =>
           Future(Left(APIError.BadAPIResponse(400, "could not update file")))
       }
-    case JsError(errors) => Future(Left(APIError.BadAPIResponse(400, "could not update file")))
+    case JsError(errors) => Future(Left(APIError.BadAPIResponse(400, "could not validate file")))
     }
   }
 
@@ -110,10 +110,24 @@ class ApplicationService @Inject()(connector: ApplicationConnector, dataReposito
 //        println(Json.toJson(deletedRequest))
         connector.deleteFile[DeletedReturn](s"https://api.github.com/repos/$login/$repoName/contents/$filePath", deletedRequest)
       case Left(value) =>
-        Future(Left(APIError.BadAPIResponse(400, "could not delete file")))
+        Future(Left(APIError.BadAPIResponse(404, "could not delete file")))
         }
     }
 
+  def repoReadMe(login: String, repoName: String)(implicit ec: ExecutionContext): Future[Either[APIError, File]] = {
+    connector.repoReadMe[File](s"https://api.github.com/repos/$login/$repoName/readme")
+  }
 
+  def dirReadMe(login: String, repoName: String, dir: String)(implicit ec: ExecutionContext): Future[Either[APIError, File]] = {
+    connector.dirReadMe[File](s"https://api.github.com/repos/$login/$repoName/readme/$dir")
+  }
+
+  def downloadTar(login: String, repoName: String, branch: Option[String])(implicit ec: ExecutionContext): Future[Either[APIError, Int]] = {
+    connector.downloadTar(s"https://api.github.com/repos/$login/$repoName/tarball/${branch.getOrElse("main")}")
+  }
+
+  def downloadZip(login: String, repoName: String, branch: String)(implicit ec: ExecutionContext): Future[Either[APIError, Int]] = {
+    connector.downloadZip(s"https://api.github.com/repos/$login/$repoName/zipball/$branch")
+  }
 
 }

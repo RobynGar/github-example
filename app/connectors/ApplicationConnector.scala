@@ -5,7 +5,7 @@ import play.api.libs.json.{JsError, JsSuccess, JsValue, Json, OFormat}
 import play.api.libs.ws.{WSAuthScheme, WSClient, WSResponse}
 import models.{APIError, Content, CreateFile, DeletedReturn, FFitems, File, Repository, RequestDelete, ReturnCreatedFile, UpdatedFile, User}
 import play.api.http.Status
-import play.api.http.Status.OK
+import play.api.http.Status.{NOT_FOUND, OK}
 import play.api.mvc.Request
 
 import java.util.Base64
@@ -84,18 +84,19 @@ class ApplicationConnector @Inject()(ws: WSClient) {
   }
 
   def getFileContent[Response](url: String)(implicit rds: OFormat[Response], ec: ExecutionContext): Future[Either[APIError, File]] = {
-    val request = ws.url(url).get()
-    request.map {
-      result =>
-        result.json.validate[File] match {
-          case JsSuccess(value, _) => Right(File(value.name, value.sha, value.fType, value.path, value.url, value.download_url, value.content, Base64.getMimeDecoder().decode(value.content).map(_.toChar).mkString))
-          //new String(Base64.getDecoder.decode(value.content.replaceAll("\n", ""))) other option for the decoded byte string in file parameter
-          //OR new String(Base64.getMimeDecoder().decode(value.content))
-          case JsError(errors) => Left(APIError.BadAPIResponse(400, "could not find any file contents"))
-        }
+      val request = ws.url(url).get()
+      request.map {
+        result =>
+          result.json.validate[File] match {
+            case JsSuccess(value, _) => Right(File(value.name, value.sha, value.fType, value.path, value.url, value.download_url, value.content, Base64.getMimeDecoder().decode(value.content).map(_.toChar).mkString))
+            //new String(Base64.getDecoder.decode(value.content.replaceAll("\n", ""))) other option for the decoded byte string in file parameter
+            //OR new String(Base64.getMimeDecoder().decode(value.content))
+            case JsError(errors) => Left(APIError.BadAPIResponse(400, "could not find any file contents"))
+          }
+      }
+
     }
 
-  }
 
   def getUserRepoInfo[Response](url: String)(implicit rds: OFormat[Response], ec: ExecutionContext): Future[Either[APIError, Repository]] = {
     val request = ws.url(url).get()
@@ -156,24 +157,21 @@ class ApplicationConnector @Inject()(ws: WSClient) {
       result =>
         result.json.validate[ReturnCreatedFile] match {
           case JsSuccess(value, _) => Right(value)
-          case JsError(errors) => Left(APIError.BadAPIResponse(400, "could not find create file"))
+          case JsError(errors) => Left(APIError.BadAPIResponse(400, "could not update file"))
         }
     }
   }
 
   def deleteFile[Response](url: String, deleteRequest: RequestDelete)(implicit rds: OFormat[Response], ec: ExecutionContext): Future[Either[APIError, String]] = {
     val password = env.getOrElse("AuthPassword", "no Auth token found")
-    println(url)
     val request = ws.url(url)
       .withHttpHeaders("Accept" -> "application/vnd.github+json")
       .withHttpHeaders("Authorization" -> s"token $password")
       .withBody(RequestDelete.formats.writes(deleteRequest))
     val response: Future[WSResponse] = request.execute("DELETE") //.delete()
-   // println("headers" + request.headers)
 
     response.map {
       result =>
-        println("result" + result)
         result.status match {
           case OK =>
             Right("DELETED")
@@ -187,6 +185,72 @@ class ApplicationConnector @Inject()(ws: WSClient) {
         }
     }
   }
+
+  def repoReadMe[Response](url: String)(implicit rds: OFormat[Response], ec: ExecutionContext): Future[Either[APIError, File]] = {
+    val password = env.getOrElse("AuthPassword", "no Auth token found")
+    val request = ws.url(url)
+      .withHttpHeaders("Accept" -> "application/vnd.github+json")
+      .withHttpHeaders("Authorization" -> s"token $password")
+    val response= request.get()
+    response.map {
+      result =>
+        result.json.validate[File] match {
+          case JsSuccess(value, _) => Right(File(value.name, value.sha, value.fType, value.path, value.url, value.download_url, value.content, Base64.getMimeDecoder().decode(value.content).map(_.toChar).mkString))
+          case JsError(errors) => Left(APIError.BadAPIResponse(400, "could not find readme for this repository"))
+        }
+    }
+  }
+
+  def dirReadMe[Response](url: String)(implicit rds: OFormat[Response], ec: ExecutionContext): Future[Either[APIError, File]] = {
+    val password = env.getOrElse("AuthPassword", "no Auth token found")
+    val request = ws.url(url)
+      .withHttpHeaders("Accept" -> "application/vnd.github+json")
+      .withHttpHeaders("Authorization" -> s"token $password")
+    val response= request.get()
+    response.map {
+      result =>
+        result.status match {
+          case OK => result.json.validate[File] match {
+            case JsSuccess(value, _) => Right(File(value.name, value.sha, value.fType, value.path, value.url, value.download_url, value.content, Base64.getMimeDecoder().decode(value.content).map(_.toChar).mkString))
+            case JsError(errors) => Left(APIError.BadAPIResponse(400, "could not validate as file"))
+          }
+          case NOT_FOUND => Left(APIError.BadAPIResponse(404, "resource not found"))
+          case Status.UNPROCESSABLE_ENTITY => Left(APIError.BadAPIResponse(422, "validation failed"))
+          case _ => Left(APIError.BadAPIResponse(400, "could not find a readme file for this directory"))
+        }
+    }
+  }
+
+  def downloadTar[Response](url: String)(implicit rds: OFormat[Response], ec: ExecutionContext): Future[Either[APIError, Int]] ={
+    val password = env.getOrElse("AuthPassword", "no Auth token found")
+    val request = ws.url(url)
+      .withHttpHeaders("Accept" -> "application/vnd.github+json")
+      .withHttpHeaders("Authorization" -> s"token $password")
+    val response= request.get()
+    response.map {
+      result =>
+        result.status match {
+          case Status.FOUND | OK => Right(302)
+          case _ => Left(APIError.BadAPIResponse(400, "could not download tar"))
+        }
+    }
+  }
+
+  def downloadZip[Response](url: String)(implicit rds: OFormat[Response], ec: ExecutionContext): Future[Either[APIError, Int]] ={
+    val password = env.getOrElse("AuthPassword", "no Auth token found")
+    val request = ws.url(url)
+      .withHttpHeaders("Accept" -> "application/vnd.github+json")
+      .withHttpHeaders("Authorization" -> s"token $password")
+    val response= request.get()
+    response.map {
+      result =>
+        result.status match {
+          case Status.FOUND | OK => Right(302)
+          case _ => Left(APIError.BadAPIResponse(400, "could not download zip"))
+        }
+    }
+  }
+
 
 }
 

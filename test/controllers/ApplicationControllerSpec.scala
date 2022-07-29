@@ -10,7 +10,7 @@ import play.api.test.Helpers.{DELETE, GET, POST, PUT, contentAsJson, contentAsSt
 
 import java.net.URLEncoder
 import scala.concurrent.Future
-//token- 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
+
 class ApplicationControllerSpec extends BaseSpecWithApplication {
 
   val TestApplicationController = new ApplicationController(
@@ -611,7 +611,6 @@ class ApplicationControllerSpec extends BaseSpecWithApplication {
 
       status(notPage) shouldBe Status.BAD_REQUEST
       contentAsJson(notPage) shouldBe Json.toJson("could not find any file contents")
-
     }
 
   }
@@ -630,6 +629,49 @@ class ApplicationControllerSpec extends BaseSpecWithApplication {
 
       status(apiDeleteResult) shouldBe Status.ACCEPTED
     }
+
+    "create folder and file" in {
+
+      val apiCreatedRequest: FakeRequest[JsValue] = buildPut("/github/users/RobynGar/repos/git_practice/file/create/app/newFile3.txt").withBody[JsValue](Json.toJson(createFile))
+      val apiCreatedResult = TestApplicationController.createFile("RobynGar", "git_practice", "app/newFile3.txt")(apiCreatedRequest)
+
+      status(apiCreatedResult) shouldBe Status.OK
+
+      val apiDeleteRequest: FakeRequest[JsValue] = buildDelete("/github/users/RobynGar/repos/git_practice/file/delete/app/newFile3.txt").withBody[JsValue](Json.toJson("delete file"))
+      val apiDeleteResult = TestApplicationController.deleteFile("RobynGar", "git_practice", "app/newFile3.txt")(apiDeleteRequest)
+
+      status(apiDeleteResult) shouldBe Status.ACCEPTED
+    }
+
+    "correct login but repository does not exist" in {
+      val apiCreatedRequest: FakeRequest[JsValue] = buildPut("/github/users/RobynGar/repos/made-up-repo/file/create/newFile.txt").withBody[JsValue](Json.toJson(createFile))
+      val apiCreatedResult = TestApplicationController.createFile("RobynGar", "made-up-repo", "newFile.txt")(apiCreatedRequest)
+
+      status(apiCreatedResult) shouldBe Status.BAD_REQUEST
+      contentAsJson(apiCreatedResult) shouldBe Json.toJson("could not find create file")
+    }
+
+    "unable to validate file trying to be created" in {
+      val apiCreatedRequest: FakeRequest[JsValue] = buildPut("/github/users/RobynGar/repos/git_practice/file/create/newFile.txt").withBody[JsValue](Json.obj())
+      val apiCreatedResult = TestApplicationController.createFile("RobynGar", "git_practice", "newFile.txt")(apiCreatedRequest)
+
+      status(apiCreatedResult) shouldBe Status.BAD_REQUEST
+      contentAsJson(apiCreatedResult) shouldBe Json.toJson("could not validate file")
+    }
+
+    "correct route for creating a file" in {
+      val apiRequest = FakeRequest(PUT, "/github/users/RobynGar/repos/git_practice/file/create/newFile.txt").withBody[JsValue](Json.toJson(createFile))
+      val apiResponse = route(app, apiRequest).get
+
+      status(apiResponse) shouldBe Status.OK
+    }
+
+    "route for creating a file with non-existing repository" in {
+      val apiRequest = FakeRequest(PUT, "/github/users/RobynGar/repos/made-up/file/create/newFile.txt").withBody[JsValue](Json.toJson(createFile))
+      val apiResponse = route(app, apiRequest).get
+
+      status(apiResponse) shouldBe Status.BAD_REQUEST
+    }
   }
 
   "ApplicationController() .updateFile()" should {
@@ -646,17 +688,245 @@ class ApplicationControllerSpec extends BaseSpecWithApplication {
       status(apiUpdateResult) shouldBe Status.OK
 
     }
+
+    "correct login and repository but file does not exist" in {
+      val apiUpdatedRequest: FakeRequest[JsValue] = buildPut("/github/users/RobynGar/repos/git_practice/file/update/nonExistent.txt").withBody[JsValue](Json.toJson(createFile))
+      val apiUpdatedResult = TestApplicationController.updateFile("RobynGar", "git_practice", "nonExistent.txt")(apiUpdatedRequest)
+
+      status(apiUpdatedResult) shouldBe Status.BAD_REQUEST
+      contentAsJson(apiUpdatedResult) shouldBe Json.toJson("could not update file")
+    }
+
+    "unable to validate file trying to be created" in {
+      val apiCreatedRequest: FakeRequest[JsValue] = buildPut("/github/users/RobynGar/repos/git_practice/file/update/newFile.txt").withBody[JsValue](Json.obj())
+      val apiCreatedResult = TestApplicationController.updateFile("RobynGar", "git_practice", "newFile.txt")(apiCreatedRequest)
+
+      status(apiCreatedResult) shouldBe Status.BAD_REQUEST
+      contentAsJson(apiCreatedResult) shouldBe Json.toJson("could not validate file")
+    }
+
+
+    "correct route for updating a file" in {
+      val apiRequest = FakeRequest(PUT, "/github/users/RobynGar/repos/git_practice/file/update/newFile.txt").withBody[JsValue](Json.toJson(updateFile))
+      val apiResponse = route(app, apiRequest).get
+
+      status(apiResponse) shouldBe Status.OK
+    }
+
+    "route for creating a file with non-existing repository" in {
+      val apiRequest = FakeRequest(PUT, "/github/users/RobynGar/repos/made-up/file/update/newFile.txt").withBody[JsValue](Json.toJson(updateFile))
+      val apiResponse = route(app, apiRequest).get
+
+      status(apiResponse) shouldBe Status.BAD_REQUEST
+    }
   }
 
   "ApplicationController() .deleteFile()" should {
 
     "login to find user's repositories under the name specified and delete file" in {
+      val apiCreatedRequest: FakeRequest[JsValue] = buildPut("/github/users/RobynGar/repos/git_practice/file/create/newFile.txt").withBody[JsValue](Json.toJson(createFile))
+      val apiCreatedResult = TestApplicationController.createFile("RobynGar", "git_practice", "newFile.txt")(apiCreatedRequest)
+
+      status(apiCreatedResult) shouldBe Status.OK
 
       val apiDeleteRequest: FakeRequest[JsValue] = buildDelete("/github/users/RobynGar/repos/git_practice/file/delete/newFile.txt").withBody[JsValue](Json.toJson("delete file"))
       val apiDeleteResult = TestApplicationController.deleteFile("RobynGar", "git_practice", "newFile.txt")(apiDeleteRequest)
 
       status(apiDeleteResult) shouldBe Status.ACCEPTED
     }
+
+    "correct login and repository but file does not exist" in {
+      val apiDeleteRequest: FakeRequest[JsValue] = buildDelete("/github/users/RobynGar/repos/git_practice/file/delete/nonExistent.txt").withBody[JsValue](Json.toJson(createFile))
+      val apiDeleteResult = TestApplicationController.deleteFile("RobynGar", "git_practice", "nonExistent.txt")(apiDeleteRequest)
+
+      status(apiDeleteResult) shouldBe Status.NOT_FOUND
+      contentAsJson(apiDeleteResult) shouldBe Json.toJson("could not delete file")
+    }
+
+    "correct route for deleting a file" in {
+
+      val apiDeleteRequest = FakeRequest(DELETE, "/github/users/RobynGar/repos/git_practice/file/delete/newFile.txt").withBody[JsValue](Json.toJson("delete file"))
+      val apiDeleteResponse = route(app, apiDeleteRequest).get
+      status(apiDeleteResponse) shouldBe Status.ACCEPTED
+    }
+
+    "route for deleting a file with non-existing repository" in {
+      val apiRequest = FakeRequest(PUT, "/github/users/RobynGar/repos/made-up/file/delete/newFile.txt").withBody[JsValue](Json.toJson("delete file"))
+      val apiResponse = route(app, apiRequest).get
+
+      status(apiResponse) shouldBe Status.NOT_FOUND
+    }
+  }
+
+  "ApplicationController() .repoReadMe()" should {
+
+    "login to find user's repositories under the name specified and get readMe" in {
+
+      val apiRequest: FakeRequest[AnyContentAsEmpty.type] = buildGet("/github/users/RobynGar/repos/play-template/get/readme")
+      val apiResult = TestApplicationController.repoReadMe("RobynGar", "play-template")(apiRequest)
+
+      status(apiResult) shouldBe Status.OK
+    }
+
+    "correct login and repository but no readme exists" in {
+      val apiReadMeRequest: FakeRequest[AnyContentAsEmpty.type] = buildPut("/github/users/RobynGar/repos/git_practice/get/readme")
+      val apiReadMeResult = TestApplicationController.repoReadMe("RobynGar", "git_practice")(apiReadMeRequest)
+
+      status(apiReadMeResult) shouldBe Status.BAD_REQUEST
+    }
+
+    "correct route for getting a repositories readme" in {
+      val apiRequest = FakeRequest(GET, "/github/users/RobynGar/repos/play-template/get/readme")
+      val apiResponse = route(app, apiRequest).get
+
+      status(apiResponse) shouldBe Status.OK
+      contentType(apiResponse) shouldBe Some("text/html")
+    }
+
+    "correct route for getting a repositories readme but the repo has no readme" in {
+      val apiRequest = FakeRequest(GET, "/github/users/RobynGar/repos/git_practice/get/readme")
+      val apiResponse = route(app, apiRequest).get
+
+      status(apiResponse) shouldBe Status.BAD_REQUEST
+    }
+
+    "route for getting readme with non-existing repository" in {
+      val apiRequest = FakeRequest(GET, "/github/users/RobynGar/repos/made-up/get/readme")
+      val apiResponse = route(app, apiRequest).get
+
+      status(apiResponse) shouldBe Status.BAD_REQUEST
+    }
+  }
+
+  "ApplicationController() .dirReadMe()" should {
+
+    "login to find user's repositories and get readMe from specified directory" in {
+
+      val apiRequest: FakeRequest[AnyContentAsEmpty.type] = buildGet("/github/users/RobynGar/repos/play-template/readme/app")
+      val apiResult = TestApplicationController.dirReadMe("RobynGar", "play-template", "app")(apiRequest)
+
+      status(apiResult) shouldBe Status.OK
+      contentType(apiResult) shouldBe Some("text/html")
+    }
+
+     "correct login and repository but no readme exists in that directory" in {
+       val apiReadMeRequest: FakeRequest[AnyContentAsEmpty.type] = buildPut("/github/users/RobynGar/repos/git_practice/get/readme/project")
+       val apiReadMeResult = TestApplicationController.dirReadMe("RobynGar", "git_practice", "project")(apiReadMeRequest)
+
+       status(apiReadMeResult) shouldBe Status.NOT_FOUND
+       contentAsJson(apiReadMeResult) shouldBe Json.toJson("resource not found")
+
+     }
+
+    "correct route for getting a directories readme" in {
+      val apiRequest = FakeRequest(GET, "/github/users/RobynGar/repos/play-template/get/readme/app")
+      val apiResponse = route(app, apiRequest).get
+
+      status(apiResponse) shouldBe Status.OK
+      contentType(apiResponse) shouldBe Some("text/html")
+    }
+
+    "correct route for getting a repositories readme but the repo has no readme" in {
+      val apiRequest = FakeRequest(GET, "/github/users/RobynGar/repos/git_practice/get/readme/project")
+      val apiResponse = route(app, apiRequest).get
+
+      status(apiResponse) shouldBe Status.NOT_FOUND
+      contentAsJson(apiResponse) shouldBe Json.toJson("resource not found")
+
+    }
+
+    "route for getting readme with non-existing repository" in {
+      val apiRequest = FakeRequest(GET, "/github/users/RobynGar/repos/made-up/get/readme/nodir")
+      val apiResponse = route(app, apiRequest).get
+
+      status(apiResponse) shouldBe Status.NOT_FOUND
+      contentAsJson(apiResponse) shouldBe Json.toJson("resource not found")
+    }
+  }
+
+  "ApplicationController() .downloadTar()" should {
+
+    "download the tar of the repository specified form the branch specified" in {
+
+      val apiRequest: FakeRequest[AnyContentAsEmpty.type] = buildGet("/github/users/RobynGar/repos/git_practice/download/tarball/main")
+      val apiResult = TestApplicationController.downloadTar("RobynGar", "git_practice", Some("main"))(apiRequest)
+
+      status(apiResult) shouldBe Status.OK
+    }
+
+    "return ok http response for tar download from the router and when no branch provided default to main" in {
+      val apiRequest = FakeRequest(GET, "/github/users/RobynGar/repos/git_practice/download/tarball")
+      val response = route(app, apiRequest).get
+
+      status(response) shouldBe Status.OK
+    }
+
+    "return ok http response for tar download from the router and when a branch is provided" in {
+      val apiRequest = FakeRequest(GET, "/github/users/RobynGar/repos/git_practice/download/tarball?branch=main")
+      val response = route(app, apiRequest).get
+
+      status(response) shouldBe Status.OK
+      contentAsJson(response) shouldBe Json.toJson("Downloaded")
+
+    }
+
+    "correct login but no repository exists" in {
+      val apiReadMeRequest: FakeRequest[AnyContentAsEmpty.type] = buildPut("/github/users/RobynGar/repos/no-such-repo/download/tarball")
+      val apiReadMeResult = TestApplicationController.downloadTar("RobynGar", "no-such-repo", None)(apiReadMeRequest)
+
+      status(apiReadMeResult) shouldBe Status.BAD_REQUEST
+      contentAsJson(apiReadMeResult) shouldBe Json.toJson("could not download tar")
+    }
+
+    "route for getting readme with non-existing repository" in {
+      val apiRequest = FakeRequest(GET, "/github/users/RobynGar/repos/made-up/download/tarball")
+      val apiResponse = route(app, apiRequest).get
+
+      status(apiResponse) shouldBe Status.BAD_REQUEST
+      contentAsJson(apiResponse) shouldBe Json.toJson("could not download tar")
+    }
+  }
+
+  "ApplicationController() .downloadZip()" should {
+
+    "download the tar of the repository specified form the branch specified" in {
+
+      val apiRequest: FakeRequest[AnyContentAsEmpty.type] = buildGet("/github/users/RobynGar/repos/git_practice/download/zipball")
+      val apiResult = TestApplicationController.downloadZip("RobynGar", "git_practice", "main")(apiRequest)
+
+      status(apiResult) shouldBe Status.OK
+    }
+
+    "return ok http response for zip download from the router and when no branch provided default to main" in {
+      val apiRequest = FakeRequest(GET, "/github/users/RobynGar/repos/git_practice/download/zipball")
+      val response = route(app, apiRequest).get
+
+      status(response) shouldBe Status.OK
+    }
+
+    "return ok http response for zip download from the router and when a branch is provided" in {
+      val apiRequest = FakeRequest(GET, "/github/users/RobynGar/repos/git_practice/download/zipball?branch=main")
+      val response = route(app, apiRequest).get
+
+      status(response) shouldBe Status.OK
+    }
+
+    "correct login but no repository exists" in {
+      val apiReadMeRequest: FakeRequest[AnyContentAsEmpty.type] = buildPut("/github/users/RobynGar/repos/no-such-repo/download/zipball")
+      val apiReadMeResult = TestApplicationController.downloadZip("RobynGar", "no-such-repo", "main")(apiReadMeRequest)
+
+      status(apiReadMeResult) shouldBe Status.BAD_REQUEST
+      contentAsJson(apiReadMeResult) shouldBe Json.toJson("could not download zip")
+    }
+
+    "route for getting readme with non-existing repository" in {
+      val apiRequest = FakeRequest(GET, "/github/users/RobynGar/repos/made-up/download/zipball")
+      val apiResponse = route(app, apiRequest).get
+
+      status(apiResponse) shouldBe Status.BAD_REQUEST
+      contentAsJson(apiResponse) shouldBe Json.toJson("could not download zip")
+    }
+
   }
 
 

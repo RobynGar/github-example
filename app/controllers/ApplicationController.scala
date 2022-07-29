@@ -128,4 +128,32 @@ class ApplicationController @Inject()(val controllerComponents: ControllerCompon
     }
   }
 
-}
+  def repoReadMe(login: String, repoName: String): Action[AnyContent] = Action.async { implicit request =>
+    service.repoReadMe(login, repoName).map{
+      case Right(file) => Ok(views.html.file(file, login, repoName))
+      case Left(error) => Status(error.httpResponseStatus)(Json.toJson(error.reason))
+    }
+  }
+
+  def dirReadMe(login: String, repoName: String, dir: String): Action[AnyContent] = Action.async { implicit request =>
+    service.dirReadMe(login, repoName, dir).map{
+      case Right(file) => Ok(views.html.file(file, login, repoName))
+      case Left(error) => Status(error.httpResponseStatus)(Json.toJson(error.reason))
+    }
+  }
+
+  def downloadTar(login: String, repoName: String, branch: Option[String]): Action[AnyContent] = Action.async { implicit request =>
+    service.downloadTar(login, repoName, branch).map{
+      case Right(downloaded: Int) => Ok(Json.toJson("Downloaded"))
+      case Left(error) => Status(error.httpResponseStatus)(Json.toJson(error.reason))
+    }
+  }
+
+  def downloadZip(login: String, repoName: String, branch: String): Action[AnyContent] = Action.async { implicit request =>
+    service.downloadZip(login, repoName, branch).map{
+      case Right(downloaded: Int) => Ok(Json.toJson("Downloaded"))
+      case Left(error) => Status(error.httpResponseStatus)(Json.toJson(error.reason))
+    }
+  }
+
+  }
