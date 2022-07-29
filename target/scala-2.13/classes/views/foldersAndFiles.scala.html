@@ -13,6 +13,7 @@
     @contents.map{item =>
         @if(item.fType == "dir"){
             <h4>path: @item.path</h4>
+            <li>sha: @item.sha</li>
             <li><a href=@controllers.routes.ApplicationController.dirContent(item.path, login, repoName)> @item.name </a></li>
         }
     }
@@ -23,6 +24,7 @@
     @contents.map{item =>
         @if(item.fType == "file"){
             <h4>path: @item.path</h4>
+            <li>sha: @item.sha</li>
             <li><a href=@controllers.routes.ApplicationController.fileContent(item.path, login, repoName)> @item.name </a></li>
         }
     }

@@ -1,7 +1,7 @@
 package controllers
 
 import baseSpec.BaseSpecWithApplication
-import models.{APIError, User}
+import models.{APIError, Content, ReturnCreatedFile, User}
 import org.scalamock.scalatest.MockFactory
 import play.api.http.Status
 import play.api.libs.json.{JsValue, Json}
@@ -42,6 +42,9 @@ class UnitApplicationControllerSpec extends BaseSpecWithApplication with MockFac
     None,
     2,
     0
+  )
+  private val returnedFile: ReturnCreatedFile = ReturnCreatedFile(
+    Content("testName", "folder/testFile", "file", "shalala")
   )
   private val emptyUserSequence: Seq[User] = Seq()
   private val userSequence: Seq[User] = Seq(user)
@@ -179,32 +182,6 @@ class UnitApplicationControllerSpec extends BaseSpecWithApplication with MockFac
     }
 
   }
-
-//  "ApplicationController .readFromAPI()" should {
-//
-//    "use username/login to find user from api and return that user" in {
-//
-//      val apiRequest: FakeRequest[AnyContent] = buildGet("/github/users/api/bla")
-//      (mockService.getUser(_: Option[String], _: String)).expects(None, *).returning(Future(Right(apiUser))).once()
-//      val apiResult = UnitTestApplicationController.readFromAPI("bla")(apiRequest)
-//
-//      status(apiResult) shouldBe Status.OK
-//      contentAsJson(apiResult) shouldBe Json.toJson(apiUser)
-//
-//
-//    }
-//
-//    "unknown username/login used to find user from api cannot return that user" in {
-//
-//      val apiRequest: FakeRequest[AnyContent] = buildGet("/github/users/api/meeptot")
-//      (mockService.getUser(_: Option[String], _: String)).expects(None, *).returning(Future(Left(APIError.BadAPIResponse(400, "could not find user")))).once()
-//      val apiResult = UnitTestApplicationController.readFromAPI("meeptot")(apiRequest)
-//
-//      status(apiResult) shouldBe Status.BAD_REQUEST
-//      contentAsJson(apiResult) shouldBe Json.toJson("could not find user")
-//
-//    }
-//  }
 
 
 

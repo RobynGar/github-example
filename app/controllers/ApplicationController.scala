@@ -5,16 +5,14 @@ import play.api.libs.json.{JsValue, Json}
 import play.api.mvc.{Action, AnyContent, BaseController, ControllerComponents, Request}
 import services.ApplicationService
 import javax.inject.{Inject, Singleton}
-import scala.concurrent.{ExecutionContext, Future}
+import scala.concurrent.ExecutionContext
 
 @Singleton
-class ApplicationController @Inject()(val controllerComponents: ControllerComponents, service: ApplicationService)(implicit val ec: ExecutionContext) extends BaseController {
+class ApplicationController @Inject()(val controllerComponents: ControllerComponents, val service: ApplicationService)(implicit val ec: ExecutionContext) extends BaseController {
 
 //  def index(): Action[AnyContent] = Action.async { implicit request: Request[AnyContent] =>
 //    Future.successful(Ok(views.html.user(Data.users)))
 //  }
-
-
 
   def index(): Action[AnyContent] = Action.async { implicit request =>
     service.index().map{
@@ -109,4 +107,53 @@ class ApplicationController @Inject()(val controllerComponents: ControllerCompon
     }
   }
 
-}
+  def createFile(login: String, repoName: String, filePath: String): Action[JsValue] = Action.async(parse.json) { implicit request =>
+    service.createFile(login = login, repoName = repoName, filePath= filePath, newFile= request).map{
+      case Right(file) => Ok(Json.toJson(file))
+      case Left(error) => Status(error.httpResponseStatus)(Json.toJson(error.reason))
+    }
+  }
+
+  def updateFile(login: String, repoName: String, filePath: String): Action[JsValue] = Action.async(parse.json) { implicit request =>
+    service.updateFile(filePath= filePath, login = login, repoName = repoName, updatedFile = request ).map{
+      case Right(file) => Ok(Json.toJson(file))
+      case Left(error) => Status(error.httpResponseStatus)(Json.toJson(error.reason))
+    }
+  }
+
+  def deleteFile(login: String, repoName: String, filePath: String): Action[JsValue] = Action.async(parse.json) { implicit request =>
+    service.deleteFile(filePath= filePath, login = login, repoName = repoName, deleteCommitMessage = request).map{
+      case Right(deleteConformation: String) => Accepted
+      case Left(error) => Status(error.httpResponseStatus)(Json.toJson(error.reason))
+    }
+  }
+
+  def repoReadMe(login: String, repoName: String): Action[AnyContent] = Action.async { implicit request =>
+    service.repoReadMe(login, repoName).map{
+      case Right(file) => Ok(views.html.file(file, login, repoName))
+      case Left(error) => Status(error.httpResponseStatus)(Json.toJson(error.reason))
+    }
+  }
+
+  def dirReadMe(login: String, repoName: String, dir: String): Action[AnyContent] = Action.async { implicit request =>
+    service.dirReadMe(login, repoName, dir).map{
+      case Right(file) => Ok(views.html.file(file, login, repoName))
+      case Left(error) => Status(error.httpResponseStatus)(Json.toJson(error.reason))
+    }
+  }
+
+  def downloadTar(login: String, repoName: String, branch: Option[String]): Action[AnyContent] = Action.async { implicit request =>
+    service.downloadTar(login, repoName, branch).map{
+      case Right(downloaded: Int) => Ok(Json.toJson("Downloaded"))
+      case Left(error) => Status(error.httpResponseStatus)(Json.toJson(error.reason))
+    }
+  }
+
+  def downloadZip(login: String, repoName: String, branch: String): Action[AnyContent] = Action.async { implicit request =>
+    service.downloadZip(login, repoName, branch).map{
+      case Right(downloaded: Int) => Ok(Json.toJson("Downloaded"))
+      case Left(error) => Status(error.httpResponseStatus)(Json.toJson(error.reason))
+    }
+  }
+
+  }

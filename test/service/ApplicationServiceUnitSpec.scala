@@ -1,15 +1,11 @@
 package service
 
-import akka.pattern.FutureRef
 import baseSpec.BaseSpecWithApplication
 import connectors.ApplicationConnector
-import models.{APIError, FFitems, File, Repository, User}
+import models._
 import org.scalamock.scalatest.MockFactory
-import play.api.http.Status
-import play.api.libs.json.{JsObject, JsValue, Json, OFormat}
-import play.api.mvc.{AnyContentAsEmpty, Result}
+import play.api.libs.json.{JsValue, Json, OFormat}
 import play.api.test.FakeRequest
-import play.api.test.Helpers.{contentAsJson, status}
 import repositories.TraitDataRepo
 import services.ApplicationService
 
@@ -58,7 +54,7 @@ class ApplicationServiceUnitSpec extends BaseSpecWithApplication with MockFactor
     "testhtmlURL"
   )
   private val listOfFF: FFitems = FFitems(
-    "test folder","dir", "app/service", "testurl"
+    "test folder","dir", "app/service", "testurl", "shalala"
   )
   private val file: File = File(
     "test file", "fggtyhuyju", "file", "service/ApplicationService", "http://", "testurl", "base64", "decoded url"
