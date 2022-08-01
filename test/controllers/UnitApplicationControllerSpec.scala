@@ -1,16 +1,17 @@
 package controllers
 
 import baseSpec.BaseSpecWithApplication
-import models.{APIError, Content, ReturnCreatedFile, User}
+import models._
+import org.apache.http.impl.client.FutureRequestExecutionMetrics
 import org.scalamock.scalatest.MockFactory
 import play.api.http.Status
 import play.api.libs.json.{JsValue, Json}
 import play.api.mvc.{AnyContent, AnyContentAsEmpty, Request, Result}
 import play.api.test.FakeRequest
-import play.api.test.Helpers.{GET, contentAsJson, contentType, defaultAwaitTimeout, route, status, writeableOf_AnyContentAsEmpty}
+import play.api.test.Helpers.{contentAsJson, contentType, defaultAwaitTimeout, status}
 import services.ApplicationService
 
-import scala.concurrent.Future
+import scala.concurrent.{ExecutionContext, Future}
 
 class UnitApplicationControllerSpec extends BaseSpecWithApplication with MockFactory{
 
@@ -46,8 +47,28 @@ class UnitApplicationControllerSpec extends BaseSpecWithApplication with MockFac
   private val returnedFile: ReturnCreatedFile = ReturnCreatedFile(
     Content("testName", "folder/testFile", "file", "shalala")
   )
+
   private val emptyUserSequence: Seq[User] = Seq()
   private val userSequence: Seq[User] = Seq(user)
+
+  private val testRepo: Repository = Repository(
+    "RobynGar", "play-template", false, "https://", "https://"
+  )
+
+  private val testFoldersFiles: FFitems = FFitems(
+    "test folder", "dir", "testFolder", "https://", "shalala"
+  )
+
+  private val testFile: File = File(
+    "test file", "shalala", "file", "testFolder/testFile", "https://", "https://", "content", "base64 content"
+  )
+  private val testCreateFile: CreateFile = CreateFile(
+    "add test file", "content of created file"
+  )
+  private val updateFile: CreateFile = CreateFile(
+    "test update method",
+    "new content"
+  )
 
   "ApplicationController unit test .index" should {
 
@@ -183,9 +204,483 @@ class UnitApplicationControllerSpec extends BaseSpecWithApplication with MockFac
 
   }
 
+  "ApplicationController .readFromAPI()" should {
+
+      "use username/login to find user from api and return that user" in {
+
+        val apiRequest: FakeRequest[AnyContentAsEmpty.type] = buildGet("/github/users/api/bla")
+        (mockService.getUser(_: String)(_: ExecutionContext))
+          .expects("bla", executionContext)
+          .returning(Future(Right(apiUser)))
+          .once()
+
+        val apiResult = UnitTestApplicationController.readFromAPI("bla")(apiRequest)
+        status(apiResult) shouldBe Status.OK
+        contentAsJson(apiResult) shouldBe Json.toJson(apiUser)
+
+        }
 
 
-  //  override def beforeEach(): Unit = repository.deleteAll()
-// AS MOCKING I AM NOT ACTUALLY INTERACTING WITH DATABASE SO DO NOT NEED TO CLEAR IT EACH TEST
-//  override def afterEach(): Unit = repository.deleteAll()
+
+      "unknown username/login used to find user from api cannot return that user" in {
+        val apiRequest: FakeRequest[AnyContentAsEmpty.type] = buildGet("/github/users/api/meeptot")
+        (mockService.getUser(_: String)(_: ExecutionContext))
+          .expects("meeptot", executionContext)
+          .returning(Future(Left(APIError.BadAPIResponse(400, "could not find user"))))
+          .once()
+        val apiResult = UnitTestApplicationController.readFromAPI("meeptot")(apiRequest)
+
+        status(apiResult) shouldBe Status.BAD_REQUEST
+        contentAsJson(apiResult) shouldBe Json.toJson("could not find user")
+      }
+  }
+
+    "ApplicationController .addFromAPI()" should {
+
+      "add user to mongodb after using username/login to find user from api and return that user" in {
+
+        val apiRequest: FakeRequest[AnyContentAsEmpty.type] = buildGet("/github/users/add/bla")
+        (mockService.addApiUser(_: String))
+          .expects("bla")
+          .returning(Future(Right(apiUser)))
+          .once()
+        val apiResult = UnitTestApplicationController.addFromAPI("bla")(apiRequest)
+
+        status(apiResult) shouldBe Status.CREATED
+        contentAsJson(apiResult) shouldBe Json.toJson(apiUser)
+
+      }
+
+      "unknown username/login used to find user from api cannot return that user" in {
+
+        val apiRequest: FakeRequest[AnyContentAsEmpty.type] = buildGet("/github/users/add/meeptot")
+        (mockService.addApiUser(_: String))
+          .expects("meeptot")
+          .returning(Future(Left(APIError.BadAPIResponse(400, "could not add user"))))
+          .once()
+        val apiResult = UnitTestApplicationController.addFromAPI("meeptot")(apiRequest)
+
+        status(apiResult) shouldBe Status.BAD_REQUEST
+        contentAsJson(apiResult) shouldBe Json.toJson("could not add user")
+      }
+    }
+
+
+    "ApplicationController .showUser()" should {
+
+      "use username/login to find user from api and return that user" in {
+
+        val apiRequest: FakeRequest[AnyContentAsEmpty.type] = buildGet("/github/userspage/bla")
+        (mockService.getUser(_: String)(_: ExecutionContext))
+          .expects("bla", executionContext)
+          .returning(Future(Right(apiUser)))
+          .once()
+        val apiResult = UnitTestApplicationController.showUser("bla")(apiRequest)
+
+        status(apiResult) shouldBe Status.OK
+        contentType(apiResult) shouldBe Some("text/html")
+
+      }
+
+      "use incorrect username/login return api error" in {
+
+        val apiRequest: FakeRequest[AnyContentAsEmpty.type] = buildGet("/github/userspage/meeptot")
+        (mockService.getUser(_: String)(_: ExecutionContext))
+          .expects("meeptot", executionContext)
+          .returning(Future(Left(APIError.BadAPIResponse(400, "could not find user"))))
+          .once()
+        val apiResult = UnitTestApplicationController.showUser("meeptot")(apiRequest)
+
+        status(apiResult) shouldBe Status.BAD_REQUEST
+        contentAsJson(apiResult) shouldBe Json.toJson("could not find user")
+
+      }
+    }
+
+    "ApplicationController .usersRepos()" should {
+
+      "login to find user's repositories and return their names in list " in {
+
+        val apiRequest: FakeRequest[AnyContentAsEmpty.type] = buildGet("/github/users/bla/repos")
+        (mockService.getUsersRepo(_: String)(_: ExecutionContext))
+          .expects("bla", executionContext)
+          .returning(Future(Right(List("",""))))
+          .once()
+        val apiResult = UnitTestApplicationController.usersRepos("bla")(apiRequest)
+
+        status(apiResult) shouldBe Status.OK
+        contentType(apiResult) shouldBe Some("text/html")
+
+      }
+
+      "use incorrect login return api error" in {
+
+        val apiRequest: FakeRequest[AnyContentAsEmpty.type] = buildGet("/github/users/meeptot/repos")
+        (mockService.getUsersRepo(_: String)(_: ExecutionContext))
+          .expects(*, executionContext)
+          .returning(Future(Left(APIError.BadAPIResponse(400, "could not find any repositories associated with that user"))))
+          .once()
+        val apiResult = UnitTestApplicationController.usersRepos("meeptot")(apiRequest)
+
+        status(apiResult) shouldBe Status.BAD_REQUEST
+        contentAsJson(apiResult) shouldBe Json.toJson("could not find any repositories associated with that user")
+
+      }
+
+      "use login for user with no repositories, return api error" in {
+
+        val apiRequest: FakeRequest[AnyContentAsEmpty.type] = buildGet("/github/users/meep/repos")
+        (mockService.getUsersRepo(_: String)(_: ExecutionContext))
+          .expects(*, executionContext)
+          .returning(Future(Left(APIError.BadAPIResponse(400, "could not find any repositories associated with that user"))))
+          .once()
+        val apiResult = UnitTestApplicationController.usersRepos("meep")(apiRequest)
+
+        status(apiResult) shouldBe Status.BAD_REQUEST
+        contentAsJson(apiResult) shouldBe Json.toJson("could not find any repositories associated with that user")
+
+      }
+    }
+
+    "ApplicationController() .usersRepoInfo()" should {
+
+      "login to find user's repositories under the name specified and return info about that repo " in {
+
+        val apiRequest: FakeRequest[AnyContentAsEmpty.type] = buildGet("/github/users/robyngar/play-template")
+        (mockService.getUsersRepoInfo(_: String, _: String)(_: ExecutionContext))
+          .expects(*, *, executionContext)
+          .returning(Future(Right(testRepo)))
+          .once()
+        val apiResult = UnitTestApplicationController.usersRepoInfo("RobynGar", "play-template")(apiRequest)
+
+        status(apiResult) shouldBe Status.OK
+        contentType(apiResult) shouldBe Some("text/html")
+      }
+
+      "use incorrect login return api error" in {
+
+        val apiRequest: FakeRequest[AnyContentAsEmpty.type] = buildGet("/github/users/meeptot/test")
+        (mockService.getUsersRepoInfo(_: String, _: String)(_: ExecutionContext))
+          .expects(*, *, executionContext)
+          .returning(Future(Left(APIError.BadAPIResponse(400, "could not find any repositories information"))))
+          .once()
+        val apiResult = UnitTestApplicationController.usersRepoInfo("meeptot", "test")(apiRequest)
+
+        status(apiResult) shouldBe Status.BAD_REQUEST
+        contentAsJson(apiResult) shouldBe Json.toJson("could not find any repositories information")
+
+      }
+
+      "use login for user with no repositories, return api error" in {
+
+        val apiRequest: FakeRequest[AnyContentAsEmpty.type] = buildGet("/github/users/meep/test")
+        (mockService.getUsersRepoInfo(_: String, _: String)(_: ExecutionContext))
+          .expects(*, *, executionContext)
+          .returning(Future(Left(APIError.BadAPIResponse(400, "could not find any repositories information"))))
+          .once()
+        val apiResult = UnitTestApplicationController.usersRepoInfo("meep", "test")(apiRequest)
+
+        status(apiResult) shouldBe Status.BAD_REQUEST
+        contentAsJson(apiResult) shouldBe Json.toJson("could not find any repositories information")
+
+      }
+    }
+
+    "ApplicationController() .repoContent()" should {
+
+      "login to find user's repositories under the name specified and return info about that repo " in {
+
+        val apiRequest: FakeRequest[AnyContentAsEmpty.type] = buildGet("/github/users/robyngar/repos/testcontent")
+        (mockService.getRepoContent(_: String, _: String)(_: ExecutionContext))
+          .expects(*, *, executionContext)
+          .returning(Future(Right(Seq(testFoldersFiles))))
+          .once()
+        val apiResult = UnitTestApplicationController.repoContent("robyngar", "testcontent")(apiRequest)
+
+        status(apiResult) shouldBe Status.OK
+        contentType(apiResult) shouldBe Some("text/html")
+
+      }
+
+      "use incorrect login return api error" in {
+
+        val apiRequest: FakeRequest[AnyContentAsEmpty.type] = buildGet("/github/users/meeptot/repos/test")
+        (mockService.getRepoContent(_: String, _: String)(_: ExecutionContext))
+          .expects(*, *, executionContext)
+          .returning(Future(Left(APIError.BadAPIResponse(400, "could not find any repository files"))))
+          .once()
+        val apiResult = UnitTestApplicationController.repoContent("meeptot", "test")(apiRequest)
+
+        status(apiResult) shouldBe Status.BAD_REQUEST
+        contentAsJson(apiResult) shouldBe Json.toJson("could not find any repository files")
+
+      }
+
+    }
+
+
+    "ApplicationController() .dirContent()" should {
+
+      "login to find user's repositories under the name specified and return folders and files form that repo " in {
+
+        val apiRequest: FakeRequest[AnyContentAsEmpty.type] = buildGet("/github/users/bla/repos/android-runner/MonkeyPlayer")
+        (mockService.getDirContent(_: String, _: String, _: String)(_: ExecutionContext))
+          .expects(*, *, *, executionContext)
+          .returning(Future(Right(Seq(testFoldersFiles))))
+          .once()
+        val apiResult = UnitTestApplicationController.dirContent("MonkeyPlayer", "bla", "android-runner")(apiRequest)
+
+        status(apiResult) shouldBe Status.OK
+        contentType(apiResult) shouldBe Some("text/html")
+
+      }
+
+      "use incorrect login return api error" in {
+
+        val apiRequest: FakeRequest[AnyContentAsEmpty.type] = buildGet("/github/users/meeptot/repos/test/testFolder")
+        (mockService.getDirContent(_: String, _: String, _: String)(_: ExecutionContext))
+          .expects(*, *, *, executionContext)
+          .returning(Future(Left(APIError.BadAPIResponse(400, "could not find any repository files"))))
+          .once()
+        val apiResult = UnitTestApplicationController.dirContent("testFolder", "meeptot", "test")(apiRequest)
+
+        status(apiResult) shouldBe Status.BAD_REQUEST
+        contentAsJson(apiResult) shouldBe Json.toJson("could not find any repository files")
+
+      }
+
+   }
+
+    "ApplicationController() .fileContent()" should {
+
+      "login to find user's repositories under the name specified and get the contents of a file" in {
+
+        val apiRequest: FakeRequest[AnyContentAsEmpty.type] = buildGet("/github/users/testUser/repos/testRepo/file/testDir/README.md")
+        (mockService.getFileContent(_: String, _: String, _: String)(_: ExecutionContext))
+          .expects(*, *, *, executionContext)
+          .returning(Future(Right(testFile)))
+          .once()
+        val apiResult = UnitTestApplicationController.fileContent("testDir/README.md", "testUser", "testDir")(apiRequest)
+
+        status(apiResult) shouldBe Status.OK
+        contentType(apiResult) shouldBe Some("text/html")
+
+      }
+
+      "use incorrect login return api error" in {
+
+        val apiRequest: FakeRequest[AnyContentAsEmpty.type] = buildGet("/github/users/meeptot/repos/test/file/testFolder/testFile")
+        (mockService.getFileContent(_: String, _: String, _: String)(_: ExecutionContext))
+          .expects(*, *, *, executionContext)
+          .returning(Future(Left(APIError.BadAPIResponse(400, "could not find any file contents"))))
+          .once()
+        val apiResult = UnitTestApplicationController.fileContent("testFolder/testFile", "meeptot", "test")(apiRequest)
+
+        status(apiResult) shouldBe Status.BAD_REQUEST
+        contentAsJson(apiResult) shouldBe Json.toJson("could not find any file contents")
+
+      }
+
+    }
+
+    "ApplicationController() .createFile()" should {
+
+      "login to find user's repositories under the name specified and create file" in {
+
+        val apiCreatedRequest: FakeRequest[JsValue] = buildPut("/github/users/RobynGar/repos/git_practice/file/create/newFile3.txt").withBody[JsValue](Json.toJson(testCreateFile))
+        (mockService.createFile(_: String, _: String, _: String, _: Request[JsValue])(_: ExecutionContext))
+          .expects(*, *, *, *,  executionContext)
+          .returning(Future(Right(returnedFile)))
+          .once()
+        val apiCreatedResult = UnitTestApplicationController.createFile("RobynGar", "git_practice", "newFile3.txt")(apiCreatedRequest)
+
+        status(apiCreatedResult) shouldBe Status.OK
+
+      }
+
+
+      "correct login but repository does not exist" in {
+        val apiCreatedRequest: FakeRequest[JsValue] = buildPut("/github/users/RobynGar/repos/made-up-repo/file/create/newFile.txt").withBody[JsValue](Json.toJson(testCreateFile))
+        (mockService.createFile(_: String, _: String, _: String, _: Request[JsValue])(_: ExecutionContext))
+          .expects(*, *, *, *,  executionContext)
+          .returning(Future(Left(APIError.BadAPIResponse(400, "could not create file"))))
+          .once()
+        val apiCreatedResult = UnitTestApplicationController.createFile("RobynGar", "made-up-repo", "newFile.txt")(apiCreatedRequest)
+
+        status(apiCreatedResult) shouldBe Status.BAD_REQUEST
+        contentAsJson(apiCreatedResult) shouldBe Json.toJson("could not create file")
+      }
+
+    }
+
+    "ApplicationController() .updateFile()" should {
+
+      "login to find user's repositories under the name specified and update file" in {
+
+        val apiUpdateRequest: FakeRequest[JsValue] = buildPut("/github/users/RobynGar/repos/git_practice/file/update/newFile.txt").withBody[JsValue](Json.toJson(updateFile))
+        (mockService.updateFile(_: String, _: String, _: String, _: Request[JsValue])(_: ExecutionContext))
+          .expects(*, *, *, *,  executionContext)
+          .returning(Future(Right(returnedFile)))
+          .once()
+        val apiUpdateResult = UnitTestApplicationController.updateFile("RobynGar", "git_practice", "newFile.txt")(apiUpdateRequest)
+
+        status(apiUpdateResult) shouldBe Status.OK
+        contentAsJson(apiUpdateResult) shouldBe Json.toJson(returnedFile)
+
+      }
+
+      "correct login and repository but file does not exist" in {
+        val apiUpdatedRequest: FakeRequest[JsValue] = buildPut("/github/users/RobynGar/repos/git_practice/file/update/nonExistent.txt").withBody[JsValue](Json.toJson(updateFile))
+         (mockService.updateFile(_: String, _: String, _: String, _: Request[JsValue])(_: ExecutionContext))
+           .expects(*, *, *, *,  executionContext)
+           .returning(Future(Left(APIError.BadAPIResponse(400, "could not update file"))))
+           .once()
+        val apiUpdatedResult = UnitTestApplicationController.updateFile("RobynGar", "git_practice", "nonExistent.txt")(apiUpdatedRequest)
+
+        status(apiUpdatedResult) shouldBe Status.BAD_REQUEST
+        contentAsJson(apiUpdatedResult) shouldBe Json.toJson("could not update file")
+      }
+    }
+
+    "ApplicationController() .deleteFile()" should {
+
+      "login to find user's repositories under the name specified and delete file" in {
+
+        val apiDeleteRequest: FakeRequest[JsValue] = buildDelete("/github/users/RobynGar/repos/git_practice/file/delete/newFile.txt").withBody[JsValue](Json.toJson("delete file"))
+        (mockService.deleteFile(_: String, _: String, _: String, _: Request[JsValue])(_: ExecutionContext))
+          .expects(*, *, *, *, executionContext)
+          .returning(Future(Right("DELETED")))
+          .once()
+        val apiDeleteResult = UnitTestApplicationController.deleteFile("RobynGar", "git_practice", "newFile.txt")(apiDeleteRequest)
+
+        status(apiDeleteResult) shouldBe Status.ACCEPTED
+      }
+
+      "correct login and repository but file does not exist" in {
+        val apiDeleteRequest: FakeRequest[JsValue] = buildDelete("/github/users/RobynGar/repos/git_practice/file/delete/nonExistent.txt").withBody[JsValue](Json.toJson("deleteFile"))
+        (mockService.deleteFile(_: String, _: String, _: String, _: Request[JsValue])(_: ExecutionContext))
+          .expects(*, *, *, *, executionContext)
+          .returning(Future(Left(APIError.BadAPIResponse(404, "could not delete file"))))
+          .once()
+        val apiDeleteResult = UnitTestApplicationController.deleteFile("RobynGar", "git_practice", "nonExistent.txt")(apiDeleteRequest)
+
+        status(apiDeleteResult) shouldBe Status.NOT_FOUND
+        contentAsJson(apiDeleteResult) shouldBe Json.toJson("could not delete file")
+      }
+    }
+
+    "ApplicationController() .repoReadMe()" should {
+
+      "login to find user's repositories under the name specified and get readMe" in {
+
+        val apiRequest: FakeRequest[AnyContentAsEmpty.type] = buildGet("/github/users/RobynGar/repos/play-template/get/readme")
+        (mockService.repoReadMe(_: String, _: String)(_: ExecutionContext))
+          .expects(*, *, executionContext)
+          .returning(Future(Right(testFile)))
+          .once()
+        val apiResult = UnitTestApplicationController.repoReadMe("RobynGar", "play-template")(apiRequest)
+
+        status(apiResult) shouldBe Status.OK
+      }
+
+      "correct login and repository but no readme exists" in {
+        val apiReadMeRequest: FakeRequest[AnyContentAsEmpty.type] = buildPut("/github/users/RobynGar/repos/git_practice/get/readme")
+        (mockService.repoReadMe(_: String, _: String)(_: ExecutionContext))
+          .expects(*, *, executionContext)
+          .returning(Future(Left(APIError.BadAPIResponse(400, "could not find readme for this repository"))))
+          .once()
+        val apiReadMeResult = UnitTestApplicationController.repoReadMe("RobynGar", "git_practice")(apiReadMeRequest)
+
+        status(apiReadMeResult) shouldBe Status.BAD_REQUEST
+        contentAsJson(apiReadMeResult) shouldBe Json.toJson("could not find readme for this repository")
+      }
+    }
+
+    "ApplicationController() .dirReadMe()" should {
+
+      "login to find user's repositories and get readMe from specified directory" in {
+
+        val apiRequest: FakeRequest[AnyContentAsEmpty.type] = buildGet("/github/users/RobynGar/repos/play-template/readme/app")
+        (mockService.dirReadMe(_: String, _: String, _: String)(_: ExecutionContext))
+          .expects(*, *, *, executionContext)
+          .returning(Future(Right(testFile)))
+          .once()
+        val apiResult = UnitTestApplicationController.dirReadMe("RobynGar", "play-template", "app")(apiRequest)
+
+        status(apiResult) shouldBe Status.OK
+        contentType(apiResult) shouldBe Some("text/html")
+      }
+
+       "correct login and repository but no readme exists in that directory" in {
+         val apiReadMeRequest: FakeRequest[AnyContentAsEmpty.type] = buildPut("/github/users/RobynGar/repos/git_practice/get/readme/project")
+         (mockService.dirReadMe(_: String, _: String, _: String)(_: ExecutionContext))
+           .expects(*, *, *, executionContext)
+           .returning(Future(Left(APIError.BadAPIResponse(404, "resource not found"))))
+           .once()
+         val apiReadMeResult = UnitTestApplicationController.dirReadMe("RobynGar", "git_practice", "project")(apiReadMeRequest)
+
+         status(apiReadMeResult) shouldBe Status.NOT_FOUND
+         contentAsJson(apiReadMeResult) shouldBe Json.toJson("resource not found")
+
+       }
+    }
+
+    "ApplicationController() .downloadTar()" should {
+
+      "download the tar of the repository specified form the branch specified" in {
+
+        val apiRequest: FakeRequest[AnyContentAsEmpty.type] = buildGet("/github/users/RobynGar/repos/git_practice/download/tarball/main")
+        (mockService.downloadTar(_: String, _: String, _: Option[String])(_: ExecutionContext))
+          .expects(*, *, *, executionContext)
+          .returning(Future(Right(302)))
+          .once()
+        val apiResult = UnitTestApplicationController.downloadTar("RobynGar", "git_practice", Some("main"))(apiRequest)
+
+        status(apiResult) shouldBe Status.OK
+        contentAsJson(apiResult) shouldBe Json.toJson("Downloaded")
+      }
+
+      "correct login but no repository exists" in {
+        val apiReadMeRequest: FakeRequest[AnyContentAsEmpty.type] = buildPut("/github/users/RobynGar/repos/no-such-repo/download/tarball")
+        (mockService.downloadTar(_: String, _: String, _: Option[String])(_: ExecutionContext))
+          .expects(*, *, *, executionContext)
+          .returning(Future(Left(APIError.BadAPIResponse(400, "could not download tar"))))
+          .once()
+        val apiReadMeResult = UnitTestApplicationController.downloadTar("RobynGar", "no-such-repo", None)(apiReadMeRequest)
+
+        status(apiReadMeResult) shouldBe Status.BAD_REQUEST
+        contentAsJson(apiReadMeResult) shouldBe Json.toJson("could not download tar")
+      }
+    }
+
+    "ApplicationController() .downloadZip()" should {
+
+      "download the tar of the repository specified form the branch specified" in {
+
+        val apiRequest: FakeRequest[AnyContentAsEmpty.type] = buildGet("/github/users/RobynGar/repos/git_practice/download/zipball")
+        (mockService.downloadZip(_: String, _: String, _: String)(_: ExecutionContext))
+          .expects(*, *, *, executionContext)
+          .returning(Future(Right(302)))
+          .once()
+        val apiResult = UnitTestApplicationController.downloadZip("RobynGar", "git_practice", "main")(apiRequest)
+
+        status(apiResult) shouldBe Status.OK
+        contentAsJson(apiResult) shouldBe Json.toJson("Downloaded")
+
+      }
+
+      "correct login but no repository exists" in {
+        val apiReadMeRequest: FakeRequest[AnyContentAsEmpty.type] = buildPut("/github/users/RobynGar/repos/no-such-repo/download/zipball")
+        (mockService.downloadZip(_: String, _: String, _: String)(_: ExecutionContext))
+          .expects(*, *, *, executionContext)
+          .returning(Future(Left(APIError.BadAPIResponse(400, "could not download zip"))))
+          .once()
+        val apiReadMeResult = UnitTestApplicationController.downloadZip("RobynGar", "no-such-repo", "main")(apiReadMeRequest)
+
+        status(apiReadMeResult) shouldBe Status.BAD_REQUEST
+        contentAsJson(apiReadMeResult) shouldBe Json.toJson("could not download zip")
+      }
+
+    }
+  
 }

@@ -5,47 +5,43 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b409524c-8667-4684-be72-0a22047a43d5" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/sbt__commons_codec_commons_codec_1_11_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/sbt__commons_codec_commons_codec_1_11_jar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/sbt__commons_io_commons_io_2_6_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/sbt__commons_io_commons_io_2_6_jar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/sbt__org_apache_commons_commons_lang3_3_9_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/sbt__org_apache_commons_commons_lang3_3_9_jar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/sbt__org_eclipse_jetty_jetty_client_9_4_20_v20190813_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/sbt__org_eclipse_jetty_jetty_client_9_4_20_v20190813_jar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/sbt__org_eclipse_jetty_jetty_http_9_4_20_v20190813_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/sbt__org_eclipse_jetty_jetty_http_9_4_20_v20190813_jar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/sbt__org_eclipse_jetty_jetty_io_9_4_20_v20190813_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/sbt__org_eclipse_jetty_jetty_io_9_4_20_v20190813_jar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/sbt__org_eclipse_jetty_jetty_util_9_4_20_v20190813_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/sbt__org_eclipse_jetty_jetty_util_9_4_20_v20190813_jar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/sbt__org_eclipse_jetty_jetty_xml_9_4_20_v20190813_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/sbt__org_eclipse_jetty_jetty_xml_9_4_20_v20190813_jar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/sbt__org_hamcrest_hamcrest_core_1_3_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/sbt__org_hamcrest_hamcrest_core_1_3_jar.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/connectors/ApplicationConnector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/app/connectors/ApplicationConnector.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/ApplicationController.scala" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/ApplicationController.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/FFitems.scala" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/FFitems.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/services/ApplicationService.scala" beforeDir="false" afterPath="$PROJECT_DIR$/app/services/ApplicationService.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/foldersAndFiles.scala.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/foldersAndFiles.scala.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/conf/routes" beforeDir="false" afterPath="$PROJECT_DIR$/conf/routes" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/scala-2.13/classes/connectors/ApplicationConnector$$anonfun$getUserRepoInfo$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.13/classes/connectors/ApplicationConnector$$anonfun$getUserRepoInfo$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/scala-2.13/classes/connectors/ApplicationConnector.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.13/classes/connectors/ApplicationConnector.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/target/streams/_global/csrConfiguration/_global/streams/out" beforeDir="false" afterPath="$PROJECT_DIR$/project/target/streams/_global/csrConfiguration/_global/streams/out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/target/streams/_global/ivyConfiguration/_global/streams/out" beforeDir="false" afterPath="$PROJECT_DIR$/project/target/streams/_global/ivyConfiguration/_global/streams/out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/target/streams/_global/scalaCompilerBridgeScope/_global/streams/out" beforeDir="false" afterPath="$PROJECT_DIR$/project/target/streams/_global/scalaCompilerBridgeScope/_global/streams/out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/target/streams/compile/compileIncremental/_global/streams/out" beforeDir="false" afterPath="$PROJECT_DIR$/project/target/streams/compile/compileIncremental/_global/streams/out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/target/streams/compile/copyResources/_global/streams/out" beforeDir="false" afterPath="$PROJECT_DIR$/project/target/streams/compile/copyResources/_global/streams/out" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/scala-2.13/classes/controllers/ApplicationController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.13/classes/controllers/ApplicationController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/scala-2.13/classes/controllers/ReverseApplicationController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.13/classes/controllers/ReverseApplicationController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/scala-2.13/classes/controllers/ReverseAssets.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.13/classes/controllers/ReverseAssets.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/scala-2.13/classes/controllers/ReverseHomeController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.13/classes/controllers/ReverseHomeController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/scala-2.13/classes/controllers/javascript/ReverseApplicationController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.13/classes/controllers/javascript/ReverseApplicationController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/scala-2.13/classes/controllers/javascript/ReverseAssets.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.13/classes/controllers/javascript/ReverseAssets.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/scala-2.13/classes/controllers/javascript/ReverseHomeController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.13/classes/controllers/javascript/ReverseHomeController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/scala-2.13/classes/models/FFitems$.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.13/classes/models/FFitems$.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/scala-2.13/classes/models/FFitems.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.13/classes/models/FFitems.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/scala-2.13/classes/router/Routes$$anonfun$routes$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.13/classes/router/Routes$$anonfun$routes$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/scala-2.13/classes/router/Routes.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.13/classes/router/Routes.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/scala-2.13/classes/routes" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.13/classes/routes" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/scala-2.13/classes/services/ApplicationService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.13/classes/services/ApplicationService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/scala-2.13/classes/views/foldersAndFiles.scala.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.13/classes/views/foldersAndFiles.scala.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/scala-2.13/classes/views/html/foldersAndFiles$.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.13/classes/views/html/foldersAndFiles$.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/scala-2.13/routes/main/controllers/ReverseRoutes.scala" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.13/routes/main/controllers/ReverseRoutes.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/scala-2.13/routes/main/controllers/javascript/JavaScriptReverseRoutes.scala" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.13/routes/main/controllers/javascript/JavaScriptReverseRoutes.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/scala-2.13/routes/main/controllers/routes.java" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.13/routes/main/controllers/routes.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/scala-2.13/routes/main/router/Routes.scala" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.13/routes/main/router/Routes.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/scala-2.13/routes/main/router/RoutesPrefix.scala" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.13/routes/main/router/RoutesPrefix.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/scala-2.13/test-classes/controllers/ApplicationControllerSpec.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.13/test-classes/controllers/ApplicationControllerSpec.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/scala-2.13/test-classes/controllers/UnitApplicationControllerSpec$$anon$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.13/test-classes/controllers/UnitApplicationControllerSpec$$anon$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/scala-2.13/test-classes/service/ApplicationServiceUnitSpec$$anon$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.13/test-classes/service/ApplicationServiceUnitSpec$$anon$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.13/test-classes/controllers/UnitApplicationControllerSpec.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.13/test-classes/controllers/UnitApplicationControllerSpec.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/scala-2.13/test-classes/service/ApplicationServiceUnitSpec.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.13/test-classes/service/ApplicationServiceUnitSpec.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/scala-2.13/twirl/main/views/html/foldersAndFiles.template.scala" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.13/twirl/main/views/html/foldersAndFiles.template.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/streams/_global/playCommonClassloader/_global/streams/out" beforeDir="false" afterPath="$PROJECT_DIR$/target/streams/_global/playCommonClassloader/_global/streams/out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.13/update/update_cache_2.13/output" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.13/update/update_cache_2.13/output" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/streams/_global/_global/checkBuildSources/_global/streams/out" beforeDir="false" afterPath="$PROJECT_DIR$/target/streams/_global/_global/checkBuildSources/_global/streams/out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/streams/_global/_global/csrLogger/_global/streams/out" beforeDir="false" afterPath="$PROJECT_DIR$/target/streams/_global/_global/csrLogger/_global/streams/out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/streams/_global/update/_global/streams/out" beforeDir="false" afterPath="$PROJECT_DIR$/target/streams/_global/update/_global/streams/out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/streams/_global/updateClassifiers/_global/streams/update_cache_2.13/output" beforeDir="false" afterPath="$PROJECT_DIR$/target/streams/_global/updateClassifiers/_global/streams/update_cache_2.13/output" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/streams/compile/_global/_global/compileBinaryFileInputs/previous" beforeDir="false" afterPath="$PROJECT_DIR$/target/streams/compile/_global/_global/compileBinaryFileInputs/previous" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/streams/compile/_global/_global/compileSourceFileInputs/previous" beforeDir="false" afterPath="$PROJECT_DIR$/target/streams/compile/_global/_global/compileSourceFileInputs/previous" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/streams/compile/_global/_global/dependencyClasspathFiles/previous" beforeDir="false" afterPath="$PROJECT_DIR$/target/streams/compile/_global/_global/dependencyClasspathFiles/previous" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/streams/compile/compile/_global/streams/out" beforeDir="false" afterPath="$PROJECT_DIR$/target/streams/compile/compile/_global/streams/out" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/streams/compile/compileIncSetup/_global/streams/inc_compile_2.13.zip" beforeDir="false" afterPath="$PROJECT_DIR$/target/streams/compile/compileIncSetup/_global/streams/inc_compile_2.13.zip" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/streams/compile/copyResources/_global/streams/copy-resources" beforeDir="false" afterPath="$PROJECT_DIR$/target/streams/compile/copyResources/_global/streams/copy-resources" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/streams/compile/playRoutes/_global/streams/op-cache" beforeDir="false" afterPath="$PROJECT_DIR$/target/streams/compile/playRoutes/_global/streams/op-cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/streams/compile/compileIncremental/_global/streams/export" beforeDir="false" afterPath="$PROJECT_DIR$/target/streams/compile/compileIncremental/_global/streams/export" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/streams/compile/compileIncremental/_global/streams/out" beforeDir="false" afterPath="$PROJECT_DIR$/target/streams/compile/compileIncremental/_global/streams/out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/streams/compile/dependencyClasspath/_global/streams/export" beforeDir="false" afterPath="$PROJECT_DIR$/target/streams/compile/dependencyClasspath/_global/streams/export" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test/controllers/ApplicationControllerSpec.scala" beforeDir="false" afterPath="$PROJECT_DIR$/test/controllers/ApplicationControllerSpec.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/service/ApplicationServiceUnitSpec.scala" beforeDir="false" afterPath="$PROJECT_DIR$/test/service/ApplicationServiceUnitSpec.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/controllers/UnitApplicationControllerSpec.scala" beforeDir="false" afterPath="$PROJECT_DIR$/test/controllers/UnitApplicationControllerSpec.scala" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -94,8 +90,8 @@
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;
   }
 }</component>
-  <component name="RunManager" selected="ScalaTest.ApplicationControllerSpec.ApplicationController() .downloadZip() should download the tar of the repository specified form the branch specified&#10;ApplicationController() .downloadZip() should return ok http response for zip download from the router and when no branch provided default to main&#10;ApplicationController() .downloadZip() should return ok http response for zip download from the router and when a branch is provided&#10;ApplicationController() .downloadZip() should correct login but no repository exists&#10;ApplicationController() .downloadZip() should route for getting readme with non-existing repository">
-    <configuration name="ApplicationControllerSpec.ApplicationController() .downloadTar() should correct login but no repository exists" type="ScalaTestRunConfiguration" factoryName="ScalaTest" temporary="true" nameIsGenerated="true" show_console_on_std_err="false" show_console_on_std_out="false">
+  <component name="RunManager" selected="ScalaTest.UnitApplicationControllerSpec.ApplicationController() .downloadZip() should correct login but no repository exists">
+    <configuration name="UnitApplicationControllerSpec.ApplicationController() .dirReadMe() should correct login and repository but no readme exists in that directory" type="ScalaTestRunConfiguration" factoryName="ScalaTest" temporary="true" nameIsGenerated="true" show_console_on_std_err="false" show_console_on_std_out="false">
       <module name="gitHub-ex" />
       <option name="allowRunningInParallel" value="false" />
       <option name="projectPathOnTarget" />
@@ -103,13 +99,27 @@
         <list />
       </option>
       <option name="testKind" value="Test name" />
-      <option name="testClassPath" value="controllers.ApplicationControllerSpec" />
+      <option name="testClassPath" value="controllers.UnitApplicationControllerSpec" />
+      <option name="testName" value="ApplicationController() .dirReadMe() should correct login and repository but no readme exists in that directory" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UnitApplicationControllerSpec.ApplicationController() .downloadTar() should correct login but no repository exists" type="ScalaTestRunConfiguration" factoryName="ScalaTest" temporary="true" nameIsGenerated="true" show_console_on_std_err="false" show_console_on_std_out="false">
+      <module name="gitHub-ex" />
+      <option name="allowRunningInParallel" value="false" />
+      <option name="projectPathOnTarget" />
+      <option name="selectedOptions">
+        <list />
+      </option>
+      <option name="testKind" value="Test name" />
+      <option name="testClassPath" value="controllers.UnitApplicationControllerSpec" />
       <option name="testName" value="ApplicationController() .downloadTar() should correct login but no repository exists" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ApplicationControllerSpec.ApplicationController() .downloadTar() should download the tar of the repository specified form the branch specified&#10;ApplicationController() .downloadTar() should return ok http response for tar download from the router and when no branch provided default to main&#10;ApplicationController() .downloadTar() should return ok http response for tar download from the router and when a branch is provided&#10;ApplicationController() .downloadTar() should correct login but no repository exists&#10;ApplicationController() .downloadTar() should correct route for getting a directories readme&#10;ApplicationController() .downloadTar() should route for getting readme with non-existing repository" type="ScalaTestRunConfiguration" factoryName="ScalaTest" temporary="true" nameIsGenerated="true" show_console_on_std_err="false" show_console_on_std_out="false">
+    <configuration name="UnitApplicationControllerSpec.ApplicationController() .downloadTar() should download the tar of the repository specified form the branch specified" type="ScalaTestRunConfiguration" factoryName="ScalaTest" temporary="true" nameIsGenerated="true" show_console_on_std_err="false" show_console_on_std_out="false">
       <module name="gitHub-ex" />
       <option name="allowRunningInParallel" value="false" />
       <option name="projectPathOnTarget" />
@@ -117,13 +127,13 @@
         <list />
       </option>
       <option name="testKind" value="Test name" />
-      <option name="testClassPath" value="controllers.ApplicationControllerSpec" />
-      <option name="testName" value="ApplicationController() .downloadTar() should download the tar of the repository specified form the branch specified&#10;ApplicationController() .downloadTar() should return ok http response for tar download from the router and when no branch provided default to main&#10;ApplicationController() .downloadTar() should return ok http response for tar download from the router and when a branch is provided&#10;ApplicationController() .downloadTar() should correct login but no repository exists&#10;ApplicationController() .downloadTar() should correct route for getting a directories readme&#10;ApplicationController() .downloadTar() should route for getting readme with non-existing repository" />
+      <option name="testClassPath" value="controllers.UnitApplicationControllerSpec" />
+      <option name="testName" value="ApplicationController() .downloadTar() should download the tar of the repository specified form the branch specified" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ApplicationControllerSpec.ApplicationController() .downloadZip() should correct login but no repository exists" type="ScalaTestRunConfiguration" factoryName="ScalaTest" temporary="true" nameIsGenerated="true" show_console_on_std_err="false" show_console_on_std_out="false">
+    <configuration name="UnitApplicationControllerSpec.ApplicationController() .downloadZip() should correct login but no repository exists" type="ScalaTestRunConfiguration" factoryName="ScalaTest" temporary="true" nameIsGenerated="true" show_console_on_std_err="false" show_console_on_std_out="false">
       <module name="gitHub-ex" />
       <option name="allowRunningInParallel" value="false" />
       <option name="projectPathOnTarget" />
@@ -131,13 +141,13 @@
         <list />
       </option>
       <option name="testKind" value="Test name" />
-      <option name="testClassPath" value="controllers.ApplicationControllerSpec" />
+      <option name="testClassPath" value="controllers.UnitApplicationControllerSpec" />
       <option name="testName" value="ApplicationController() .downloadZip() should correct login but no repository exists" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ApplicationControllerSpec.ApplicationController() .downloadZip() should correct route for getting a directories readme" type="ScalaTestRunConfiguration" factoryName="ScalaTest" temporary="true" nameIsGenerated="true" show_console_on_std_err="false" show_console_on_std_out="false">
+    <configuration name="UnitApplicationControllerSpec.ApplicationController() .downloadZip() should download the tar of the repository specified form the branch specified" type="ScalaTestRunConfiguration" factoryName="ScalaTest" temporary="true" nameIsGenerated="true" show_console_on_std_err="false" show_console_on_std_out="false">
       <module name="gitHub-ex" />
       <option name="allowRunningInParallel" value="false" />
       <option name="projectPathOnTarget" />
@@ -145,33 +155,19 @@
         <list />
       </option>
       <option name="testKind" value="Test name" />
-      <option name="testClassPath" value="controllers.ApplicationControllerSpec" />
-      <option name="testName" value="ApplicationController() .downloadZip() should correct route for getting a directories readme" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ApplicationControllerSpec.ApplicationController() .downloadZip() should download the tar of the repository specified form the branch specified&#10;ApplicationController() .downloadZip() should return ok http response for zip download from the router and when no branch provided default to main&#10;ApplicationController() .downloadZip() should return ok http response for zip download from the router and when a branch is provided&#10;ApplicationController() .downloadZip() should correct login but no repository exists&#10;ApplicationController() .downloadZip() should route for getting readme with non-existing repository" type="ScalaTestRunConfiguration" factoryName="ScalaTest" temporary="true" nameIsGenerated="true" show_console_on_std_err="false" show_console_on_std_out="false">
-      <module name="gitHub-ex" />
-      <option name="allowRunningInParallel" value="false" />
-      <option name="projectPathOnTarget" />
-      <option name="selectedOptions">
-        <list />
-      </option>
-      <option name="testKind" value="Test name" />
-      <option name="testClassPath" value="controllers.ApplicationControllerSpec" />
-      <option name="testName" value="ApplicationController() .downloadZip() should download the tar of the repository specified form the branch specified&#10;ApplicationController() .downloadZip() should return ok http response for zip download from the router and when no branch provided default to main&#10;ApplicationController() .downloadZip() should return ok http response for zip download from the router and when a branch is provided&#10;ApplicationController() .downloadZip() should correct login but no repository exists&#10;ApplicationController() .downloadZip() should route for getting readme with non-existing repository" />
+      <option name="testClassPath" value="controllers.UnitApplicationControllerSpec" />
+      <option name="testName" value="ApplicationController() .downloadZip() should download the tar of the repository specified form the branch specified" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="ScalaTest.ApplicationControllerSpec.ApplicationController() .downloadZip() should download the tar of the repository specified form the branch specified&#10;ApplicationController() .downloadZip() should return ok http response for zip download from the router and when no branch provided default to main&#10;ApplicationController() .downloadZip() should return ok http response for zip download from the router and when a branch is provided&#10;ApplicationController() .downloadZip() should correct login but no repository exists&#10;ApplicationController() .downloadZip() should route for getting readme with non-existing repository" />
-        <item itemvalue="ScalaTest.ApplicationControllerSpec.ApplicationController() .downloadZip() should correct route for getting a directories readme" />
-        <item itemvalue="ScalaTest.ApplicationControllerSpec.ApplicationController() .downloadZip() should correct login but no repository exists" />
-        <item itemvalue="ScalaTest.ApplicationControllerSpec.ApplicationController() .downloadTar() should download the tar of the repository specified form the branch specified&#10;ApplicationController() .downloadTar() should return ok http response for tar download from the router and when no branch provided default to main&#10;ApplicationController() .downloadTar() should return ok http response for tar download from the router and when a branch is provided&#10;ApplicationController() .downloadTar() should correct login but no repository exists&#10;ApplicationController() .downloadTar() should correct route for getting a directories readme&#10;ApplicationController() .downloadTar() should route for getting readme with non-existing repository" />
-        <item itemvalue="ScalaTest.ApplicationControllerSpec.ApplicationController() .downloadTar() should correct login but no repository exists" />
+        <item itemvalue="ScalaTest.UnitApplicationControllerSpec.ApplicationController() .downloadZip() should correct login but no repository exists" />
+        <item itemvalue="ScalaTest.UnitApplicationControllerSpec.ApplicationController() .downloadZip() should download the tar of the repository specified form the branch specified" />
+        <item itemvalue="ScalaTest.UnitApplicationControllerSpec.ApplicationController() .downloadTar() should correct login but no repository exists" />
+        <item itemvalue="ScalaTest.UnitApplicationControllerSpec.ApplicationController() .downloadTar() should download the tar of the repository specified form the branch specified" />
+        <item itemvalue="ScalaTest.UnitApplicationControllerSpec.ApplicationController() .dirReadMe() should correct login and repository but no readme exists in that directory" />
       </list>
     </recent_temporary>
   </component>

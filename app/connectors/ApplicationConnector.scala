@@ -137,7 +137,7 @@ class ApplicationConnector @Inject()(ws: WSClient) {
           case JsError(errors) =>
             //            println(Json.prettyPrint(result.json))
             //            println(s"moose ${errors}")
-            Left(APIError.BadAPIResponse(400, "could not find create file"))
+            Left(APIError.BadAPIResponse(400, "could not create file"))
         }
 
     }

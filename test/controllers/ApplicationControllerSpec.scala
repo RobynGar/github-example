@@ -50,10 +50,6 @@ class ApplicationControllerSpec extends BaseSpecWithApplication {
     "test update method",
     "new content"
   )
-  private val deleteFile: RequestDelete = RequestDelete(
-    "delete file",
-    "47d2739ba2c34690248c8f91b84bb54e8936899a"
-  )
 
 
   "ApplicationController .index" should {
@@ -648,7 +644,7 @@ class ApplicationControllerSpec extends BaseSpecWithApplication {
       val apiCreatedResult = TestApplicationController.createFile("RobynGar", "made-up-repo", "newFile.txt")(apiCreatedRequest)
 
       status(apiCreatedResult) shouldBe Status.BAD_REQUEST
-      contentAsJson(apiCreatedResult) shouldBe Json.toJson("could not find create file")
+      contentAsJson(apiCreatedResult) shouldBe Json.toJson("could not create file")
     }
 
     "unable to validate file trying to be created" in {
@@ -690,7 +686,7 @@ class ApplicationControllerSpec extends BaseSpecWithApplication {
     }
 
     "correct login and repository but file does not exist" in {
-      val apiUpdatedRequest: FakeRequest[JsValue] = buildPut("/github/users/RobynGar/repos/git_practice/file/update/nonExistent.txt").withBody[JsValue](Json.toJson(createFile))
+      val apiUpdatedRequest: FakeRequest[JsValue] = buildPut("/github/users/RobynGar/repos/git_practice/file/update/nonExistent.txt").withBody[JsValue](Json.toJson(updateFile))
       val apiUpdatedResult = TestApplicationController.updateFile("RobynGar", "git_practice", "nonExistent.txt")(apiUpdatedRequest)
 
       status(apiUpdatedResult) shouldBe Status.BAD_REQUEST
@@ -736,7 +732,7 @@ class ApplicationControllerSpec extends BaseSpecWithApplication {
     }
 
     "correct login and repository but file does not exist" in {
-      val apiDeleteRequest: FakeRequest[JsValue] = buildDelete("/github/users/RobynGar/repos/git_practice/file/delete/nonExistent.txt").withBody[JsValue](Json.toJson(createFile))
+      val apiDeleteRequest: FakeRequest[JsValue] = buildDelete("/github/users/RobynGar/repos/git_practice/file/delete/nonExistent.txt").withBody[JsValue](Json.toJson("delete file"))
       val apiDeleteResult = TestApplicationController.deleteFile("RobynGar", "git_practice", "nonExistent.txt")(apiDeleteRequest)
 
       status(apiDeleteResult) shouldBe Status.NOT_FOUND
