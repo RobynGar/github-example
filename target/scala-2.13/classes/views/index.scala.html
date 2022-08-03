@@ -1,0 +1,84 @@
+@()
+
+@main("Play Scala API demo") {
+
+<div class="container h-100 d-flex justify-content-center">
+
+  <div class="jumbotron my-auto">
+
+    <div class="container mb-5">
+      <h1 class="display-3 row">Play Scala API GitHub Demo</h1>
+    </div>
+
+
+    <p class="lead mb-5">This project is deployed via Heroku.</p>
+
+    <h3>API Documentation</h3>
+    <div class="justify-content-center">
+      <table class="table">
+        <thead>
+        <tr>
+          <th scope="col">URL</th>
+          <th scope="col">HTTP Method</th>
+          <th scope="col">Required Header</th>
+          <th scope="col">Body</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <th scope="row">/github/users</th>
+          <td><code>GET</code></td>
+          <td>None</td>
+          <td>N/A</td>
+        </tr>
+        <tr>
+          <th scope="row">/github/users</th>
+          <td><code>POST</code></td>
+          <td>Content-Type: application/json</td>
+          <td><code>
+            "login" : String
+            <br>
+            "created_at" : DateTime
+            <br>
+            "location" : String
+            <br>
+            "followers" : Int
+            <br>
+            "following" : Int
+          </code></td>
+        </tr>
+        <tr>
+          <th scope="row">/github/users/:username</th>
+          <td><code>GET</code></td>
+          <td>None</td>
+          <td>N/A</td>
+        </tr>
+        <tr>
+          <th scope="row">/github/users/:username</th>
+          <td><code>PUT</code></td>
+          <td>Content-Type: application/json</td>
+          <td><code>
+            "login" : String
+            <br>
+            "created_at" : DateTime
+            <br>
+            "location" : String
+            <br>
+            "followers" : Int
+            <br>
+            "following" : Int
+          </code></td>
+        </tr>
+        <tr>
+          <th scope="row">/github/users/:username</th>
+          <td><code>DELETE</code></td>
+          <td>Content-Type: application/json</td>
+          <td>N/A</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</div>
+}

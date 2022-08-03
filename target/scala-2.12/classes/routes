@@ -1,0 +1,36 @@
+# An example controller showing a sample home page
+GET     /                           controllers.HomeController.index()
+
+#crud methods for mongodb of github users
+GET     /github/users                     controllers.ApplicationController.index()
+GET     /github/users/:login               controllers.ApplicationController.read(login: String)
+POST     /github/users/create              controllers.ApplicationController.create()
+PUT    /github/users/:login     controllers.ApplicationController.update(login: String)
+DELETE     /github/users/:login     controllers.ApplicationController.delete(login: String)
+
+#showing and adding to mongodb from github api. typing the parameter is optional do not have to specify it is string
+GET     /github/users/api/:login               controllers.ApplicationController.readFromAPI(login: String)
+GET     /github/users/add/:login               controllers.ApplicationController.addFromAPI(login: String)
+
+#displaying on HTML
+GET     /github/userspage/:login               controllers.ApplicationController.showUser(login: String)
+GET     /github/users/:login/repos     controllers.ApplicationController.usersRepos(login: String)
+GET     /github/users/:login/:repoName                    controllers.ApplicationController.usersRepoInfo(login: String, repoName: String)
+GET     /github/users/:login/repos/:repoName                    controllers.ApplicationController.repoContent(login: String, repoName: String)
+GET     /github/users/:login/repos/:repoName/:dirName                   controllers.ApplicationController.dirContent(dirName: String, login: String, repoName: String)
+GET     /github/users/:login/repos/:repoName/file/:filePath                   controllers.ApplicationController.fileContent(filePath: String, login: String, repoName: String)
+
+#paths for create-or-update-file-contents
+PUT     /github/users/:login/repos/:repoName/file/create/:filePath                   controllers.ApplicationController.createFile(login: String, repoName: String, filePath: String)
+PUT     /github/users/:login/repos/:repoName/file/update/:filePath                   controllers.ApplicationController.updateFile(login: String, repoName: String, filePath: String)
+DELETE  /github/users/:login/repos/:repoName/file/delete/:filePath                   controllers.ApplicationController.deleteFile(login: String, repoName: String, filePath: String)
+GET  /github/users/:login/repos/:repoName/get/readme                  controllers.ApplicationController.repoReadMe(login: String, repoName: String)
+GET  /github/users/:login/repos/:repoName/get/readme/:dir                  controllers.ApplicationController.dirReadMe(login: String, repoName: String, dir: String)
+#optional parameters if default overridden in url with ?=
+GET  /github/users/:login/repos/:repoName/download/tarball                 controllers.ApplicationController.downloadTar(login: String, repoName: String, branch: Option[String])
+GET  /github/users/:login/repos/:repoName/download/zipball                  controllers.ApplicationController.downloadZip(login: String, repoName: String, branch: String ?= "main")
+
+
+# Map static resources from the /public folder to the /assets URL path
+GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
+

@@ -11,6 +11,7 @@ import play.api.Application
 import play.api.i18n.{Messages, MessagesApi}
 import play.api.inject.Injector
 import play.api.inject.guice.GuiceApplicationBuilder
+import play.api.libs.ws.WSClient
 import play.api.mvc.{AnyContentAsEmpty, MessagesControllerComponents}
 import play.api.test.CSRFTokenHelper.CSRFFRequestHeader
 import play.api.test.FakeRequest
@@ -31,6 +32,7 @@ trait BaseSpecWithApplication extends BaseSpec with GuiceOneServerPerSuite with 
   lazy val repository: DataRepository = injector.instanceOf[DataRepository]
   lazy val service: ApplicationService = injector.instanceOf[ApplicationService]
   lazy val connector:ApplicationConnector = injector.instanceOf[ApplicationConnector]
+  lazy val ws: WSClient = injector.instanceOf[WSClient]
 
   implicit val messagesApi = app.injector.instanceOf[MessagesApi]
   lazy val injector: Injector = app.injector
