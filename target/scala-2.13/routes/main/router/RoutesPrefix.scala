@@ -1,6 +1,6 @@
 // @GENERATOR:play-routes-compiler
-// @SOURCE:/Users/robyn.garlington/Documents/scalaTraining/assignments/gHub-example/gitHub-ex/conf/routes
-// @DATE:Fri Jul 29 10:19:19 BST 2022
+// @SOURCE:/Users/robyn.garlington/Documents/scalaTraining/assignments/gHub-example/gitHub-ex/github-example/conf/routes
+// @DATE:Wed Aug 03 12:11:39 BST 2022
 
 
 package router {

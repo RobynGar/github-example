@@ -44,7 +44,7 @@ class UnitApplicationControllerSpec extends BaseSpecWithApplication with MockFac
     0
   )
   private val returnedFile: ReturnCreatedFile = ReturnCreatedFile(
-    Content("testName", "folder/testFile", "file", "shalala")
+    Content("testName", "folder/testFile", "file")
   )
   private val emptyUserSequence: Seq[User] = Seq()
   private val userSequence: Seq[User] = Seq(user)

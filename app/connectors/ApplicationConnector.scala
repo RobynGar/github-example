@@ -54,9 +54,6 @@ class ApplicationConnector @Inject()(ws: WSClient) {
     val request = ws.url(url).get()
     request.map {
       result =>
-        //        val allFiles = result.json
-        //        val allFileNames = (allFiles \\ "name").map(_.as[String])
-        //        Right(allFileNames.toList)
         val response = result.json
         val seqOfFolderFiles = response.as[Seq[FFitems]]
         Right(seqOfFolderFiles)

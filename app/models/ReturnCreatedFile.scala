@@ -3,7 +3,7 @@ package models
 import play.api.libs.functional.syntax.toFunctionalBuilderOps
 import play.api.libs.json.{JsPath, Json, OFormat, OWrites, Reads}
 
-case class Content(name: String, path: String, `type`: String, sha: String)
+case class Content(name: String, path: String, `type`: String)
 case class ReturnCreatedFile(content: Content)
 object Content {
 //  implicit val jsonReads: Reads[Content] = (

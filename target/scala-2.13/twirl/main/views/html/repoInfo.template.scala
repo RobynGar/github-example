@@ -57,8 +57,8 @@ Seq[Any](format.raw/*4.1*/("""<!DOCTYPE html>
 
               /*
                   -- GENERATED --
-                  DATE: 2022-07-11T11:12:17.227
-                  SOURCE: /Users/robyn.garlington/Documents/scalaTraining/assignments/gHub-example/gitHub-ex/app/views/repoInfo.scala.html
+                  DATE: 2022-08-03T12:11:39.757
+                  SOURCE: /Users/robyn.garlington/Documents/scalaTraining/assignments/gHub-example/gitHub-ex/github-example/app/views/repoInfo.scala.html
                   HASH: 85202095063f1e59a33df1be54f4c563f9018ff8
                   MATRIX: 432->2|768->28|880->47|1026->166|1039->170|1069->179|1131->214|1144->218|1176->229|1231->257|1244->261|1279->275|1330->299|1343->303|1372->311|1428->340|1441->344|1471->353|1526->381|1546->392|1640->464
                   LINES: 17->2|22->3|27->4|34->11|34->11|34->11|36->13|36->13|36->13|37->14|37->14|37->14|38->15|38->15|38->15|39->16|39->16|39->16|40->17|40->17|40->17

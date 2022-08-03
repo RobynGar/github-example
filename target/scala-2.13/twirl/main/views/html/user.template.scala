@@ -63,8 +63,8 @@ Seq[Any](format.raw/*3.1*/("""
 
               /*
                   -- GENERATED --
-                  DATE: 2022-07-08T11:33:37.981
-                  SOURCE: /Users/robyn.garlington/Documents/scalaTraining/assignments/gHub-example/gitHub-ex/app/views/user.scala.html
+                  DATE: 2022-08-03T12:11:39.700
+                  SOURCE: /Users/robyn.garlington/Documents/scalaTraining/assignments/gHub-example/gitHub-ex/github-example/app/views/user.scala.html
                   HASH: 875acdf9d39ef342f3025cf99e1ebd33169529a3
                   MATRIX: 432->1|752->21|858->34|885->35|1073->196|1086->200|1113->206|1159->225|1172->229|1204->240|1250->259|1263->263|1314->293|1360->312|1373->316|1404->326|1450->345|1463->349|1494->359|1544->382|1564->393|1637->445
                   LINES: 17->1|22->2|27->3|28->4|39->15|39->15|39->15|40->16|40->16|40->16|41->17|41->17|41->17|42->18|42->18|42->18|43->19|43->19|43->19|44->20|44->20|44->20

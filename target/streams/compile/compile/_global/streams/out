@@ -1,14 +1,6 @@
-[0m[[0m[31merror[0m] [0m[0m/Users/robyn.garlington/Documents/scalaTraining/assignments/gHub-example/gitHub-ex/app/controllers/ApplicationController.scala:125:92: unknown parameter name: updatedFile[0m
-[0m[[0m[31merror[0m] [0m[0m    service.deleteFile(filePath= filePath, login = login, repoName = repoName, updatedFile = request ).map{[0m
-[0m[[0m[31merror[0m] [0m[0m                                                                                           ^[0m
-[0m[[0m[31merror[0m] [0m[0m/Users/robyn.garlington/Documents/scalaTraining/assignments/gHub-example/gitHub-ex/app/controllers/ApplicationController.scala:126:41: diverging implicit expansion for type play.api.libs.json.Writes[Any][0m
-[0m[[0m[31merror[0m] [0m[0mstarting with method Tuple22W in trait GeneratedWrites[0m
-[0m[[0m[31merror[0m] [0m[0m      case Right(file) => Ok(Json.toJson(file))[0m
-[0m[[0m[31merror[0m] [0m[0m                                        ^[0m
-[0m[[0m[31merror[0m] [0m[0m/Users/robyn.garlington/Documents/scalaTraining/assignments/gHub-example/gitHub-ex/app/controllers/ApplicationController.scala:127:40: value httpResponseStatus is not a member of Any[0m
-[0m[[0m[31merror[0m] [0m[0m      case Left(error) => Status(error.httpResponseStatus)(Json.toJson(error.reason))[0m
-[0m[[0m[31merror[0m] [0m[0m                                       ^[0m
-[0m[[0m[31merror[0m] [0m[0m/Users/robyn.garlington/Documents/scalaTraining/assignments/gHub-example/gitHub-ex/app/controllers/ApplicationController.scala:127:78: value reason is not a member of Any[0m
-[0m[[0m[31merror[0m] [0m[0m      case Left(error) => Status(error.httpResponseStatus)(Json.toJson(error.reason))[0m
-[0m[[0m[31merror[0m] [0m[0m                                                                             ^[0m
-[0m[[0m[31merror[0m] [0m[0mfour errors found[0m
+[0m[[0m[33mwarn[0m] [0m[0m/Users/robyn.garlington/Documents/scalaTraining/assignments/gHub-example/gitHub-ex/github-example/app/repositories/DataRepository.scala:46:37: Auto-application to `()` is deprecated. Supply the empty argument list `()` explicitly to invoke method headOption,[0m
+[0m[[0m[33mwarn[0m] [0m[0mor remove the empty argument list from its definition (Java-defined methods are exempt).[0m
+[0m[[0m[33mwarn[0m] [0m[0mIn Scala 3, an unapplied method like this will be eta-expanded into a function.[0m
+[0m[[0m[33mwarn[0m] [0m[0m    collection.find(byLogin(login)).headOption flatMap {[0m
+[0m[[0m[33mwarn[0m] [0m[0m                                    ^[0m
+[0m[[0m[33mwarn[0m] [0m[0mone warning found[0m
