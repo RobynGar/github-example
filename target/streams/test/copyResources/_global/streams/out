@@ -1,2 +1,3 @@
 [0m[[0m[0mdebug[0m] [0m[0mCopy resource mappings: [0m
-[0m[[0m[0mdebug[0m] [0m[0m	[0m
+[0m[[0m[0mdebug[0m] [0m[0m	(/Users/robyn.garlington/Documents/scalaTraining/assignments/gHub-example/gitHub-ex/github-example/test/resources/github/errorRepositories.json,/Users/robyn.garlington/Documents/scalaTraining/assignments/gHub-example/gitHub-ex/github-example/target/scala-2.13/test-classes/github/errorRepositories.json)[0m
+[0m[[0m[0mdebug[0m] [0m[0m	(/Users/robyn.garlington/Documents/scalaTraining/assignments/gHub-example/gitHub-ex/github-example/test/resources/github/repositories.json,/Users/robyn.garlington/Documents/scalaTraining/assignments/gHub-example/gitHub-ex/github-example/target/scala-2.13/test-classes/github/repositories.json)[0m

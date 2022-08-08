@@ -10,7 +10,7 @@ import scala.concurrent.duration.Duration
 
 class ApplicationConnectorSpec extends BaseSpecWithApplication{
 
-  private val user: User = User("octocat", "2011-01-25T18:44:36Z", Some("San Francisco"), 6536, 9)
+  private val user: User = User("octocat", "2011-01-25T18:44:36Z", Some("San Francisco"), 6537, 9)
 
   private val repoNameList: List[String] = List("octocat", "boysenberry-repo-1", "git-consortium", "MIT License", "hello-worId", "Hello-World", "linguist", "MIT License", "octocat.github.io","Spoon-Knife", "test-repo1")
 

@@ -1,285 +1,262 @@
 [0m[[0m[0mdebug[0m] [0m[0mjavaOptions: Vector()[0m
 [0m[[0m[0mdebug[0m] [0m[0mForking tests - parallelism = false[0m
 [0m[[0m[0mdebug[0m] [0m[0mCreate a single-thread test executor[0m
-[0m[[0m[0mdebug[0m] [0m[0mRunner for org.scalatest.tools.Framework produced 6 initial tasks for 6 tests.[0m
-[0m[[0m[0mdebug[0m] [0m[0m  Running TaskDef(controllers.UnitApplicationControllerSpec, sbt.ForkMain$SubclassFingerscan@e88055f, false, [SuiteSelector])[0m
+[0m[[0m[0mdebug[0m] [0m[0mRunner for org.scalatest.tools.Framework produced 8 initial tasks for 8 tests.[0m
+[0m[[0m[0mdebug[0m] [0m[0m  Running TaskDef(connectors.ConnectorWireMockSpec, sbt.ForkMain$SubclassFingerscan@3a40397a, false, [SuiteSelector])[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mConnectorWireMockSpec:[0m[0m
+[0m[[0m[0mdebug[0m] [0m[0m  Running TaskDef(controllers.UnitApplicationControllerSpec, sbt.ForkMain$SubclassFingerscan@1cd3c1a6, false, [SuiteSelector])[0m
 [0m[[0m[0minfo[0m] [0m[0m[32mUnitApplicationControllerSpec:[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31mcontrollers.UnitApplicationControllerSpec *** ABORTED ***[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  com.google.inject.ProvisionException: Unable to provision, see the following errors:[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m1) Error injecting constructor, com.fasterxml.jackson.databind.JsonMappingException: Scala module 2.11.4 requires Jackson Databind version >= 2.11.0 and < 2.12.0[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at play.api.http.EnabledFilters.<init>(HttpFilters.scala:78)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at play.utils.Reflect$.bindingsFromConfiguration(Reflect.scala:70):[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31mBinding(class play.api.http.EnabledFilters to self) (via modules: com.google.inject.util.Modules$OverrideModule -> play.api.inject.guice.GuiceableModuleConversions$$anon$4)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  while locating play.api.http.EnabledFilters[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  while locating play.api.http.HttpFilters[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m    for the 6th parameter of play.api.http.JavaCompatibleHttpRequestHandler.<init>(HttpRequestHandler.scala:322)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  while locating play.api.http.JavaCompatibleHttpRequestHandler[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  while locating play.api.http.HttpRequestHandler[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m    for the 6th parameter of play.api.DefaultApplication.<init>(Application.scala:178)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at play.api.DefaultApplication.class(Application.scala:177)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  while locating play.api.DefaultApplication[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  while locating play.api.Application[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m1 error[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at com.google.inject.internal.InternalProvisionException.toProvisionException(InternalProvisionException.java:226)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at com.google.inject.internal.InjectorImpl$1.get(InjectorImpl.java:1097)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at com.google.inject.internal.InjectorImpl.getInstance(InjectorImpl.java:1131)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at play.api.inject.guice.GuiceInjector.instanceOf(GuiceInjectorBuilder.scala:436)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at play.api.inject.guice.GuiceInjector.instanceOf(GuiceInjectorBuilder.scala:431)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at play.api.inject.ContextClassLoaderInjector.$anonfun$instanceOf$2(Injector.scala:119)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at play.api.inject.ContextClassLoaderInjector.withContext(Injector.scala:128)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at play.api.inject.ContextClassLoaderInjector.instanceOf(Injector.scala:119)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at play.api.inject.guice.GuiceApplicationBuilder.build(GuiceApplicationBuilder.scala:155)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at baseSpec.BaseSpecWithApplication.fakeApplication(BaseSpec.scala:43)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  ...[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  Cause: com.fasterxml.jackson.databind.JsonMappingException: Scala module 2.11.4 requires Jackson Databind version >= 2.11.0 and < 2.12.0[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at com.fasterxml.jackson.module.scala.JacksonModule.setupModule(JacksonModule.scala:61)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at com.fasterxml.jackson.module.scala.JacksonModule.setupModule$(JacksonModule.scala:46)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at com.fasterxml.jackson.module.scala.DefaultScalaModule.setupModule(DefaultScalaModule.scala:17)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at com.fasterxml.jackson.databind.ObjectMapper.registerModule(ObjectMapper.java:853)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at akka.serialization.jackson.JacksonObjectMapperProvider$.$anonfun$configureObjectMapperModules$4(JacksonObjectMapperProvider.scala:242)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at akka.serialization.jackson.JacksonObjectMapperProvider$.$anonfun$configureObjectMapperModules$4$adapted(JacksonObjectMapperProvider.scala:241)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at scala.collection.immutable.List.foreach(List.scala:333)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at akka.serialization.jackson.JacksonObjectMapperProvider$.configureObjectMapperModules(JacksonObjectMapperProvider.scala:241)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at akka.serialization.jackson.JacksonObjectMapperProvider$.createObjectMapper(JacksonObjectMapperProvider.scala:265)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at akka.serialization.jackson.JacksonObjectMapperProvider.create(JacksonObjectMapperProvider.scala:359)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  ...[0m[0m
-[0m[[0m[0mdebug[0m] [0m[0m    Produced 0 nested tasks and 1 events.[0m
-[0m[[0m[0mdebug[0m] [0m[0m  Running TaskDef(controllers.HomeControllerSpec, sbt.ForkMain$SubclassFingerscan@583f03fd, false, [SuiteSelector])[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mApplicationController unit test .index[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should return when there are no users[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should return all users in the database[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mApplicationController unit test .create()[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should create a user in the database[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should try to create a user in the database with wrong format[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mApplicationController unit test .read()[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should find a user in the database by login[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should cannot find a user in the database as login does not exist[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mApplicationController unit test .update()[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should find a user in the database by login and update all fields[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should try update a user by an login that does not exist and in a non-conforming format[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mApplicationController unit test .delete()[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should find a user in the database by login and delete[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should cannot find a user in the database as login does not exist do not delete[0m[0m
+[0m[[0m[0mdebug[0m] [0m[0m    Produced 0 nested tasks and 10 events.[0m
+[0m[[0m[0mdebug[0m] [0m[0m  Running TaskDef(controllers.HomeControllerSpec, sbt.ForkMain$SubclassFingerscan@2bad0c53, false, [SuiteSelector])[0m
 [0m[[0m[0minfo[0m] [0m[0m[32mHomeControllerSpec:[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31mcontrollers.HomeControllerSpec *** ABORTED ***[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  com.google.inject.ProvisionException: Unable to provision, see the following errors:[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m1) Error injecting constructor, com.fasterxml.jackson.databind.JsonMappingException: Scala module 2.11.4 requires Jackson Databind version >= 2.11.0 and < 2.12.0[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at play.api.http.EnabledFilters.<init>(HttpFilters.scala:78)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at play.utils.Reflect$.bindingsFromConfiguration(Reflect.scala:70):[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31mBinding(class play.api.http.EnabledFilters to self) (via modules: com.google.inject.util.Modules$OverrideModule -> play.api.inject.guice.GuiceableModuleConversions$$anon$4)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  while locating play.api.http.EnabledFilters[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  while locating play.api.http.HttpFilters[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m    for the 6th parameter of play.api.http.JavaCompatibleHttpRequestHandler.<init>(HttpRequestHandler.scala:322)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  while locating play.api.http.JavaCompatibleHttpRequestHandler[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  while locating play.api.http.HttpRequestHandler[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m    for the 6th parameter of play.api.DefaultApplication.<init>(Application.scala:178)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at play.api.DefaultApplication.class(Application.scala:177)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  while locating play.api.DefaultApplication[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  while locating play.api.Application[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m1 error[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at com.google.inject.internal.InternalProvisionException.toProvisionException(InternalProvisionException.java:226)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at com.google.inject.internal.InjectorImpl$1.get(InjectorImpl.java:1097)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at com.google.inject.internal.InjectorImpl.getInstance(InjectorImpl.java:1131)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at play.api.inject.guice.GuiceInjector.instanceOf(GuiceInjectorBuilder.scala:436)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at play.api.inject.guice.GuiceInjector.instanceOf(GuiceInjectorBuilder.scala:431)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at play.api.inject.ContextClassLoaderInjector.$anonfun$instanceOf$2(Injector.scala:119)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at play.api.inject.ContextClassLoaderInjector.withContext(Injector.scala:128)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at play.api.inject.ContextClassLoaderInjector.instanceOf(Injector.scala:119)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at play.api.inject.guice.GuiceApplicationBuilder.build(GuiceApplicationBuilder.scala:155)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at org.scalatestplus.play.guice.GuiceFakeApplicationFactory.fakeApplication(GuiceFakeApplicationFactory.scala:16)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  ...[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  Cause: com.fasterxml.jackson.databind.JsonMappingException: Scala module 2.11.4 requires Jackson Databind version >= 2.11.0 and < 2.12.0[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at com.fasterxml.jackson.module.scala.JacksonModule.setupModule(JacksonModule.scala:61)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at com.fasterxml.jackson.module.scala.JacksonModule.setupModule$(JacksonModule.scala:46)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at com.fasterxml.jackson.module.scala.DefaultScalaModule.setupModule(DefaultScalaModule.scala:17)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at com.fasterxml.jackson.databind.ObjectMapper.registerModule(ObjectMapper.java:853)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at akka.serialization.jackson.JacksonObjectMapperProvider$.$anonfun$configureObjectMapperModules$4(JacksonObjectMapperProvider.scala:242)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at akka.serialization.jackson.JacksonObjectMapperProvider$.$anonfun$configureObjectMapperModules$4$adapted(JacksonObjectMapperProvider.scala:241)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at scala.collection.immutable.List.foreach(List.scala:333)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at akka.serialization.jackson.JacksonObjectMapperProvider$.configureObjectMapperModules(JacksonObjectMapperProvider.scala:241)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at akka.serialization.jackson.JacksonObjectMapperProvider$.createObjectMapper(JacksonObjectMapperProvider.scala:265)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at akka.serialization.jackson.JacksonObjectMapperProvider.create(JacksonObjectMapperProvider.scala:359)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  ...[0m[0m
-[0m[[0m[0mdebug[0m] [0m[0m    Produced 0 nested tasks and 1 events.[0m
-[0m[[0m[0mdebug[0m] [0m[0m  Running TaskDef(controllers.ApplicationControllerSpec, sbt.ForkMain$SubclassFingerscan@1d20f28d, false, [SuiteSelector])[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mHomeController GET[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should render the index page from a new instance of controller[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should render the index page from the application[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should render the index page from the router[0m[0m
+[0m[[0m[0mdebug[0m] [0m[0m    Produced 0 nested tasks and 3 events.[0m
+[0m[[0m[0mdebug[0m] [0m[0m  Running TaskDef(controllers.ApplicationControllerSpec, sbt.ForkMain$SubclassFingerscan@43675833, false, [SuiteSelector])[0m
 [0m[[0m[0minfo[0m] [0m[0m[32mApplicationControllerSpec:[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31mcontrollers.UnitApplicationControllerSpec *** ABORTED ***[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  com.google.inject.ProvisionException: Unable to provision, see the following errors:[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m1) Error injecting constructor, com.fasterxml.jackson.databind.JsonMappingException: Scala module 2.11.4 requires Jackson Databind version >= 2.11.0 and < 2.12.0[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at play.api.http.EnabledFilters.<init>(HttpFilters.scala:78)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at play.utils.Reflect$.bindingsFromConfiguration(Reflect.scala:70):[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31mBinding(class play.api.http.EnabledFilters to self) (via modules: com.google.inject.util.Modules$OverrideModule -> play.api.inject.guice.GuiceableModuleConversions$$anon$4)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  while locating play.api.http.EnabledFilters[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  while locating play.api.http.HttpFilters[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m    for the 6th parameter of play.api.http.JavaCompatibleHttpRequestHandler.<init>(HttpRequestHandler.scala:322)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  while locating play.api.http.JavaCompatibleHttpRequestHandler[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  while locating play.api.http.HttpRequestHandler[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m    for the 6th parameter of play.api.DefaultApplication.<init>(Application.scala:178)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at play.api.DefaultApplication.class(Application.scala:177)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  while locating play.api.DefaultApplication[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  while locating play.api.Application[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m1 error[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at com.google.inject.internal.InternalProvisionException.toProvisionException(InternalProvisionException.java:226)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at com.google.inject.internal.InjectorImpl$1.get(InjectorImpl.java:1097)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at com.google.inject.internal.InjectorImpl.getInstance(InjectorImpl.java:1131)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at play.api.inject.guice.GuiceInjector.instanceOf(GuiceInjectorBuilder.scala:436)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at play.api.inject.guice.GuiceInjector.instanceOf(GuiceInjectorBuilder.scala:431)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at play.api.inject.ContextClassLoaderInjector.$anonfun$instanceOf$2(Injector.scala:119)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at play.api.inject.ContextClassLoaderInjector.withContext(Injector.scala:128)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at play.api.inject.ContextClassLoaderInjector.instanceOf(Injector.scala:119)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at play.api.inject.guice.GuiceApplicationBuilder.build(GuiceApplicationBuilder.scala:155)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at baseSpec.BaseSpecWithApplication.fakeApplication(BaseSpec.scala:43)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  ...[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  Cause: com.fasterxml.jackson.databind.JsonMappingException: Scala module 2.11.4 requires Jackson Databind version >= 2.11.0 and < 2.12.0[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at com.fasterxml.jackson.module.scala.JacksonModule.setupModule(JacksonModule.scala:61)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at com.fasterxml.jackson.module.scala.JacksonModule.setupModule$(JacksonModule.scala:46)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at com.fasterxml.jackson.module.scala.DefaultScalaModule.setupModule(DefaultScalaModule.scala:17)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at com.fasterxml.jackson.databind.ObjectMapper.registerModule(ObjectMapper.java:853)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at akka.serialization.jackson.JacksonObjectMapperProvider$.$anonfun$configureObjectMapperModules$4(JacksonObjectMapperProvider.scala:242)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at akka.serialization.jackson.JacksonObjectMapperProvider$.$anonfun$configureObjectMapperModules$4$adapted(JacksonObjectMapperProvider.scala:241)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at scala.collection.immutable.List.foreach(List.scala:333)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at akka.serialization.jackson.JacksonObjectMapperProvider$.configureObjectMapperModules(JacksonObjectMapperProvider.scala:241)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at akka.serialization.jackson.JacksonObjectMapperProvider$.createObjectMapper(JacksonObjectMapperProvider.scala:265)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at akka.serialization.jackson.JacksonObjectMapperProvider.create(JacksonObjectMapperProvider.scala:359)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  ...[0m[0m
-[0m[[0m[0mdebug[0m] [0m[0m    Produced 0 nested tasks and 1 events.[0m
-[0m[[0m[0mdebug[0m] [0m[0m  Running TaskDef(connectors.UnitApplicationConnectorSpec, sbt.ForkMain$SubclassFingerscan@5aac928d, false, [SuiteSelector])[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mApplicationController .index[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should return when there are no users[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m- should return all users in the database *** FAILED ***[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  List() was not equal to List(User(test,now,Some(test location),2,0)) (ApplicationControllerSpec.scala:76)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should return json from the router[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mApplicationController .create()[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should create a user in the database[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should try to create a user in the database with wrong format[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should return json from the router[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mApplicationController .read()[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should find a user in the database by login[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should cannot find a user in the database as login does not exist[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should return json from the router[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mApplicationController .update()[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should find a user in the database by login and update all fields[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should try update a user by an login that does not exist and in a non-conforming format[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should return json from the router[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mApplicationController .delete()[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should find a user in the database by login and delete[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should cannot find a user in the database as login does not exist do not delete[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should return accepted status from the router[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mApplicationController .readFromAPI()[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should use username/login to find user from api and return that user[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should unknown username/login used to find user from api cannot return that user[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mApplicationController .addFromAPI()[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should use username/login to find user from api and return that user[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should unknown username/login used to find user from api cannot return that user[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mApplicationController .showUser()[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should use username/login to find user from api and return that user[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should use incorrect username/login return api error[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should render the userPage from the router[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should unable to render the userPage incorrect username from the router[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mApplicationController .usersRepos()[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should login to find user's repositories and return their names in list [0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should use incorrect login return api error[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should use login for user with no repositories, return api error[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should render the repositories page from the router[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should unable to render the repositories Page due to incorrect username from the router[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mApplicationController() .usersRepoInfo()[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should login to find user's repositories under the name specified and return info about that repo [0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should use incorrect login return api error[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should use login for user with no repositories, return api error[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should render the repoInfo page from the router[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should unable to render the repositories Page due to incorrect username from the router[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mApplicationController() .repoContent()[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should login to find user's repositories under the name specified and return info about that repo [0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should use incorrect login return api error[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should use login for user with no repositories, return api error[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should render the repoInfo page from the router[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should unable to render the repositories Page due to incorrect username from the router[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mApplicationController() .dirContent()[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should login to find user's repositories under the name specified and return folders and files form that repo [0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should use incorrect login return api error[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should use login for user with no repositories, return api error[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should render the foldersAndFiles page from the router[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should unable to render the foldersAndFiles Page due to incorrect username from the router[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mApplicationController() .fileContent()[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should login to find user's repositories under the name specified and return folders and files form that repo [0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should use incorrect login return api error[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should use login for user with no repositories, return api error[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should render the foldersAndFiles page from the router[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should unable to render the foldersAndFiles Page due to incorrect username from the router[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mApplicationController() .createFile()[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should login to find user's repositories under the name specified and create file[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should create folder and file[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should correct login but repository does not exist[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should unable to validate file trying to be created[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should correct route for creating a file[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should route for creating a file with non-existing repository[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mApplicationController() .updateFile()[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m- should login to find user's repositories under the name specified and update file *** FAILED ***[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  400 was not equal to 200 (ApplicationControllerSpec.scala:683)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should correct login and repository but file does not exist[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should unable to validate file trying to be created[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should correct route for updating a file[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should route for creating a file with non-existing repository[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mApplicationController() .deleteFile()[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m- should login to find user's repositories under the name specified and delete file *** FAILED ***[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  400 was not equal to 200 (ApplicationControllerSpec.scala:730)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should correct login and repository but file does not exist[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m- should correct route for deleting a file *** FAILED ***[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  404 was not equal to 202 (ApplicationControllerSpec.scala:750)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should route for deleting a file with non-existing repository[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mApplicationController() .repoReadMe()[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should login to find user's repositories under the name specified and get readMe[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should correct login and repository but no readme exists[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should correct route for getting a repositories readme[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should correct route for getting a repositories readme but the repo has no readme[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should route for getting readme with non-existing repository[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mApplicationController() .dirReadMe()[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should login to find user's repositories and get readMe from specified directory[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should correct login and repository but no readme exists in that directory[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should correct route for getting a directories readme[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should correct route for getting a repositories readme but the repo has no readme[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should route for getting readme with non-existing repository[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mApplicationController() .downloadTar()[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should download the tar of the repository specified form the branch specified[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should return ok http response for tar download from the router and when no branch provided default to main[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should return ok http response for tar download from the router and when a branch is provided[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should correct login but no repository exists[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should route for getting readme with non-existing repository[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mApplicationController() .downloadZip()[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should download the tar of the repository specified form the branch specified[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should return ok http response for zip download from the router and when no branch provided default to main[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should return ok http response for zip download from the router and when a branch is provided[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should correct login but no repository exists[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should route for getting readme with non-existing repository[0m[0m
+[0m[[0m[0mdebug[0m] [0m[0m    Produced 0 nested tasks and 83 events.[0m
+[0m[[0m[0mdebug[0m] [0m[0m  Running TaskDef(connectors.UnitApplicationConnectorSpec, sbt.ForkMain$SubclassFingerscan@22ef38ab, false, [SuiteSelector])[0m
 [0m[[0m[0minfo[0m] [0m[0m[32mUnitApplicationConnectorSpec:[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31mcontrollers.ApplicationControllerSpec *** ABORTED ***[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  com.google.inject.ProvisionException: Unable to provision, see the following errors:[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m1) Error injecting constructor, com.fasterxml.jackson.databind.JsonMappingException: Scala module 2.11.4 requires Jackson Databind version >= 2.11.0 and < 2.12.0[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at play.api.http.EnabledFilters.<init>(HttpFilters.scala:78)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at play.utils.Reflect$.bindingsFromConfiguration(Reflect.scala:70):[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31mBinding(class play.api.http.EnabledFilters to self) (via modules: com.google.inject.util.Modules$OverrideModule -> play.api.inject.guice.GuiceableModuleConversions$$anon$4)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  while locating play.api.http.EnabledFilters[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  while locating play.api.http.HttpFilters[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m    for the 6th parameter of play.api.http.JavaCompatibleHttpRequestHandler.<init>(HttpRequestHandler.scala:322)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  while locating play.api.http.JavaCompatibleHttpRequestHandler[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  while locating play.api.http.HttpRequestHandler[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m    for the 6th parameter of play.api.DefaultApplication.<init>(Application.scala:178)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at play.api.DefaultApplication.class(Application.scala:177)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  while locating play.api.DefaultApplication[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  while locating play.api.Application[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m1 error[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at com.google.inject.internal.InternalProvisionException.toProvisionException(InternalProvisionException.java:226)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at com.google.inject.internal.InjectorImpl$1.get(InjectorImpl.java:1097)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at com.google.inject.internal.InjectorImpl.getInstance(InjectorImpl.java:1131)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at play.api.inject.guice.GuiceInjector.instanceOf(GuiceInjectorBuilder.scala:436)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at play.api.inject.guice.GuiceInjector.instanceOf(GuiceInjectorBuilder.scala:431)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at play.api.inject.ContextClassLoaderInjector.$anonfun$instanceOf$2(Injector.scala:119)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at play.api.inject.ContextClassLoaderInjector.withContext(Injector.scala:128)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at play.api.inject.ContextClassLoaderInjector.instanceOf(Injector.scala:119)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at play.api.inject.guice.GuiceApplicationBuilder.build(GuiceApplicationBuilder.scala:155)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at baseSpec.BaseSpecWithApplication.fakeApplication(BaseSpec.scala:43)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  ...[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  Cause: com.fasterxml.jackson.databind.JsonMappingException: Scala module 2.11.4 requires Jackson Databind version >= 2.11.0 and < 2.12.0[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at com.fasterxml.jackson.module.scala.JacksonModule.setupModule(JacksonModule.scala:61)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at com.fasterxml.jackson.module.scala.JacksonModule.setupModule$(JacksonModule.scala:46)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at com.fasterxml.jackson.module.scala.DefaultScalaModule.setupModule(DefaultScalaModule.scala:17)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at com.fasterxml.jackson.databind.ObjectMapper.registerModule(ObjectMapper.java:853)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at akka.serialization.jackson.JacksonObjectMapperProvider$.$anonfun$configureObjectMapperModules$4(JacksonObjectMapperProvider.scala:242)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at akka.serialization.jackson.JacksonObjectMapperProvider$.$anonfun$configureObjectMapperModules$4$adapted(JacksonObjectMapperProvider.scala:241)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at scala.collection.immutable.List.foreach(List.scala:333)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at akka.serialization.jackson.JacksonObjectMapperProvider$.configureObjectMapperModules(JacksonObjectMapperProvider.scala:241)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at akka.serialization.jackson.JacksonObjectMapperProvider$.createObjectMapper(JacksonObjectMapperProvider.scala:265)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at akka.serialization.jackson.JacksonObjectMapperProvider.create(JacksonObjectMapperProvider.scala:359)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  ...[0m[0m
-[0m[[0m[0mdebug[0m] [0m[0m    Produced 0 nested tasks and 1 events.[0m
-[0m[[0m[0mdebug[0m] [0m[0m  Running TaskDef(connectors.ApplicationConnectorSpec, sbt.ForkMain$SubclassFingerscan@75a600b8, false, [SuiteSelector])[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mApplicationConnector .get()[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should get a user from the github api[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should return error when trying to get a user from the github api that does not exist[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mApplicationConnector .getUserRepo()[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should get a user's repo name list from the github api[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should return error when trying to get a user repo names from the github api when user does not exist[0m[0m
+[0m[[0m[0mdebug[0m] [0m[0m    Produced 0 nested tasks and 4 events.[0m
+[0m[[0m[0mdebug[0m] [0m[0m  Running TaskDef(connectors.ApplicationConnectorSpec, sbt.ForkMain$SubclassFingerscan@1a0991b3, false, [SuiteSelector])[0m
 [0m[[0m[0minfo[0m] [0m[0m[32mApplicationConnectorSpec:[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31mconnectors.UnitApplicationConnectorSpec *** ABORTED ***[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  com.google.inject.ProvisionException: Unable to provision, see the following errors:[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m1) Error injecting constructor, com.fasterxml.jackson.databind.JsonMappingException: Scala module 2.11.4 requires Jackson Databind version >= 2.11.0 and < 2.12.0[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at play.api.http.EnabledFilters.<init>(HttpFilters.scala:78)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at play.utils.Reflect$.bindingsFromConfiguration(Reflect.scala:70):[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31mBinding(class play.api.http.EnabledFilters to self) (via modules: com.google.inject.util.Modules$OverrideModule -> play.api.inject.guice.GuiceableModuleConversions$$anon$4)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  while locating play.api.http.EnabledFilters[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  while locating play.api.http.HttpFilters[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m    for the 6th parameter of play.api.http.JavaCompatibleHttpRequestHandler.<init>(HttpRequestHandler.scala:322)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  while locating play.api.http.JavaCompatibleHttpRequestHandler[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  while locating play.api.http.HttpRequestHandler[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m    for the 6th parameter of play.api.DefaultApplication.<init>(Application.scala:178)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at play.api.DefaultApplication.class(Application.scala:177)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  while locating play.api.DefaultApplication[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  while locating play.api.Application[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m1 error[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at com.google.inject.internal.InternalProvisionException.toProvisionException(InternalProvisionException.java:226)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at com.google.inject.internal.InjectorImpl$1.get(InjectorImpl.java:1097)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at com.google.inject.internal.InjectorImpl.getInstance(InjectorImpl.java:1131)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at play.api.inject.guice.GuiceInjector.instanceOf(GuiceInjectorBuilder.scala:436)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at play.api.inject.guice.GuiceInjector.instanceOf(GuiceInjectorBuilder.scala:431)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at play.api.inject.ContextClassLoaderInjector.$anonfun$instanceOf$2(Injector.scala:119)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at play.api.inject.ContextClassLoaderInjector.withContext(Injector.scala:128)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at play.api.inject.ContextClassLoaderInjector.instanceOf(Injector.scala:119)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at play.api.inject.guice.GuiceApplicationBuilder.build(GuiceApplicationBuilder.scala:155)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at baseSpec.BaseSpecWithApplication.fakeApplication(BaseSpec.scala:43)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mApplicationConnector .get()[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m- should return a user from the github api *** FAILED ***[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  Right(User(octocat,2011-01-25T18:44:36Z,Some(San Francisco),6548,9)) was not equal to Right(User(octocat,2011-01-25T18:44:36Z,Some(San Francisco),6537,9)) (ApplicationConnectorSpec.scala:43)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should not return a user from the github api as username does not exist[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mApplicationConnector .getUserRepo()[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should return a user's repository names from the github api[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should not return a user's repository names from the github api as user does not exist[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mApplicationConnector .getRepoContent()[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should return a seq of a user's repos folders and files from the github api[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should not return repos folders and files from the github api as repo does not exist[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mApplicationConnector .getDirContent()[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should return a seq of a user's repos folders and files in a directory from the github api[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should not return a seq of a user's repos folders and files in a directory from the github api directory does not exist[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mApplicationConnector .getFileContent()[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should return a file from a user's repos from the github api[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should not return a file from a user's repos from the github api as file does not exist[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mApplicationConnector .getUserRepoInfo()[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should return a user's repository from the github api[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should not return a user's repository from the github api as repo does not exist[0m[0m
+[0m[[0m[0mdebug[0m] [0m[0m    Produced 0 nested tasks and 12 events.[0m
+[0m[[0m[0mdebug[0m] [0m[0m  Running TaskDef(connectors.WireMockAppConnectorSpec, sbt.ForkMain$SubclassFingerscan@4d642a75, false, [SuiteSelector])[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mWireMockAppConnectorSpec:[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mApplicationConnector .get()[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m- should get a user from the github api *** FAILED ***[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  java.lang.IllegalArgumentException: Invalid URL user/test/octocat[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  at play.api.libs.ws.ahc.StandaloneAhcWSClient.validate(StandaloneAhcWSClient.scala:100)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  at play.api.libs.ws.ahc.StandaloneAhcWSClient.url(StandaloneAhcWSClient.scala:56)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  at play.api.libs.ws.ahc.AhcWSClient.url(AhcWSClient.scala:37)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  at connectors.ApplicationConnector.get(ApplicationConnector.scala:19)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  at connectors.WireMockAppConnectorSpec$$anon$1.<init>(WireMockAppConnectorSpec.scala:34)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  at connectors.WireMockAppConnectorSpec.$anonfun$new$2(WireMockAppConnectorSpec.scala:27)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  at org.scalatest.OutcomeOf.outcomeOf(OutcomeOf.scala:85)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  at org.scalatest.OutcomeOf.outcomeOf$(OutcomeOf.scala:83)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  at org.scalatest.OutcomeOf$.outcomeOf(OutcomeOf.scala:104)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  at org.scalatest.Transformer.apply(Transformer.scala:22)[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[31m  ...[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  Cause: com.fasterxml.jackson.databind.JsonMappingException: Scala module 2.11.4 requires Jackson Databind version >= 2.11.0 and < 2.12.0[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at com.fasterxml.jackson.module.scala.JacksonModule.setupModule(JacksonModule.scala:61)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at com.fasterxml.jackson.module.scala.JacksonModule.setupModule$(JacksonModule.scala:46)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at com.fasterxml.jackson.module.scala.DefaultScalaModule.setupModule(DefaultScalaModule.scala:17)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at com.fasterxml.jackson.databind.ObjectMapper.registerModule(ObjectMapper.java:853)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at akka.serialization.jackson.JacksonObjectMapperProvider$.$anonfun$configureObjectMapperModules$4(JacksonObjectMapperProvider.scala:242)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at akka.serialization.jackson.JacksonObjectMapperProvider$.$anonfun$configureObjectMapperModules$4$adapted(JacksonObjectMapperProvider.scala:241)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at scala.collection.immutable.List.foreach(List.scala:333)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at akka.serialization.jackson.JacksonObjectMapperProvider$.configureObjectMapperModules(JacksonObjectMapperProvider.scala:241)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at akka.serialization.jackson.JacksonObjectMapperProvider$.createObjectMapper(JacksonObjectMapperProvider.scala:265)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at akka.serialization.jackson.JacksonObjectMapperProvider.create(JacksonObjectMapperProvider.scala:359)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  Cause: java.lang.IllegalArgumentException: user/test/octocat could not be parsed into a proper Uri, missing scheme[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  at play.shaded.ahc.org.asynchttpclient.uri.Uri.create(Uri.java:70)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  at play.shaded.ahc.org.asynchttpclient.uri.Uri.create(Uri.java:62)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  at play.api.libs.ws.ahc.StandaloneAhcWSClient.validate(StandaloneAhcWSClient.scala:97)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  at play.api.libs.ws.ahc.StandaloneAhcWSClient.url(StandaloneAhcWSClient.scala:56)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  at play.api.libs.ws.ahc.AhcWSClient.url(AhcWSClient.scala:37)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  at connectors.ApplicationConnector.get(ApplicationConnector.scala:19)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  at connectors.WireMockAppConnectorSpec$$anon$1.<init>(WireMockAppConnectorSpec.scala:34)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  at connectors.WireMockAppConnectorSpec.$anonfun$new$2(WireMockAppConnectorSpec.scala:27)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  at org.scalatest.OutcomeOf.outcomeOf(OutcomeOf.scala:85)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  at org.scalatest.OutcomeOf.outcomeOf$(OutcomeOf.scala:83)[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[31m  ...[0m[0m
 [0m[[0m[0mdebug[0m] [0m[0m    Produced 0 nested tasks and 1 events.[0m
-[0m[[0m[0mdebug[0m] [0m[0m  Running TaskDef(service.ApplicationServiceUnitSpec, sbt.ForkMain$SubclassFingerscan@148d714b, false, [SuiteSelector])[0m
+[0m[[0m[0mdebug[0m] [0m[0m  Running TaskDef(service.ApplicationServiceUnitSpec, sbt.ForkMain$SubclassFingerscan@ed52974, false, [SuiteSelector])[0m
 [0m[[0m[0minfo[0m] [0m[0m[32mApplicationServiceUnitSpec:[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31mconnectors.ApplicationConnectorSpec *** ABORTED ***[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  com.google.inject.ProvisionException: Unable to provision, see the following errors:[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m1) Error injecting constructor, com.fasterxml.jackson.databind.JsonMappingException: Scala module 2.11.4 requires Jackson Databind version >= 2.11.0 and < 2.12.0[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at play.api.http.EnabledFilters.<init>(HttpFilters.scala:78)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at play.utils.Reflect$.bindingsFromConfiguration(Reflect.scala:70):[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31mBinding(class play.api.http.EnabledFilters to self) (via modules: com.google.inject.util.Modules$OverrideModule -> play.api.inject.guice.GuiceableModuleConversions$$anon$4)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  while locating play.api.http.EnabledFilters[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  while locating play.api.http.HttpFilters[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m    for the 6th parameter of play.api.http.JavaCompatibleHttpRequestHandler.<init>(HttpRequestHandler.scala:322)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  while locating play.api.http.JavaCompatibleHttpRequestHandler[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  while locating play.api.http.HttpRequestHandler[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m    for the 6th parameter of play.api.DefaultApplication.<init>(Application.scala:178)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at play.api.DefaultApplication.class(Application.scala:177)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  while locating play.api.DefaultApplication[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  while locating play.api.Application[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m1 error[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at com.google.inject.internal.InternalProvisionException.toProvisionException(InternalProvisionException.java:226)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at com.google.inject.internal.InjectorImpl$1.get(InjectorImpl.java:1097)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at com.google.inject.internal.InjectorImpl.getInstance(InjectorImpl.java:1131)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at play.api.inject.guice.GuiceInjector.instanceOf(GuiceInjectorBuilder.scala:436)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at play.api.inject.guice.GuiceInjector.instanceOf(GuiceInjectorBuilder.scala:431)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at play.api.inject.ContextClassLoaderInjector.$anonfun$instanceOf$2(Injector.scala:119)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at play.api.inject.ContextClassLoaderInjector.withContext(Injector.scala:128)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at play.api.inject.ContextClassLoaderInjector.instanceOf(Injector.scala:119)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at play.api.inject.guice.GuiceApplicationBuilder.build(GuiceApplicationBuilder.scala:155)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at baseSpec.BaseSpecWithApplication.fakeApplication(BaseSpec.scala:43)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  ...[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  Cause: com.fasterxml.jackson.databind.JsonMappingException: Scala module 2.11.4 requires Jackson Databind version >= 2.11.0 and < 2.12.0[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at com.fasterxml.jackson.module.scala.JacksonModule.setupModule(JacksonModule.scala:61)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at com.fasterxml.jackson.module.scala.JacksonModule.setupModule$(JacksonModule.scala:46)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at com.fasterxml.jackson.module.scala.DefaultScalaModule.setupModule(DefaultScalaModule.scala:17)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at com.fasterxml.jackson.databind.ObjectMapper.registerModule(ObjectMapper.java:853)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at akka.serialization.jackson.JacksonObjectMapperProvider$.$anonfun$configureObjectMapperModules$4(JacksonObjectMapperProvider.scala:242)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at akka.serialization.jackson.JacksonObjectMapperProvider$.$anonfun$configureObjectMapperModules$4$adapted(JacksonObjectMapperProvider.scala:241)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at scala.collection.immutable.List.foreach(List.scala:333)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at akka.serialization.jackson.JacksonObjectMapperProvider$.configureObjectMapperModules(JacksonObjectMapperProvider.scala:241)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at akka.serialization.jackson.JacksonObjectMapperProvider$.createObjectMapper(JacksonObjectMapperProvider.scala:265)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at akka.serialization.jackson.JacksonObjectMapperProvider.create(JacksonObjectMapperProvider.scala:359)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  ...[0m[0m
-[0m[[0m[0mdebug[0m] [0m[0m    Produced 0 nested tasks and 1 events.[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mApplicationService .index[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should return when there are no users[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should return sequence of users when there are users[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mApplicationService() .create()[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should should add user to mongodb[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should could not validate user so should not add to mongodb or call create[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should unable to create a user as with validate user format but login already exists[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mApplicationService .read()[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should return a user by login/username[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should does not return a user as incorrect login/username[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mApplicationService .update()[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should return an updated user[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should unable to updated a user as cannot validate user format[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should unable to updated a user as with validate user format but non-existing login[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mApplicationService .delete()[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should return a string upon deleting a user by login[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should return a error upon unsuccessfully trying to delete a user by login[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mApplicationService .getUser()[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should return a user by login for github api[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should unable to return a user from api, incorrect login[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mApplicationService .getUsersRepo()[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should return a user repositories names in list [0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should unable to return a user's repositories names from api, incorrect login[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mApplicationService .getUsersRepoInfo()[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should return a users information by login for github api[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should unable to return a user information from api, incorrect login[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mApplicationService .getRepoContent()[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should return a user repositories content by login for github api[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should unable to return a user repositories content from api, incorrect login[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mApplicationService .getDirContent()[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should return a user's repository folder contents by login for github api[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should unable to return a user's repository folder content from api, incorrect login[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mApplicationService .getFileContent()[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should return a user's repository folder contents by login for github api[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should unable to return a user's repository folder content from api, incorrect login[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mApplicationService .addApiUser()[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should add a user from github api to mongodb[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should unable to return a user from api, incorrect login[0m[0m
+[0m[[0m[0mdebug[0m] [0m[0m    Produced 0 nested tasks and 26 events.[0m
 [0m[[0m[0mdebug[0m] [0m[0mRunner for com.novocode.junit.JUnitFramework produced 0 initial tasks for 0 tests.[0m
 [0m[[0m[0minfo[0m] [0m[0mScalaTest[0m
-[0m[[0m[0minfo[0m] [0m[0m[36mRun completed in 5 seconds, 29 milliseconds.[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[36mTotal number of tests run: 0[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[36mSuites: completed 0, aborted 10[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[36mTests: succeeded 0, failed 0, canceled 0, ignored 0, pending 0[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m*** 10 SUITES ABORTED ***[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[36mRun completed in 32 seconds, 322 milliseconds.[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[36mTotal number of tests run: 139[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[36mSuites: completed 8, aborted 0[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[36mTests: succeeded 133, failed 6, canceled 0, ignored 0, pending 0[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m*** 6 TESTS FAILED ***[0m[0m
 [0m[[0m[0mdebug[0m] [0m[0mSummary for JUnit not available.[0m
-[0m[[0m[31merror[0m] [0m[0mError: Total 6, Failed 0, Errors 6, Passed 0[0m
-[0m[[0m[31merror[0m] [0m[0mError during tests:[0m
-[0m[[0m[31merror[0m] [0m[0m	controllers.UnitApplicationControllerSpec[0m
-[0m[[0m[31merror[0m] [0m[0m	controllers.HomeControllerSpec[0m
+[0m[[0m[31merror[0m] [0m[0mFailed: Total 139, Failed 6, Errors 0, Passed 133[0m
+[0m[[0m[0mdebug[0m] [0m[0mPassed tests:[0m
+[0m[[0m[0mdebug[0m] [0m[0m	connectors.ConnectorWireMockSpec[0m
+[0m[[0m[0mdebug[0m] [0m[0m	controllers.UnitApplicationControllerSpec[0m
+[0m[[0m[0mdebug[0m] [0m[0m	controllers.HomeControllerSpec[0m
+[0m[[0m[0mdebug[0m] [0m[0m	connectors.UnitApplicationConnectorSpec[0m
+[0m[[0m[0mdebug[0m] [0m[0m	service.ApplicationServiceUnitSpec[0m
+[0m[[0m[31merror[0m] [0m[0mFailed tests:[0m
 [0m[[0m[31merror[0m] [0m[0m	controllers.ApplicationControllerSpec[0m
-[0m[[0m[31merror[0m] [0m[0m	connectors.UnitApplicationConnectorSpec[0m
 [0m[[0m[31merror[0m] [0m[0m	connectors.ApplicationConnectorSpec[0m
-[0m[[0m[31merror[0m] [0m[0m	service.ApplicationServiceUnitSpec[0m
+[0m[[0m[31merror[0m] [0m[0m	connectors.WireMockAppConnectorSpec[0m
 [0m[[0m[31merror[0m] [0m[0m(Test / [31mtest[0m) sbt.TestsFailedException: Tests unsuccessful[0m

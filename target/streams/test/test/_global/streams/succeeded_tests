@@ -1,2 +1,7 @@
 #Successful Tests
-#Thu Aug 04 10:09:35 BST 2022
+#Fri Aug 05 15:50:41 BST 2022
+service.ApplicationServiceUnitSpec=1659711040573
+controllers.UnitApplicationControllerSpec=1659711017156
+controllers.HomeControllerSpec=1659711017942
+connectors.UnitApplicationConnectorSpec=1659711035612
+connectors.ConnectorWireMockSpec=1659711016075

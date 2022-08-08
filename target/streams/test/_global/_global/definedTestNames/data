@@ -1,1 +1,1 @@
-["controllers.UnitApplicationControllerSpec","controllers.HomeControllerSpec","controllers.ApplicationControllerSpec","connectors.UnitApplicationConnectorSpec","connectors.ApplicationConnectorSpec","service.ApplicationServiceUnitSpec"]
+["connectors.ConnectorWireMockSpec","controllers.UnitApplicationControllerSpec","controllers.HomeControllerSpec","controllers.ApplicationControllerSpec","connectors.UnitApplicationConnectorSpec","connectors.ApplicationConnectorSpec","connectors.WireMockAppConnectorSpec","service.ApplicationServiceUnitSpec"]

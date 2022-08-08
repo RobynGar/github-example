@@ -18,6 +18,7 @@ libraryDependencies ++= Seq(
   "org.scalatestplus.play" %% "scalatestplus-play"   % "5.0.0"          % Test,
   "org.typelevel"          %% "cats-core"                 % "2.3.0"
 )
+libraryDependencies +=
+  "com.github.tomakehurst" % "wiremock-jre8" % "2.33.2" % Test
 
-
-
+dependencyOverrides +="com.fasterxml.jackson.core" % "jackson-databind" % "2.11.0"

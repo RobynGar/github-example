@@ -1,182 +1,61 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<testsuite hostname="Robyns-MBP.broadband" name="service.ApplicationServiceUnitSpec" tests="1" errors="1" failures="0" skipped="0" time="0.005" timestamp="2022-08-04T10:09:35">
+<testsuite hostname="Robyns-MBP.broadband" name="service.ApplicationServiceUnitSpec" tests="26" errors="0" failures="0" skipped="0" time="0.075" timestamp="2022-08-05T15:50:40">
                      <properties>
       <property name="jline.esc.timeout" value="0"/><property name="jna.platform.library.path" value="/usr/lib:/usr/lib"/><property name="java.runtime.name" value="OpenJDK Runtime Environment"/><property name="sun.boot.library.path" value="/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home/jre/lib"/><property name="java.vm.version" value="25.292-b10"/><property name="gopherProxySet" value="false"/><property name="java.vm.vendor" value="AdoptOpenJDK"/><property name="java.vendor.url" value="https://adoptopenjdk.net/"/><property name="path.separator" value=":"/><property name="jna.loaded" value="true"/><property name="java.vm.name" value="OpenJDK 64-Bit Server VM"/><property name="file.encoding.pkg" value="sun.io"/><property name="user.country" value="GB"/><property name="sun.java.launcher" value="SUN_STANDARD"/><property name="sun.os.patch.level" value="unknown"/><property name="jna.nosys" value="true"/><property name="java.vm.specification.name" value="Java Virtual Machine Specification"/><property name="user.dir" value="/Users/robyn.garlington/Documents/scalaTraining/assignments/gHub-example/gitHub-ex/github-example"/><property name="java.runtime.version" value="1.8.0_292-b10"/><property name="java.awt.graphicsenv" value="sun.awt.CGraphicsEnvironment"/><property name="java.endorsed.dirs" value="/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home/jre/lib/endorsed"/><property name="os.arch" value="x86_64"/><property name="java.io.tmpdir" value="/var/folders/th/vqj_zcr979l7cnkdqz84zgjw0000gn/T/"/><property name="line.separator" value="
-"/><property name="java.vm.specification.vendor" value="Oracle Corporation"/><property name="log4j.ignoreTCL" value="true"/><property name="os.name" value="Mac OS X"/><property name="sun.jnu.encoding" value="UTF-8"/><property name="jnidispatch.path" value="/Users/robyn.garlington/Library/Caches/JNA/temp/jna7565644278136668136.tmp"/><property name="java.library.path" value="/Users/robyn.garlington/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:."/><property name="java.specification.name" value="Java Platform API Specification"/><property name="java.class.version" value="52.0"/><property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/><property name="os.version" value="10.16"/><property name="http.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/><property name="swoval.tmpdir" value="/Users/robyn.garlington/.sbt/1.0"/><property name="user.home" value="/Users/robyn.garlington"/><property name="user.timezone" value="Europe/London"/><property name="java.awt.printerjob" value="sun.lwawt.macosx.CPrinterJob"/><property name="file.encoding" value="UTF-8"/><property name="java.specification.version" value="1.8"/><property name="java.class.path" value="/opt/homebrew/Cellar/sbt/1.6.2/libexec/bin/sbt-launch.jar"/><property name="user.name" value="robyn.garlington"/><property name="jline.shutdownhook" value="false"/><property name="java.vm.specification.version" value="1.8"/><property name="sun.java.command" value="/opt/homebrew/Cellar/sbt/1.6.2/libexec/bin/sbt-launch.jar test"/><property name="java.home" value="/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home/jre"/><property name="sun.arch.data.model" value="64"/><property name="user.language" value="en"/><property name="java.specification.vendor" value="Oracle Corporation"/><property name="awt.toolkit" value="sun.lwawt.macosx.LWCToolkit"/><property name="java.vm.info" value="mixed mode"/><property name="java.version" value="1.8.0_292"/><property name="java.ext.dirs" value="/Users/robyn.garlington/Library/Java/Extensions:/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home/jre/lib/ext:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java"/><property name="sun.boot.class.path" value="/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home/jre/lib/resources.jar:/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home/jre/lib/rt.jar:/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home/jre/lib/sunrsasign.jar:/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home/jre/lib/jsse.jar:/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home/jre/lib/jce.jar:/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home/jre/lib/charsets.jar:/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home/jre/lib/jfr.jar:/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home/jre/classes"/><property name="java.vendor" value="AdoptOpenJDK"/><property name="file.separator" value="/"/><property name="java.vendor.url.bug" value="https://github.com/AdoptOpenJDK/openjdk-support/issues"/><property name="sun.io.unicode.encoding" value="UnicodeBig"/><property name="sun.cpu.endian" value="little"/><property name="sbt.script" value="/opt/homebrew/Cellar/sbt/1.6.2/libexec/bin/sbt"/><property name="socksNonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/><property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/><property name="sun.cpu.isalist" value=""/>
+"/><property name="java.vm.specification.vendor" value="Oracle Corporation"/><property name="log4j.ignoreTCL" value="true"/><property name="os.name" value="Mac OS X"/><property name="sun.jnu.encoding" value="UTF-8"/><property name="jnidispatch.path" value="/Users/robyn.garlington/Library/Caches/JNA/temp/jna5014428267177726407.tmp"/><property name="java.library.path" value="/Users/robyn.garlington/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:."/><property name="java.specification.name" value="Java Platform API Specification"/><property name="java.class.version" value="52.0"/><property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/><property name="os.version" value="10.16"/><property name="http.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/><property name="swoval.tmpdir" value="/Users/robyn.garlington/.sbt/1.0"/><property name="user.home" value="/Users/robyn.garlington"/><property name="user.timezone" value="Europe/London"/><property name="java.awt.printerjob" value="sun.lwawt.macosx.CPrinterJob"/><property name="file.encoding" value="UTF-8"/><property name="java.specification.version" value="1.8"/><property name="java.class.path" value="/opt/homebrew/Cellar/sbt/1.6.2/libexec/bin/sbt-launch.jar"/><property name="user.name" value="robyn.garlington"/><property name="jline.shutdownhook" value="false"/><property name="java.vm.specification.version" value="1.8"/><property name="sun.java.command" value="/opt/homebrew/Cellar/sbt/1.6.2/libexec/bin/sbt-launch.jar test"/><property name="java.home" value="/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home/jre"/><property name="sun.arch.data.model" value="64"/><property name="user.language" value="en"/><property name="java.specification.vendor" value="Oracle Corporation"/><property name="awt.toolkit" value="sun.lwawt.macosx.LWCToolkit"/><property name="java.vm.info" value="mixed mode"/><property name="java.version" value="1.8.0_292"/><property name="java.ext.dirs" value="/Users/robyn.garlington/Library/Java/Extensions:/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home/jre/lib/ext:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java"/><property name="sun.boot.class.path" value="/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home/jre/lib/resources.jar:/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home/jre/lib/rt.jar:/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home/jre/lib/sunrsasign.jar:/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home/jre/lib/jsse.jar:/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home/jre/lib/jce.jar:/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home/jre/lib/charsets.jar:/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home/jre/lib/jfr.jar:/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home/jre/classes"/><property name="java.vendor" value="AdoptOpenJDK"/><property name="file.separator" value="/"/><property name="java.vendor.url.bug" value="https://github.com/AdoptOpenJDK/openjdk-support/issues"/><property name="sun.io.unicode.encoding" value="UnicodeBig"/><property name="sun.cpu.endian" value="little"/><property name="sbt.script" value="/opt/homebrew/Cellar/sbt/1.6.2/libexec/bin/sbt"/><property name="socksNonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/><property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/><property name="sun.cpu.isalist" value=""/>
     </properties>
-                     <testcase classname="service.ApplicationServiceUnitSpec" name="(It is not a test it is a sbt.testing.SuiteSelector)" time="0.005">
-                                                 <error message="com.google.inject.ProvisionException: Unable to provision, see the following errors:
-
-1) Error injecting constructor, com.fasterxml.jackson.databind.JsonMappingException: Scala module 2.11.4 requires Jackson Databind version &gt;= 2.11.0 and &lt; 2.12.0
-  at play.api.http.EnabledFilters.&lt;init&gt;(HttpFilters.scala:78)
-  at play.utils.Reflect$.bindingsFromConfiguration(Reflect.scala:70):
-Binding(class play.api.http.EnabledFilters to self) (via modules: com.google.inject.util.Modules$OverrideModule -&gt; play.api.inject.guice.GuiceableModuleConversions$$anon$4)
-  while locating play.api.http.EnabledFilters
-  while locating play.api.http.HttpFilters
-    for the 6th parameter of play.api.http.JavaCompatibleHttpRequestHandler.&lt;init&gt;(HttpRequestHandler.scala:322)
-  while locating play.api.http.JavaCompatibleHttpRequestHandler
-  while locating play.api.http.HttpRequestHandler
-    for the 6th parameter of play.api.DefaultApplication.&lt;init&gt;(Application.scala:178)
-  at play.api.DefaultApplication.class(Application.scala:177)
-  while locating play.api.DefaultApplication
-  while locating play.api.Application
-
-1 error" type="sbt.ForkMain$ForkError">sbt.ForkMain$ForkError: com.google.inject.ProvisionException: Unable to provision, see the following errors:
-
-1) Error injecting constructor, com.fasterxml.jackson.databind.JsonMappingException: Scala module 2.11.4 requires Jackson Databind version &gt;= 2.11.0 and &lt; 2.12.0
-  at play.api.http.EnabledFilters.&lt;init&gt;(HttpFilters.scala:78)
-  at play.utils.Reflect$.bindingsFromConfiguration(Reflect.scala:70):
-Binding(class play.api.http.EnabledFilters to self) (via modules: com.google.inject.util.Modules$OverrideModule -&gt; play.api.inject.guice.GuiceableModuleConversions$$anon$4)
-  while locating play.api.http.EnabledFilters
-  while locating play.api.http.HttpFilters
-    for the 6th parameter of play.api.http.JavaCompatibleHttpRequestHandler.&lt;init&gt;(HttpRequestHandler.scala:322)
-  while locating play.api.http.JavaCompatibleHttpRequestHandler
-  while locating play.api.http.HttpRequestHandler
-    for the 6th parameter of play.api.DefaultApplication.&lt;init&gt;(Application.scala:178)
-  at play.api.DefaultApplication.class(Application.scala:177)
-  while locating play.api.DefaultApplication
-  while locating play.api.Application
-
-1 error
-	at com.google.inject.internal.InternalProvisionException.toProvisionException(InternalProvisionException.java:226)
-	at com.google.inject.internal.InjectorImpl$1.get(InjectorImpl.java:1097)
-	at com.google.inject.internal.InjectorImpl.getInstance(InjectorImpl.java:1131)
-	at play.api.inject.guice.GuiceInjector.instanceOf(GuiceInjectorBuilder.scala:436)
-	at play.api.inject.guice.GuiceInjector.instanceOf(GuiceInjectorBuilder.scala:431)
-	at play.api.inject.ContextClassLoaderInjector.$anonfun$instanceOf$2(Injector.scala:119)
-	at play.api.inject.ContextClassLoaderInjector.withContext(Injector.scala:128)
-	at play.api.inject.ContextClassLoaderInjector.instanceOf(Injector.scala:119)
-	at play.api.inject.guice.GuiceApplicationBuilder.build(GuiceApplicationBuilder.scala:155)
-	at baseSpec.BaseSpecWithApplication.fakeApplication(BaseSpec.scala:43)
-	at baseSpec.BaseSpecWithApplication.fakeApplication$(BaseSpec.scala:40)
-	at service.ApplicationServiceUnitSpec.fakeApplication(ApplicationServiceUnitSpec.scala:14)
-	at org.scalatestplus.play.BaseOneServerPerSuite.app(BaseOneServerPerSuite.scala:142)
-	at org.scalatestplus.play.BaseOneServerPerSuite.app$(BaseOneServerPerSuite.scala:142)
-	at service.ApplicationServiceUnitSpec.app$lzycompute(ApplicationServiceUnitSpec.scala:14)
-	at service.ApplicationServiceUnitSpec.app(ApplicationServiceUnitSpec.scala:14)
-	at baseSpec.BaseSpecWithApplication.$init$(BaseSpec.scala:28)
-	at service.ApplicationServiceUnitSpec.&lt;init&gt;(ApplicationServiceUnitSpec.scala:14)
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
-	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
-	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
-	at java.lang.Class.newInstance(Class.java:442)
-	at org.scalatest.tools.Framework$ScalaTestTask.execute(Framework.scala:450)
-	at sbt.ForkMain$Run.lambda$runTest$1(ForkMain.java:304)
-	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
-	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
-	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
-	at java.lang.Thread.run(Thread.java:748)
-Caused by: sbt.ForkMain$ForkError: com.fasterxml.jackson.databind.JsonMappingException: Scala module 2.11.4 requires Jackson Databind version &gt;= 2.11.0 and &lt; 2.12.0
-	at com.fasterxml.jackson.module.scala.JacksonModule.setupModule(JacksonModule.scala:61)
-	at com.fasterxml.jackson.module.scala.JacksonModule.setupModule$(JacksonModule.scala:46)
-	at com.fasterxml.jackson.module.scala.DefaultScalaModule.setupModule(DefaultScalaModule.scala:17)
-	at com.fasterxml.jackson.databind.ObjectMapper.registerModule(ObjectMapper.java:853)
-	at akka.serialization.jackson.JacksonObjectMapperProvider$.$anonfun$configureObjectMapperModules$4(JacksonObjectMapperProvider.scala:242)
-	at akka.serialization.jackson.JacksonObjectMapperProvider$.$anonfun$configureObjectMapperModules$4$adapted(JacksonObjectMapperProvider.scala:241)
-	at scala.collection.immutable.List.foreach(List.scala:333)
-	at akka.serialization.jackson.JacksonObjectMapperProvider$.configureObjectMapperModules(JacksonObjectMapperProvider.scala:241)
-	at akka.serialization.jackson.JacksonObjectMapperProvider$.createObjectMapper(JacksonObjectMapperProvider.scala:265)
-	at akka.serialization.jackson.JacksonObjectMapperProvider.create(JacksonObjectMapperProvider.scala:359)
-	at akka.serialization.jackson.JacksonObjectMapperProvider.$anonfun$getOrCreate$1(JacksonObjectMapperProvider.scala:317)
-	at java.util.concurrent.ConcurrentHashMap.computeIfAbsent(ConcurrentHashMap.java:1660)
-	at akka.serialization.jackson.JacksonObjectMapperProvider.getOrCreate(JacksonObjectMapperProvider.scala:317)
-	at akka.serialization.jackson.JacksonJsonSerializer.&lt;init&gt;(JacksonSerializer.scala:141)
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
-	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
-	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
-	at akka.actor.ReflectiveDynamicAccess.$anonfun$createInstanceFor$1(ReflectiveDynamicAccess.scala:40)
-	at scala.util.Try$.apply(Try.scala:210)
-	at akka.actor.ReflectiveDynamicAccess.createInstanceFor(ReflectiveDynamicAccess.scala:35)
-	at akka.actor.ReflectiveDynamicAccess.$anonfun$createInstanceFor$5(ReflectiveDynamicAccess.scala:48)
-	at scala.util.Success.flatMap(Try.scala:258)
-	at akka.actor.ReflectiveDynamicAccess.createInstanceFor(ReflectiveDynamicAccess.scala:47)
-	at akka.serialization.Serialization$$anonfun$serializerOf$1$$anonfun$applyOrElse$1.applyOrElse(Serialization.scala:396)
-	at akka.serialization.Serialization$$anonfun$serializerOf$1$$anonfun$applyOrElse$1.applyOrElse(Serialization.scala:392)
-	at scala.util.Failure.recoverWith(Try.scala:240)
-	at akka.serialization.Serialization$$anonfun$serializerOf$1.applyOrElse(Serialization.scala:392)
-	at akka.serialization.Serialization$$anonfun$serializerOf$1.applyOrElse(Serialization.scala:390)
-	at scala.util.Failure.recoverWith(Try.scala:240)
-	at akka.serialization.Serialization.serializerOf(Serialization.scala:390)
-	at akka.serialization.Serialization.$anonfun$serializers$2(Serialization.scala:424)
-	at scala.collection.Iterator$$anon$9.next(Iterator.scala:577)
-	at scala.collection.immutable.HashMapBuilder.addAll(HashMap.scala:2360)
-	at scala.collection.immutable.HashMap$.from(HashMap.scala:2182)
-	at scala.collection.immutable.HashMap$.from(HashMap.scala:2158)
-	at scala.collection.MapOps$WithFilter.map(Map.scala:381)
-	at akka.serialization.Serialization.&lt;init&gt;(Serialization.scala:424)
-	at akka.serialization.SerializationExtension$.createExtension(SerializationExtension.scala:18)
-	at akka.serialization.SerializationExtension$.createExtension(SerializationExtension.scala:14)
-	at akka.actor.ActorSystemImpl.registerExtension(ActorSystem.scala:1158)
-	at akka.actor.ActorSystemImpl.$anonfun$loadExtensions$1(ActorSystem.scala:1201)
-	at scala.collection.immutable.Vector.foreach(Vector.scala:1856)
-	at akka.actor.ActorSystemImpl.loadExtensions$1(ActorSystem.scala:1195)
-	at akka.actor.ActorSystemImpl.loadExtensions(ActorSystem.scala:1214)
-	at akka.actor.ActorSystemImpl.liftedTree2$1(ActorSystem.scala:1035)
-	at akka.actor.ActorSystemImpl._start$lzycompute(ActorSystem.scala:1022)
-	at akka.actor.ActorSystemImpl._start(ActorSystem.scala:1022)
-	at akka.actor.ActorSystemImpl.start(ActorSystem.scala:1045)
-	at akka.actor.ActorSystem$.apply(ActorSystem.scala:272)
-	at play.api.libs.concurrent.ActorSystemProvider$.start(Akka.scala:246)
-	at play.api.libs.concurrent.ActorSystemProvider.get$lzycompute(Akka.scala:131)
-	at play.api.libs.concurrent.ActorSystemProvider.get(Akka.scala:131)
-	at play.api.libs.concurrent.ActorSystemProvider.get(Akka.scala:129)
-	at com.google.inject.internal.ProviderInternalFactory.provision(ProviderInternalFactory.java:85)
-	at com.google.inject.internal.BoundProviderFactory.provision(BoundProviderFactory.java:77)
-	at com.google.inject.internal.ProviderInternalFactory.circularGet(ProviderInternalFactory.java:59)
-	at com.google.inject.internal.BoundProviderFactory.get(BoundProviderFactory.java:61)
-	at com.google.inject.internal.SingleParameterInjector.inject(SingleParameterInjector.java:42)
-	at com.google.inject.internal.SingleParameterInjector.getAll(SingleParameterInjector.java:65)
-	at com.google.inject.internal.ConstructorInjector.provision(ConstructorInjector.java:113)
-	at com.google.inject.internal.ConstructorInjector.construct(ConstructorInjector.java:91)
-	at com.google.inject.internal.ConstructorBindingImpl$Factory.get(ConstructorBindingImpl.java:306)
-	at com.google.inject.internal.ProviderToInternalFactoryAdapter.get(ProviderToInternalFactoryAdapter.java:40)
-	at com.google.inject.internal.SingletonScope$1.get(SingletonScope.java:168)
-	at com.google.inject.internal.InternalFactoryToProviderAdapter.get(InternalFactoryToProviderAdapter.java:39)
-	at com.google.inject.internal.BoundProviderFactory.get(BoundProviderFactory.java:60)
-	at com.google.inject.internal.SingleParameterInjector.inject(SingleParameterInjector.java:42)
-	at com.google.inject.internal.SingleParameterInjector.getAll(SingleParameterInjector.java:65)
-	at com.google.inject.internal.ConstructorInjector.provision(ConstructorInjector.java:113)
-	at com.google.inject.internal.ConstructorInjector.construct(ConstructorInjector.java:91)
-	at com.google.inject.internal.ConstructorBindingImpl$Factory.get(ConstructorBindingImpl.java:306)
-	at com.google.inject.internal.InjectorImpl$1.get(InjectorImpl.java:1094)
-	at com.google.inject.internal.InjectorImpl.getInstance(InjectorImpl.java:1126)
-	at play.api.inject.guice.GuiceInjector.instanceOf(GuiceInjectorBuilder.scala:441)
-	at play.api.inject.ContextClassLoaderInjector.$anonfun$instanceOf$4(Injector.scala:121)
-	at play.api.inject.ContextClassLoaderInjector.withContext(Injector.scala:128)
-	at play.api.inject.ContextClassLoaderInjector.instanceOf(Injector.scala:121)
-	at play.api.http.EnabledFilters.$anonfun$filters$3(HttpFilters.scala:112)
-	at scala.collection.immutable.List.map(List.scala:246)
-	at scala.collection.immutable.List.map(List.scala:79)
-	at play.api.http.EnabledFilters.&lt;init&gt;(HttpFilters.scala:112)
-	at play.api.http.EnabledFilters$$FastClassByGuice$$5bec3932.newInstance(&lt;generated&gt;)
-	at com.google.inject.internal.DefaultConstructionProxyFactory$FastClassProxy.newInstance(DefaultConstructionProxyFactory.java:89)
-	at com.google.inject.internal.ConstructorInjector.provision(ConstructorInjector.java:114)
-	at com.google.inject.internal.ConstructorInjector.construct(ConstructorInjector.java:91)
-	at com.google.inject.internal.ConstructorBindingImpl$Factory.get(ConstructorBindingImpl.java:306)
-	at com.google.inject.internal.ProviderToInternalFactoryAdapter.get(ProviderToInternalFactoryAdapter.java:40)
-	at com.google.inject.internal.SingletonScope$1.get(SingletonScope.java:168)
-	at com.google.inject.internal.InternalFactoryToProviderAdapter.get(InternalFactoryToProviderAdapter.java:39)
-	at com.google.inject.internal.FactoryProxy.get(FactoryProxy.java:62)
-	at com.google.inject.internal.SingleParameterInjector.inject(SingleParameterInjector.java:42)
-	at com.google.inject.internal.SingleParameterInjector.getAll(SingleParameterInjector.java:65)
-	at com.google.inject.internal.ConstructorInjector.provision(ConstructorInjector.java:113)
-	at com.google.inject.internal.ConstructorInjector.construct(ConstructorInjector.java:91)
-	at com.google.inject.internal.ConstructorBindingImpl$Factory.get(ConstructorBindingImpl.java:306)
-	at com.google.inject.internal.FactoryProxy.get(FactoryProxy.java:62)
-	at com.google.inject.internal.SingleParameterInjector.inject(SingleParameterInjector.java:42)
-	at com.google.inject.internal.SingleParameterInjector.getAll(SingleParameterInjector.java:65)
-	at com.google.inject.internal.ConstructorInjector.provision(ConstructorInjector.java:113)
-	at com.google.inject.internal.ConstructorInjector.construct(ConstructorInjector.java:91)
-	at com.google.inject.internal.ConstructorBindingImpl$Factory.get(ConstructorBindingImpl.java:306)
-	at com.google.inject.internal.ProviderToInternalFactoryAdapter.get(ProviderToInternalFactoryAdapter.java:40)
-	at com.google.inject.internal.SingletonScope$1.get(SingletonScope.java:168)
-	at com.google.inject.internal.InternalFactoryToProviderAdapter.get(InternalFactoryToProviderAdapter.java:39)
-	at com.google.inject.internal.FactoryProxy.get(FactoryProxy.java:62)
-	at com.google.inject.internal.InjectorImpl$1.get(InjectorImpl.java:1094)
-	... 27 more
-</error>
+                     <testcase classname="service.ApplicationServiceUnitSpec" name="ApplicationService .index should return when there are no users" time="0.017">
+                                                 
+                                               </testcase><testcase classname="service.ApplicationServiceUnitSpec" name="ApplicationService .index should return sequence of users when there are users" time="0.002">
+                                                 
+                                               </testcase><testcase classname="service.ApplicationServiceUnitSpec" name="ApplicationService() .create() should should add user to mongodb" time="0.008">
+                                                 
+                                               </testcase><testcase classname="service.ApplicationServiceUnitSpec" name="ApplicationService() .create() should could not validate user so should not add to mongodb or call create" time="0.003">
+                                                 
+                                               </testcase><testcase classname="service.ApplicationServiceUnitSpec" name="ApplicationService() .create() should unable to create a user as with validate user format but login already exists" time="0.001">
+                                                 
+                                               </testcase><testcase classname="service.ApplicationServiceUnitSpec" name="ApplicationService .read() should return a user by login/username" time="0.001">
+                                                 
+                                               </testcase><testcase classname="service.ApplicationServiceUnitSpec" name="ApplicationService .read() should does not return a user as incorrect login/username" time="0.002">
+                                                 
+                                               </testcase><testcase classname="service.ApplicationServiceUnitSpec" name="ApplicationService .update() should return an updated user" time="0.003">
+                                                 
+                                               </testcase><testcase classname="service.ApplicationServiceUnitSpec" name="ApplicationService .update() should unable to updated a user as cannot validate user format" time="0.003">
+                                                 
+                                               </testcase><testcase classname="service.ApplicationServiceUnitSpec" name="ApplicationService .update() should unable to updated a user as with validate user format but non-existing login" time="0.003">
+                                                 
+                                               </testcase><testcase classname="service.ApplicationServiceUnitSpec" name="ApplicationService .delete() should return a string upon deleting a user by login" time="0.001">
+                                                 
+                                               </testcase><testcase classname="service.ApplicationServiceUnitSpec" name="ApplicationService .delete() should return a error upon unsuccessfully trying to delete a user by login" time="0.002">
+                                                 
+                                               </testcase><testcase classname="service.ApplicationServiceUnitSpec" name="ApplicationService .getUser() should return a user by login for github api" time="0.001">
+                                                 
+                                               </testcase><testcase classname="service.ApplicationServiceUnitSpec" name="ApplicationService .getUser() should unable to return a user from api, incorrect login" time="0.002">
+                                                 
+                                               </testcase><testcase classname="service.ApplicationServiceUnitSpec" name="ApplicationService .getUsersRepo() should return a user repositories names in list" time="0.002">
+                                                 
+                                               </testcase><testcase classname="service.ApplicationServiceUnitSpec" name="ApplicationService .getUsersRepo() should unable to return a user's repositories names from api, incorrect login" time="0.001">
+                                                 
+                                               </testcase><testcase classname="service.ApplicationServiceUnitSpec" name="ApplicationService .getUsersRepoInfo() should return a users information by login for github api" time="0.002">
+                                                 
+                                               </testcase><testcase classname="service.ApplicationServiceUnitSpec" name="ApplicationService .getUsersRepoInfo() should unable to return a user information from api, incorrect login" time="0.001">
+                                                 
+                                               </testcase><testcase classname="service.ApplicationServiceUnitSpec" name="ApplicationService .getRepoContent() should return a user repositories content by login for github api" time="0.002">
+                                                 
+                                               </testcase><testcase classname="service.ApplicationServiceUnitSpec" name="ApplicationService .getRepoContent() should unable to return a user repositories content from api, incorrect login" time="0.001">
+                                                 
+                                               </testcase><testcase classname="service.ApplicationServiceUnitSpec" name="ApplicationService .getDirContent() should return a user's repository folder contents by login for github api" time="0.001">
+                                                 
+                                               </testcase><testcase classname="service.ApplicationServiceUnitSpec" name="ApplicationService .getDirContent() should unable to return a user's repository folder content from api, incorrect login" time="0.002">
+                                                 
+                                               </testcase><testcase classname="service.ApplicationServiceUnitSpec" name="ApplicationService .getFileContent() should return a user's repository folder contents by login for github api" time="0.001">
+                                                 
+                                               </testcase><testcase classname="service.ApplicationServiceUnitSpec" name="ApplicationService .getFileContent() should unable to return a user's repository folder content from api, incorrect login" time="0.002">
+                                                 
+                                               </testcase><testcase classname="service.ApplicationServiceUnitSpec" name="ApplicationService .addApiUser() should add a user from github api to mongodb" time="0.006">
+                                                 
+                                               </testcase><testcase classname="service.ApplicationServiceUnitSpec" name="ApplicationService .addApiUser() should unable to return a user from api, incorrect login" time="0.005">
+                                                 
                                                </testcase>
                      <system-out><![CDATA[]]></system-out>
                      <system-err><![CDATA[]]></system-err>

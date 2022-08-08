@@ -27,9 +27,11 @@ class ApplicationConnector @Inject()(ws: WSClient) {
         val following = (gitUser \ "following").as[Int]
         Right(User(login, created, location, followers, following))
     }
+
       .recover {
-        case _ =>
+        case a => println(a.getMessage)
           Left(APIError.BadAPIResponse(400, "could not find user"))
+
       }
   }
 
