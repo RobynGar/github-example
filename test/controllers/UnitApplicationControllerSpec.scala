@@ -36,16 +36,8 @@ class UnitApplicationControllerSpec extends BaseSpecWithApplication with MockFac
     20
   )
 
-  private val apiUser: User = User(
-    "Bla",
-    "2016-08-18T08:36:43Z",
-    None,
-    2,
-    0
-  )
-  private val returnedFile: ReturnCreatedFile = ReturnCreatedFile(
-    Content("testName", "folder/testFile", "file")
-  )
+
+
   private val emptyUserSequence: Seq[User] = Seq()
   private val userSequence: Seq[User] = Seq(user)
 

@@ -30,7 +30,12 @@ class UnitApplicationConnectorSpec extends BaseSpecWithApplication {
         {
           case GET(p"/users/octocat") =>
             Action {
-              Ok(Json.obj("login" -> "octocat", "created_at" -> "2011-01-25T18:44:36Z", "location" -> Some("San Francisco"), "followers" -> 6536, "following" -> 9))
+              Ok(Json.obj(
+                "login" -> "octocat",
+                "created_at" -> "2011-01-25T18:44:36Z",
+                "location" -> Some("San Francisco"),
+                "followers" -> 6536,
+                "following" -> 9))
             }
         }
       } { implicit port =>

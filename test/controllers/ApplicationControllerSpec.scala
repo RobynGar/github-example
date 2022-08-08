@@ -7,7 +7,7 @@ import play.api.libs.json.{JsValue, Json}
 import play.api.mvc.{AnyContentAsEmpty, Result}
 import play.api.test.FakeRequest
 import play.api.test.Helpers.{DELETE, GET, POST, PUT, contentAsJson, contentAsString, contentType, defaultAwaitTimeout, route, status, writeableOf_AnyContentAsEmpty}
-
+import org.scalatest.matchers.must.Matchers.convertToAnyMustWrapper
 import java.net.URLEncoder
 import scala.concurrent.Future
 
@@ -317,6 +317,7 @@ class ApplicationControllerSpec extends BaseSpecWithApplication {
 
       status(apiResult) shouldBe Status.OK
       contentType(apiResult) shouldBe Some("text/html")
+      contentAsString(apiResult) must include ("Bla")
 
     }
 
