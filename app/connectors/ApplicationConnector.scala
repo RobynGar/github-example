@@ -27,9 +27,11 @@ class ApplicationConnector @Inject()(ws: WSClient) {
         val following = (gitUser \ "following").as[Int]
         Right(User(login, created, location, followers, following))
     }
+
       .recover {
-        case _ =>
+        case a => println(a.getMessage)
           Left(APIError.BadAPIResponse(400, "could not find user"))
+
       }
   }
 
@@ -134,7 +136,7 @@ class ApplicationConnector @Inject()(ws: WSClient) {
           case JsError(errors) =>
             //            println(Json.prettyPrint(result.json))
             //            println(s"moose ${errors}")
-            Left(APIError.BadAPIResponse(400, "could not find create file"))
+            Left(APIError.BadAPIResponse(400, "could not create file"))
         }
 
     }
@@ -159,7 +161,7 @@ class ApplicationConnector @Inject()(ws: WSClient) {
     }
   }
 
-  def deleteFile[Response](url: String, deleteRequest: RequestDelete)(implicit rds: OFormat[Response], ec: ExecutionContext): Future[Either[APIError, String]] = {
+  def deleteFile[Response](url: String, deleteRequest: RequestDelete)(implicit rds: OFormat[Response], ec: ExecutionContext): Future[Either[APIError, DeletedReturn]] = {
     val password = env.getOrElse("AuthPassword", "no Auth token found")
     val request = ws.url(url)
       .withHttpHeaders("Accept" -> "application/vnd.github+json")
@@ -171,14 +173,19 @@ class ApplicationConnector @Inject()(ws: WSClient) {
       result =>
         result.status match {
           case OK =>
-            Right("DELETED")
-//            result.json.validate[DeletedReturn] match {
-//            case JsSuccess(deleted, _) => Right(deleted)
+            //Right("DELETED")
+            val response = result.json
+           val content = (response \ "content").asOpt[String]
+            Right(DeletedReturn(content))
+          //.validate[DeletedReturn] match {
+//            case JsSuccess(deleted, _) if(deleted.content == None)=> Right(deleted)
 //            case _ =>
 //              println(Json.prettyPrint(result.json))
-//              Left(APIError.BadAPIResponse(500, "could not delete file"))
+//              Left(APIError.BadAPIResponse(404, "could not delete file"))
 //          }
-          case _ => Left(APIError.BadAPIResponse(404, "could not delete file"))
+         case _ =>
+           println(Json.prettyPrint(result.json))
+           Left(APIError.BadAPIResponse(404, "could not delete file"))
         }
     }
   }

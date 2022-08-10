@@ -1,4 +1,4 @@
 [debug] "not up to date. inChanged = true, force = false
-[debug] Updating ProjectRef(uri("file:/Users/robyn.garlington/Documents/scalaTraining/assignments/gHub-example/gitHub-ex/"), "root")...
-[debug] Done updating ProjectRef(uri("file:/Users/robyn.garlington/Documents/scalaTraining/assignments/gHub-example/gitHub-ex/"), "root")
+[debug] Updating ProjectRef(uri("file:/Users/robyn.garlington/Documents/scalaTraining/assignments/gHub-example/gitHub-ex/github-example/"), "root")...
+[debug] Done updating ProjectRef(uri("file:/Users/robyn.garlington/Documents/scalaTraining/assignments/gHub-example/gitHub-ex/github-example/"), "root")
 [warn] There may be incompatibilities among your library dependencies; run 'evicted' to see detailed eviction warnings.

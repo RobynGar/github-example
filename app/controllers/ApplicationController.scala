@@ -1,9 +1,10 @@
 package controllers
 import data.Data
-import models.{APIError, User}
+import models.{APIError, DeletedReturn, User}
 import play.api.libs.json.{JsValue, Json}
 import play.api.mvc.{Action, AnyContent, BaseController, ControllerComponents, Request}
 import services.ApplicationService
+
 import javax.inject.{Inject, Singleton}
 import scala.concurrent.ExecutionContext
 
@@ -123,7 +124,7 @@ class ApplicationController @Inject()(val controllerComponents: ControllerCompon
 
   def deleteFile(login: String, repoName: String, filePath: String): Action[JsValue] = Action.async(parse.json) { implicit request =>
     service.deleteFile(filePath= filePath, login = login, repoName = repoName, deleteCommitMessage = request).map{
-      case Right(deleteConformation: String) => Accepted
+      case Right(deleteConformation) => Accepted
       case Left(error) => Status(error.httpResponseStatus)(Json.toJson(error.reason))
     }
   }

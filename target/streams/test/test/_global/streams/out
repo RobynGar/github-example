@@ -1,8 +1,10 @@
 [0m[[0m[0mdebug[0m] [0m[0mjavaOptions: Vector()[0m
 [0m[[0m[0mdebug[0m] [0m[0mForking tests - parallelism = false[0m
 [0m[[0m[0mdebug[0m] [0m[0mCreate a single-thread test executor[0m
-[0m[[0m[0mdebug[0m] [0m[0mRunner for org.scalatest.tools.Framework produced 4 initial tasks for 4 tests.[0m
-[0m[[0m[0mdebug[0m] [0m[0m  Running TaskDef(controllers.UnitApplicationControllerSpec, sbt.ForkMain$SubclassFingerscan@7132834c, false, [SuiteSelector])[0m
+[0m[[0m[0mdebug[0m] [0m[0mRunner for org.scalatest.tools.Framework produced 8 initial tasks for 8 tests.[0m
+[0m[[0m[0mdebug[0m] [0m[0m  Running TaskDef(connectors.ConnectorWireMockSpec, sbt.ForkMain$SubclassFingerscan@3a40397a, false, [SuiteSelector])[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mConnectorWireMockSpec:[0m[0m
+[0m[[0m[0mdebug[0m] [0m[0m  Running TaskDef(controllers.UnitApplicationControllerSpec, sbt.ForkMain$SubclassFingerscan@1cd3c1a6, false, [SuiteSelector])[0m
 [0m[[0m[0minfo[0m] [0m[0m[32mUnitApplicationControllerSpec:[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[32mApplicationController unit test .index[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[32m- should return when there are no users[0m[0m
@@ -20,19 +22,19 @@
 [0m[[0m[0minfo[0m] [0m[0m[32m- should find a user in the database by login and delete[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[32m- should cannot find a user in the database as login does not exist do not delete[0m[0m
 [0m[[0m[0mdebug[0m] [0m[0m    Produced 0 nested tasks and 10 events.[0m
-[0m[[0m[0mdebug[0m] [0m[0m  Running TaskDef(controllers.HomeControllerSpec, sbt.ForkMain$SubclassFingerscan@4f420ce2, false, [SuiteSelector])[0m
+[0m[[0m[0mdebug[0m] [0m[0m  Running TaskDef(controllers.HomeControllerSpec, sbt.ForkMain$SubclassFingerscan@2bad0c53, false, [SuiteSelector])[0m
 [0m[[0m[0minfo[0m] [0m[0m[32mHomeControllerSpec:[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[32mHomeController GET[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[32m- should render the index page from a new instance of controller[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[32m- should render the index page from the application[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[32m- should render the index page from the router[0m[0m
 [0m[[0m[0mdebug[0m] [0m[0m    Produced 0 nested tasks and 3 events.[0m
-[0m[[0m[0mdebug[0m] [0m[0m  Running TaskDef(controllers.ApplicationControllerSpec, sbt.ForkMain$SubclassFingerscan@e5ed75b, false, [SuiteSelector])[0m
+[0m[[0m[0mdebug[0m] [0m[0m  Running TaskDef(controllers.ApplicationControllerSpec, sbt.ForkMain$SubclassFingerscan@43675833, false, [SuiteSelector])[0m
 [0m[[0m[0minfo[0m] [0m[0m[32mApplicationControllerSpec:[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[32mApplicationController .index[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[32m- should return when there are no users[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[31m- should return all users in the database *** FAILED ***[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  List() was not equal to List(User(test,now,Some(test location),2,0)) (ApplicationControllerSpec.scala:67)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  List() was not equal to List(User(test,now,Some(test location),2,0)) (ApplicationControllerSpec.scala:76)[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[32m- should return json from the router[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[32mApplicationController .create()[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[32m- should create a user in the database[0m[0m
@@ -49,8 +51,7 @@
 [0m[[0m[0minfo[0m] [0m[0m[32mApplicationController .delete()[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[32m- should find a user in the database by login and delete[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[32m- should cannot find a user in the database as login does not exist do not delete[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m- should return accepted status from the router *** FAILED ***[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  400 was not equal to 202 (ApplicationControllerSpec.scala:236)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should return accepted status from the router[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[32mApplicationController .readFromAPI()[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[32m- should use username/login to find user from api and return that user[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[32m- should unknown username/login used to find user from api cannot return that user[0m[0m
@@ -93,10 +94,112 @@
 [0m[[0m[0minfo[0m] [0m[0m[32m- should render the foldersAndFiles page from the router[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[32m- should unable to render the foldersAndFiles Page due to incorrect username from the router[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[32mApplicationController() .createFile()[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m- should login to find user's repositories under the name specified and create files *** FAILED ***[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  400 was not equal to 200 (ApplicationControllerSpec.scala:617)[0m[0m
-[0m[[0m[0mdebug[0m] [0m[0m    Produced 0 nested tasks and 49 events.[0m
-[0m[[0m[0mdebug[0m] [0m[0m  Running TaskDef(service.ApplicationServiceUnitSpec, sbt.ForkMain$SubclassFingerscan@783f4fdb, false, [SuiteSelector])[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should login to find user's repositories under the name specified and create file[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should create folder and file[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should correct login but repository does not exist[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should unable to validate file trying to be created[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should correct route for creating a file[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should route for creating a file with non-existing repository[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mApplicationController() .updateFile()[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m- should login to find user's repositories under the name specified and update file *** FAILED ***[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  400 was not equal to 200 (ApplicationControllerSpec.scala:683)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should correct login and repository but file does not exist[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should unable to validate file trying to be created[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should correct route for updating a file[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should route for creating a file with non-existing repository[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mApplicationController() .deleteFile()[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m- should login to find user's repositories under the name specified and delete file *** FAILED ***[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  400 was not equal to 200 (ApplicationControllerSpec.scala:730)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should correct login and repository but file does not exist[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m- should correct route for deleting a file *** FAILED ***[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  404 was not equal to 202 (ApplicationControllerSpec.scala:750)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should route for deleting a file with non-existing repository[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mApplicationController() .repoReadMe()[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should login to find user's repositories under the name specified and get readMe[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should correct login and repository but no readme exists[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should correct route for getting a repositories readme[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should correct route for getting a repositories readme but the repo has no readme[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should route for getting readme with non-existing repository[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mApplicationController() .dirReadMe()[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should login to find user's repositories and get readMe from specified directory[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should correct login and repository but no readme exists in that directory[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should correct route for getting a directories readme[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should correct route for getting a repositories readme but the repo has no readme[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should route for getting readme with non-existing repository[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mApplicationController() .downloadTar()[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should download the tar of the repository specified form the branch specified[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should return ok http response for tar download from the router and when no branch provided default to main[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should return ok http response for tar download from the router and when a branch is provided[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should correct login but no repository exists[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should route for getting readme with non-existing repository[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mApplicationController() .downloadZip()[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should download the tar of the repository specified form the branch specified[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should return ok http response for zip download from the router and when no branch provided default to main[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should return ok http response for zip download from the router and when a branch is provided[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should correct login but no repository exists[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should route for getting readme with non-existing repository[0m[0m
+[0m[[0m[0mdebug[0m] [0m[0m    Produced 0 nested tasks and 83 events.[0m
+[0m[[0m[0mdebug[0m] [0m[0m  Running TaskDef(connectors.UnitApplicationConnectorSpec, sbt.ForkMain$SubclassFingerscan@22ef38ab, false, [SuiteSelector])[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mUnitApplicationConnectorSpec:[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mApplicationConnector .get()[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should get a user from the github api[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should return error when trying to get a user from the github api that does not exist[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mApplicationConnector .getUserRepo()[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should get a user's repo name list from the github api[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should return error when trying to get a user repo names from the github api when user does not exist[0m[0m
+[0m[[0m[0mdebug[0m] [0m[0m    Produced 0 nested tasks and 4 events.[0m
+[0m[[0m[0mdebug[0m] [0m[0m  Running TaskDef(connectors.ApplicationConnectorSpec, sbt.ForkMain$SubclassFingerscan@1a0991b3, false, [SuiteSelector])[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mApplicationConnectorSpec:[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mApplicationConnector .get()[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m- should return a user from the github api *** FAILED ***[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  Right(User(octocat,2011-01-25T18:44:36Z,Some(San Francisco),6548,9)) was not equal to Right(User(octocat,2011-01-25T18:44:36Z,Some(San Francisco),6537,9)) (ApplicationConnectorSpec.scala:43)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should not return a user from the github api as username does not exist[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mApplicationConnector .getUserRepo()[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should return a user's repository names from the github api[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should not return a user's repository names from the github api as user does not exist[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mApplicationConnector .getRepoContent()[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should return a seq of a user's repos folders and files from the github api[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should not return repos folders and files from the github api as repo does not exist[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mApplicationConnector .getDirContent()[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should return a seq of a user's repos folders and files in a directory from the github api[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should not return a seq of a user's repos folders and files in a directory from the github api directory does not exist[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mApplicationConnector .getFileContent()[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should return a file from a user's repos from the github api[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should not return a file from a user's repos from the github api as file does not exist[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mApplicationConnector .getUserRepoInfo()[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should return a user's repository from the github api[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should not return a user's repository from the github api as repo does not exist[0m[0m
+[0m[[0m[0mdebug[0m] [0m[0m    Produced 0 nested tasks and 12 events.[0m
+[0m[[0m[0mdebug[0m] [0m[0m  Running TaskDef(connectors.WireMockAppConnectorSpec, sbt.ForkMain$SubclassFingerscan@4d642a75, false, [SuiteSelector])[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mWireMockAppConnectorSpec:[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mApplicationConnector .get()[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m- should get a user from the github api *** FAILED ***[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  java.lang.IllegalArgumentException: Invalid URL user/test/octocat[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  at play.api.libs.ws.ahc.StandaloneAhcWSClient.validate(StandaloneAhcWSClient.scala:100)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  at play.api.libs.ws.ahc.StandaloneAhcWSClient.url(StandaloneAhcWSClient.scala:56)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  at play.api.libs.ws.ahc.AhcWSClient.url(AhcWSClient.scala:37)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  at connectors.ApplicationConnector.get(ApplicationConnector.scala:19)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  at connectors.WireMockAppConnectorSpec$$anon$1.<init>(WireMockAppConnectorSpec.scala:34)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  at connectors.WireMockAppConnectorSpec.$anonfun$new$2(WireMockAppConnectorSpec.scala:27)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  at org.scalatest.OutcomeOf.outcomeOf(OutcomeOf.scala:85)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  at org.scalatest.OutcomeOf.outcomeOf$(OutcomeOf.scala:83)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  at org.scalatest.OutcomeOf$.outcomeOf(OutcomeOf.scala:104)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  at org.scalatest.Transformer.apply(Transformer.scala:22)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  ...[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  Cause: java.lang.IllegalArgumentException: user/test/octocat could not be parsed into a proper Uri, missing scheme[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  at play.shaded.ahc.org.asynchttpclient.uri.Uri.create(Uri.java:70)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  at play.shaded.ahc.org.asynchttpclient.uri.Uri.create(Uri.java:62)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  at play.api.libs.ws.ahc.StandaloneAhcWSClient.validate(StandaloneAhcWSClient.scala:97)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  at play.api.libs.ws.ahc.StandaloneAhcWSClient.url(StandaloneAhcWSClient.scala:56)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  at play.api.libs.ws.ahc.AhcWSClient.url(AhcWSClient.scala:37)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  at connectors.ApplicationConnector.get(ApplicationConnector.scala:19)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  at connectors.WireMockAppConnectorSpec$$anon$1.<init>(WireMockAppConnectorSpec.scala:34)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  at connectors.WireMockAppConnectorSpec.$anonfun$new$2(WireMockAppConnectorSpec.scala:27)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  at org.scalatest.OutcomeOf.outcomeOf(OutcomeOf.scala:85)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  at org.scalatest.OutcomeOf.outcomeOf$(OutcomeOf.scala:83)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  ...[0m[0m
+[0m[[0m[0mdebug[0m] [0m[0m    Produced 0 nested tasks and 1 events.[0m
+[0m[[0m[0mdebug[0m] [0m[0m  Running TaskDef(service.ApplicationServiceUnitSpec, sbt.ForkMain$SubclassFingerscan@ed52974, false, [SuiteSelector])[0m
 [0m[[0m[0minfo[0m] [0m[0m[32mApplicationServiceUnitSpec:[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[32mApplicationService .index[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[32m- should return when there are no users[0m[0m
@@ -139,17 +242,21 @@
 [0m[[0m[0mdebug[0m] [0m[0m    Produced 0 nested tasks and 26 events.[0m
 [0m[[0m[0mdebug[0m] [0m[0mRunner for com.novocode.junit.JUnitFramework produced 0 initial tasks for 0 tests.[0m
 [0m[[0m[0minfo[0m] [0m[0mScalaTest[0m
-[0m[[0m[0minfo[0m] [0m[0m[36mRun completed in 14 seconds, 926 milliseconds.[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[36mTotal number of tests run: 88[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[36mSuites: completed 4, aborted 0[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[36mTests: succeeded 85, failed 3, canceled 0, ignored 0, pending 0[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m*** 3 TESTS FAILED ***[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[36mRun completed in 32 seconds, 322 milliseconds.[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[36mTotal number of tests run: 139[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[36mSuites: completed 8, aborted 0[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[36mTests: succeeded 133, failed 6, canceled 0, ignored 0, pending 0[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m*** 6 TESTS FAILED ***[0m[0m
 [0m[[0m[0mdebug[0m] [0m[0mSummary for JUnit not available.[0m
-[0m[[0m[31merror[0m] [0m[0mFailed: Total 88, Failed 3, Errors 0, Passed 85[0m
+[0m[[0m[31merror[0m] [0m[0mFailed: Total 139, Failed 6, Errors 0, Passed 133[0m
 [0m[[0m[0mdebug[0m] [0m[0mPassed tests:[0m
+[0m[[0m[0mdebug[0m] [0m[0m	connectors.ConnectorWireMockSpec[0m
 [0m[[0m[0mdebug[0m] [0m[0m	controllers.UnitApplicationControllerSpec[0m
 [0m[[0m[0mdebug[0m] [0m[0m	controllers.HomeControllerSpec[0m
+[0m[[0m[0mdebug[0m] [0m[0m	connectors.UnitApplicationConnectorSpec[0m
 [0m[[0m[0mdebug[0m] [0m[0m	service.ApplicationServiceUnitSpec[0m
 [0m[[0m[31merror[0m] [0m[0mFailed tests:[0m
 [0m[[0m[31merror[0m] [0m[0m	controllers.ApplicationControllerSpec[0m
+[0m[[0m[31merror[0m] [0m[0m	connectors.ApplicationConnectorSpec[0m
+[0m[[0m[31merror[0m] [0m[0m	connectors.WireMockAppConnectorSpec[0m
 [0m[[0m[31merror[0m] [0m[0m(Test / [31mtest[0m) sbt.TestsFailedException: Tests unsuccessful[0m

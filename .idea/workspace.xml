@@ -5,67 +5,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b409524c-8667-4684-be72-0a22047a43d5" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/test/connectors/ApplicationConnectorSpec.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/gitHub-ex-build.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/gitHub-ex-build.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/gitHub-ex.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/gitHub-ex.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/connectors/ApplicationConnector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/app/connectors/ApplicationConnector.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/ReturnCreatedFile.scala" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/ReturnCreatedFile.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/ApplicationController.scala" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/ApplicationController.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/DeletedReturn.scala" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/DeletedReturn.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/services/ApplicationService.scala" beforeDir="false" afterPath="$PROJECT_DIR$/app/services/ApplicationService.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/foldersAndFiles.scala.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/foldersAndFiles.scala.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/project/target/config-classes/$3258bed6764caaea9bcd$.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/project/target/config-classes/$3258bed6764caaea9bcd.cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/project/target/config-classes/$3258bed6764caaea9bcd.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/project/target/config-classes/$83bb87e8e0a7939e6f93$.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/project/target/config-classes/$83bb87e8e0a7939e6f93.cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/project/target/config-classes/$83bb87e8e0a7939e6f93.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/project/target/config-classes/$947deab72a2a83351c4e$.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/project/target/config-classes/$947deab72a2a83351c4e.cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/project/target/config-classes/$947deab72a2a83351c4e.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/project/target/config-classes/$cbfaab7f11b1b0e439de$.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/project/target/config-classes/$cbfaab7f11b1b0e439de.cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/project/target/config-classes/$cbfaab7f11b1b0e439de.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/target/config-classes/$13702018066c33493066$.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/target/config-classes/$13702018066c33493066.cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/target/config-classes/$13702018066c33493066.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/target/config-classes/$24d0577258e7787770f4$.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/target/config-classes/$24d0577258e7787770f4.cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/target/config-classes/$24d0577258e7787770f4.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/target/config-classes/$8b63ddcc77d250d39a2e$.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/target/config-classes/$8b63ddcc77d250d39a2e.cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/target/config-classes/$8b63ddcc77d250d39a2e.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/target/config-classes/$e1aa532f7a84f825f704$.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/target/config-classes/$e1aa532f7a84f825f704.cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/target/config-classes/$e1aa532f7a84f825f704.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/target/config-classes/$fd5e982706672a1c7cb2$.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/target/config-classes/$fd5e982706672a1c7cb2.cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/target/config-classes/$fd5e982706672a1c7cb2.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/target/scala-2.12/sbt-1.0/update/update_cache_2.12/inputs" beforeDir="false" afterPath="$PROJECT_DIR$/project/target/scala-2.12/sbt-1.0/update/update_cache_2.12/inputs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/target/streams/_global/dependencyPositions/_global/streams/update_cache_2.12/output_dsp" beforeDir="false" afterPath="$PROJECT_DIR$/project/target/streams/_global/dependencyPositions/_global/streams/update_cache_2.12/output_dsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/target/streams/_global/update/_global/streams/out" beforeDir="false" afterPath="$PROJECT_DIR$/project/target/streams/_global/update/_global/streams/out" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/target/streams/compile/_global/_global/compileOutputs/previous" beforeDir="false" afterPath="$PROJECT_DIR$/project/target/streams/compile/_global/_global/compileOutputs/previous" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/target/streams/compile/exportedProducts/_global/streams/export" beforeDir="false" afterPath="$PROJECT_DIR$/project/target/streams/compile/exportedProducts/_global/streams/export" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/target/streams/runtime/dependencyClasspath/_global/streams/export" beforeDir="false" afterPath="$PROJECT_DIR$/project/target/streams/runtime/dependencyClasspath/_global/streams/export" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/target/streams/runtime/exportedProducts/_global/streams/export" beforeDir="false" afterPath="$PROJECT_DIR$/project/target/streams/runtime/exportedProducts/_global/streams/export" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/target/streams/runtime/fullClasspath/_global/streams/export" beforeDir="false" afterPath="$PROJECT_DIR$/project/target/streams/runtime/fullClasspath/_global/streams/export" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/target/streams/runtime/internalDependencyClasspath/_global/streams/export" beforeDir="false" afterPath="$PROJECT_DIR$/project/target/streams/runtime/internalDependencyClasspath/_global/streams/export" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/scala-2.13/routes/main/controllers/ReverseRoutes.scala" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.13/routes/main/controllers/ReverseRoutes.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/scala-2.13/routes/main/controllers/javascript/JavaScriptReverseRoutes.scala" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.13/routes/main/controllers/javascript/JavaScriptReverseRoutes.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/scala-2.13/routes/main/controllers/routes.java" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.13/routes/main/controllers/routes.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/scala-2.13/routes/main/router/Routes.scala" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.13/routes/main/router/Routes.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/scala-2.13/routes/main/router/RoutesPrefix.scala" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.13/routes/main/router/RoutesPrefix.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/scala-2.13/test-classes/baseSpec/BaseSpecWithApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.13/test-classes/baseSpec/BaseSpecWithApplication.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/scala-2.13/twirl/main/views/html/file.template.scala" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.13/twirl/main/views/html/file.template.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/scala-2.13/twirl/main/views/html/foldersAndFiles.template.scala" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.13/twirl/main/views/html/foldersAndFiles.template.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/scala-2.13/twirl/main/views/html/index.template.scala" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.13/twirl/main/views/html/index.template.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/scala-2.13/twirl/main/views/html/main.template.scala" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.13/twirl/main/views/html/main.template.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/scala-2.13/twirl/main/views/html/repoInfo.template.scala" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.13/twirl/main/views/html/repoInfo.template.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/scala-2.13/twirl/main/views/html/repositories.template.scala" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.13/twirl/main/views/html/repositories.template.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/scala-2.13/twirl/main/views/html/user.template.scala" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.13/twirl/main/views/html/user.template.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/streams/_global/_global/checkBuildSources/_global/inputFileStamps/previous" beforeDir="false" afterPath="$PROJECT_DIR$/target/streams/_global/_global/checkBuildSources/_global/inputFileStamps/previous" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/streams/_global/dependencyPositions/_global/streams/update_cache_2.13/output_dsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/streams/_global/dependencyPositions/_global/streams/update_cache_2.13/output_dsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/baseSpec/BaseSpec.scala" beforeDir="false" afterPath="$PROJECT_DIR$/test/baseSpec/BaseSpec.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.13/classes/connectors/ApplicationConnector.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.13/classes/connectors/ApplicationConnector.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.13/test-classes/connectors/WireMockAppConnectorSpec$$anon$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.13/test-classes/connectors/WireMockAppConnectorSpec$$anon$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.13/test-classes/connectors/WireMockAppConnectorSpec$Test.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.13/test-classes/connectors/WireMockAppConnectorSpec$Test.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.13/test-classes/connectors/WireMockAppConnectorSpec.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.13/test-classes/connectors/WireMockAppConnectorSpec.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.13/test-classes/helpers/WireMockMethods$DELETE$.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.13/test-classes/helpers/WireMockMethods$DELETE$.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.13/test-classes/helpers/WireMockMethods.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.13/test-classes/helpers/WireMockMethods.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.13/test-classes/stubs/ApplicationConnectorStub$.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.13/test-classes/stubs/ApplicationConnectorStub$.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.13/test-classes/stubs/ApplicationConnectorStub.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.13/test-classes/stubs/ApplicationConnectorStub.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/connectors/WireMockAppConnectorSpec.scala" beforeDir="false" afterPath="$PROJECT_DIR$/test/connectors/WireMockAppConnectorSpec.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/controllers/ApplicationControllerSpec.scala" beforeDir="false" afterPath="$PROJECT_DIR$/test/controllers/ApplicationControllerSpec.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test/controllers/UnitApplicationControllerSpec.scala" beforeDir="false" afterPath="$PROJECT_DIR$/test/controllers/UnitApplicationControllerSpec.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/helpers/WireMockMethods.scala" beforeDir="false" afterPath="$PROJECT_DIR$/test/helpers/WireMockMethods.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/service/ApplicationServiceUnitSpec.scala" beforeDir="false" afterPath="$PROJECT_DIR$/test/service/ApplicationServiceUnitSpec.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/stubs/ApplicationConnectorStub.scala" beforeDir="false" afterPath="$PROJECT_DIR$/test/stubs/ApplicationConnectorStub.scala" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -114,8 +72,8 @@
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;
   }
 }</component>
-  <component name="RunManager" selected="ScalaTest.ApplicationConnectorSpec">
-    <configuration name="ApplicationConnectorSpec" type="ScalaTestRunConfiguration" factoryName="ScalaTest" temporary="true" nameIsGenerated="true" show_console_on_std_err="false" show_console_on_std_out="false">
+  <component name="RunManager" selected="ScalaTest.WireMockAppConnectorSpec">
+    <configuration name="WireMockAppConnectorSpec" type="ScalaTestRunConfiguration" factoryName="ScalaTest" temporary="true" nameIsGenerated="true" show_console_on_std_err="false" show_console_on_std_out="false">
       <module name="gitHub-ex" />
       <option name="allowRunningInParallel" value="false" />
       <option name="projectPathOnTarget" />
@@ -123,12 +81,12 @@
         <list />
       </option>
       <option name="testKind" value="Class" />
-      <option name="testClassPath" value="connectors.ApplicationConnectorSpec" />
+      <option name="testClassPath" value="connectors.WireMockAppConnectorSpec" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ApplicationConnectorSpec.ApplicationConnector .getDirContent() should not return a seq of a user's repos folders and files in a directory from the github api directory does not exist" type="ScalaTestRunConfiguration" factoryName="ScalaTest" temporary="true" nameIsGenerated="true" show_console_on_std_err="false" show_console_on_std_out="false">
+    <configuration name="WireMockAppConnectorSpec.ApplicationConnector .downloadTar() should get a error from the github api when trying to get readme of a repository that does not exist" type="ScalaTestRunConfiguration" factoryName="ScalaTest" temporary="true" nameIsGenerated="true" show_console_on_std_err="false" show_console_on_std_out="false">
       <module name="gitHub-ex" />
       <option name="allowRunningInParallel" value="false" />
       <option name="projectPathOnTarget" />
@@ -136,13 +94,13 @@
         <list />
       </option>
       <option name="testKind" value="Test name" />
-      <option name="testClassPath" value="connectors.ApplicationConnectorSpec" />
-      <option name="testName" value="ApplicationConnector .getDirContent() should not return a seq of a user's repos folders and files in a directory from the github api directory does not exist" />
+      <option name="testClassPath" value="connectors.WireMockAppConnectorSpec" />
+      <option name="testName" value="ApplicationConnector .downloadTar() should get a error from the github api when trying to get readme of a repository that does not exist" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ApplicationConnectorSpec.ApplicationConnector .getFileContent() should not return a file from a user's repos from the github api as file does not exist" type="ScalaTestRunConfiguration" factoryName="ScalaTest" temporary="true" nameIsGenerated="true" show_console_on_std_err="false" show_console_on_std_out="false">
+    <configuration name="WireMockAppConnectorSpec.ApplicationConnector .downloadTar() should get repository readme from the github api" type="ScalaTestRunConfiguration" factoryName="ScalaTest" temporary="true" nameIsGenerated="true" show_console_on_std_err="false" show_console_on_std_out="false">
       <module name="gitHub-ex" />
       <option name="allowRunningInParallel" value="false" />
       <option name="projectPathOnTarget" />
@@ -150,13 +108,13 @@
         <list />
       </option>
       <option name="testKind" value="Test name" />
-      <option name="testClassPath" value="connectors.ApplicationConnectorSpec" />
-      <option name="testName" value="ApplicationConnector .getFileContent() should not return a file from a user's repos from the github api as file does not exist" />
+      <option name="testClassPath" value="connectors.WireMockAppConnectorSpec" />
+      <option name="testName" value="ApplicationConnector .downloadTar() should get repository readme from the github api" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ApplicationConnectorSpec.ApplicationConnector .getRepoContent() should not return repos folders and files from the github api as repo does not exist" type="ScalaTestRunConfiguration" factoryName="ScalaTest" temporary="true" nameIsGenerated="true" show_console_on_std_err="false" show_console_on_std_out="false">
+    <configuration name="WireMockAppConnectorSpec.ApplicationConnector .downloadTar() should get repository readme from the github api&#10;ApplicationConnector .downloadTar() should get a error from the github api when trying to get readme of a repository that does not exist" type="ScalaTestRunConfiguration" factoryName="ScalaTest" temporary="true" nameIsGenerated="true" show_console_on_std_err="false" show_console_on_std_out="false">
       <module name="gitHub-ex" />
       <option name="allowRunningInParallel" value="false" />
       <option name="projectPathOnTarget" />
@@ -164,13 +122,13 @@
         <list />
       </option>
       <option name="testKind" value="Test name" />
-      <option name="testClassPath" value="connectors.ApplicationConnectorSpec" />
-      <option name="testName" value="ApplicationConnector .getRepoContent() should not return repos folders and files from the github api as repo does not exist" />
+      <option name="testClassPath" value="connectors.WireMockAppConnectorSpec" />
+      <option name="testName" value="ApplicationConnector .downloadTar() should get repository readme from the github api&#10;ApplicationConnector .downloadTar() should get a error from the github api when trying to get readme of a repository that does not exist" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ApplicationConnectorSpec.ApplicationConnector .getUserRepoInfo() should not return a user's repository from the github api as repo does not exist" type="ScalaTestRunConfiguration" factoryName="ScalaTest" temporary="true" nameIsGenerated="true" show_console_on_std_err="false" show_console_on_std_out="false">
+    <configuration name="WireMockAppConnectorSpec.ApplicationConnector .downloadZip() should download zip from the github api&#10;ApplicationConnector .downloadZip() should get a error from the github api when trying to download zip" type="ScalaTestRunConfiguration" factoryName="ScalaTest" temporary="true" nameIsGenerated="true" show_console_on_std_err="false" show_console_on_std_out="false">
       <module name="gitHub-ex" />
       <option name="allowRunningInParallel" value="false" />
       <option name="projectPathOnTarget" />
@@ -178,19 +136,19 @@
         <list />
       </option>
       <option name="testKind" value="Test name" />
-      <option name="testClassPath" value="connectors.ApplicationConnectorSpec" />
-      <option name="testName" value="ApplicationConnector .getUserRepoInfo() should not return a user's repository from the github api as repo does not exist" />
+      <option name="testClassPath" value="connectors.WireMockAppConnectorSpec" />
+      <option name="testName" value="ApplicationConnector .downloadZip() should download zip from the github api&#10;ApplicationConnector .downloadZip() should get a error from the github api when trying to download zip" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="ScalaTest.ApplicationConnectorSpec" />
-        <item itemvalue="ScalaTest.ApplicationConnectorSpec.ApplicationConnector .getUserRepoInfo() should not return a user's repository from the github api as repo does not exist" />
-        <item itemvalue="ScalaTest.ApplicationConnectorSpec.ApplicationConnector .getFileContent() should not return a file from a user's repos from the github api as file does not exist" />
-        <item itemvalue="ScalaTest.ApplicationConnectorSpec.ApplicationConnector .getDirContent() should not return a seq of a user's repos folders and files in a directory from the github api directory does not exist" />
-        <item itemvalue="ScalaTest.ApplicationConnectorSpec.ApplicationConnector .getRepoContent() should not return repos folders and files from the github api as repo does not exist" />
+        <item itemvalue="ScalaTest.WireMockAppConnectorSpec" />
+        <item itemvalue="ScalaTest.WireMockAppConnectorSpec.ApplicationConnector .downloadZip() should download zip from the github api&#10;ApplicationConnector .downloadZip() should get a error from the github api when trying to download zip" />
+        <item itemvalue="ScalaTest.WireMockAppConnectorSpec.ApplicationConnector .downloadTar() should get a error from the github api when trying to get readme of a repository that does not exist" />
+        <item itemvalue="ScalaTest.WireMockAppConnectorSpec.ApplicationConnector .downloadTar() should get repository readme from the github api" />
+        <item itemvalue="ScalaTest.WireMockAppConnectorSpec.ApplicationConnector .downloadTar() should get repository readme from the github api&#10;ApplicationConnector .downloadTar() should get a error from the github api when trying to get readme of a repository that does not exist" />
       </list>
     </recent_temporary>
   </component>

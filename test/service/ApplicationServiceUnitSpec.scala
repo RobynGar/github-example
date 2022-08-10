@@ -1,10 +1,12 @@
 package service
 
 import baseSpec.BaseSpecWithApplication
+import com.mongodb.internal.bulk.DeleteRequest
 import connectors.ApplicationConnector
 import models._
 import org.scalamock.scalatest.MockFactory
 import play.api.libs.json.{JsValue, Json, OFormat}
+import play.api.mvc.Request
 import play.api.test.FakeRequest
 import repositories.TraitDataRepo
 import services.ApplicationService
@@ -321,6 +323,37 @@ class ApplicationServiceUnitSpec extends BaseSpecWithApplication with MockFactor
       }
     }
   }
+
+  "ApplicationService .deleteFile()" should {
+
+    "add a user from github api to mongodb" in {
+
+      val request: FakeRequest[JsValue] = buildDelete("/github/users/test/repos/testRepo/file/delete/testFile").withBody[JsValue](Json.toJson("delete message"))
+
+      (mockConnector.deleteFile[DeletedReturn](_: String, _: RequestDelete)(_: OFormat[DeletedReturn], _: ExecutionContext))
+        .expects(*, *, *, executionContext)
+        .returning(Future(Right(DeletedReturn(None))))
+        .once()
+      (mockConnector.getFileContent[File](_: String)(_: OFormat[File], _: ExecutionContext))
+        .expects(*, *, *)
+        .returning(Future(Right(file)))
+        .once()
+
+      whenReady(TestApplicationService.deleteFile("test", "testRepo", "testFile", request)) { result =>
+        result shouldBe Right(DeletedReturn(None))
+      }
+    }
+
+//    "unable to return a user from api, incorrect login" in {
+//      (mockConnector.get[User](_: String)(_: OFormat[User], _: ExecutionContext)).expects(*, *, *).returning(Future(Left(APIError.BadAPIResponse(400, "could not find user")))).once()
+//      (mockRepository.create(_: User)).expects(*).returning(Future(Right(apiUser))).never()
+//
+//      whenReady(TestApplicationService.addApiUser(login = "45")) { result =>
+//        result shouldBe Left(APIError.BadAPIResponse(400, "could not add user"))
+//      }
+//    }
+  }
+
 }
 
 

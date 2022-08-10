@@ -103,7 +103,7 @@ class ApplicationService @Inject()(connector: ApplicationConnector, dataReposito
   }
 
 
-  def deleteFile(login: String, repoName: String, filePath: String, deleteCommitMessage: Request[JsValue])(implicit ec: ExecutionContext): Future[Either[APIError, String]] = {
+  def deleteFile(login: String, repoName: String, filePath: String, deleteCommitMessage: Request[JsValue])(implicit ec: ExecutionContext): Future[Either[APIError, DeletedReturn]] = {
     getFileContent(filePath= filePath, login = login, repoName = repoName).flatMap {
       case Right(file) =>
         val deletedRequest = RequestDelete(deleteCommitMessage.body.as[String], file.sha)

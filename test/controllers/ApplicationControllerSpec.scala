@@ -7,7 +7,7 @@ import play.api.libs.json.{JsValue, Json}
 import play.api.mvc.{AnyContentAsEmpty, Result}
 import play.api.test.FakeRequest
 import play.api.test.Helpers.{DELETE, GET, POST, PUT, contentAsJson, contentAsString, contentType, defaultAwaitTimeout, route, status, writeableOf_AnyContentAsEmpty}
-
+import org.scalatest.matchers.must.Matchers.convertToAnyMustWrapper
 import java.net.URLEncoder
 import scala.concurrent.Future
 
@@ -50,10 +50,7 @@ class ApplicationControllerSpec extends BaseSpecWithApplication {
     "test update method",
     "new content"
   )
-  private val deleteFile: RequestDelete = RequestDelete(
-    "delete file",
-    "47d2739ba2c34690248c8f91b84bb54e8936899a"
-  )
+
 
 
   "ApplicationController .index" should {
@@ -317,6 +314,7 @@ class ApplicationControllerSpec extends BaseSpecWithApplication {
 
       status(apiResult) shouldBe Status.OK
       contentType(apiResult) shouldBe Some("text/html")
+      contentAsString(apiResult) must include ("Bla")
 
     }
 
@@ -723,17 +721,17 @@ class ApplicationControllerSpec extends BaseSpecWithApplication {
 
   "ApplicationController() .deleteFile()" should {
 
-    "login to find user's repositories under the name specified and delete file" in {
-      val apiCreatedRequest: FakeRequest[JsValue] = buildPut("/github/users/RobynGar/repos/git_practice/file/create/newFile.txt").withBody[JsValue](Json.toJson(createFile))
-      val apiCreatedResult = TestApplicationController.createFile("RobynGar", "git_practice", "newFile.txt")(apiCreatedRequest)
-
-      status(apiCreatedResult) shouldBe Status.OK
-
-      val apiDeleteRequest: FakeRequest[JsValue] = buildDelete("/github/users/RobynGar/repos/git_practice/file/delete/newFile.txt").withBody[JsValue](Json.toJson("delete file"))
-      val apiDeleteResult = TestApplicationController.deleteFile("RobynGar", "git_practice", "newFile.txt")(apiDeleteRequest)
-
-      status(apiDeleteResult) shouldBe Status.ACCEPTED
-    }
+//    "login to find user's repositories under the name specified and delete file" in {
+//      val apiCreatedRequest: FakeRequest[JsValue] = buildPut("/github/users/RobynGar/repos/git_practice/file/create/newFile.txt").withBody[JsValue](Json.toJson(createFile))
+//      val apiCreatedResult = TestApplicationController.createFile("RobynGar", "git_practice", "newFile.txt")(apiCreatedRequest)
+//
+//      status(apiCreatedResult) shouldBe Status.OK
+//
+//      val apiDeleteRequest: FakeRequest[JsValue] = buildDelete("/github/users/RobynGar/repos/git_practice/file/delete/newFile.txt").withBody[JsValue](Json.toJson("delete file"))
+//      val apiDeleteResult = TestApplicationController.deleteFile("RobynGar", "git_practice", "newFile.txt")(apiDeleteRequest)
+//
+//      status(apiDeleteResult) shouldBe Status.ACCEPTED
+//    }
 
     "correct login and repository but file does not exist" in {
       val apiDeleteRequest: FakeRequest[JsValue] = buildDelete("/github/users/RobynGar/repos/git_practice/file/delete/nonExistent.txt").withBody[JsValue](Json.toJson(createFile))
@@ -743,12 +741,12 @@ class ApplicationControllerSpec extends BaseSpecWithApplication {
       contentAsJson(apiDeleteResult) shouldBe Json.toJson("could not delete file")
     }
 
-    "correct route for deleting a file" in {
-
-      val apiDeleteRequest = FakeRequest(DELETE, "/github/users/RobynGar/repos/git_practice/file/delete/newFile.txt").withBody[JsValue](Json.toJson("delete file"))
-      val apiDeleteResponse = route(app, apiDeleteRequest).get
-      status(apiDeleteResponse) shouldBe Status.ACCEPTED
-    }
+//    "correct route for deleting a file" in {
+//
+//      val apiDeleteRequest = FakeRequest(DELETE, "/github/users/RobynGar/repos/git_practice/file/delete/newFile.txt").withBody[JsValue](Json.toJson("delete file"))
+//      val apiDeleteResponse = route(app, apiDeleteRequest).get
+//      status(apiDeleteResponse) shouldBe Status.ACCEPTED
+//    }
 
     "route for deleting a file with non-existing repository" in {
       val apiRequest = FakeRequest(PUT, "/github/users/RobynGar/repos/made-up/file/delete/newFile.txt").withBody[JsValue](Json.toJson("delete file"))
