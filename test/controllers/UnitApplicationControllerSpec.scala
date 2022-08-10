@@ -1,7 +1,7 @@
 package controllers
 
 import baseSpec.BaseSpecWithApplication
-import models.{APIError, Content, ReturnCreatedFile, User}
+import models.{APIError, Content, DeletedReturn, ReturnCreatedFile, User}
 import org.scalamock.scalatest.MockFactory
 import play.api.http.Status
 import play.api.libs.json.{JsValue, Json}
@@ -10,7 +10,7 @@ import play.api.test.FakeRequest
 import play.api.test.Helpers.{GET, contentAsJson, contentType, defaultAwaitTimeout, route, status, writeableOf_AnyContentAsEmpty}
 import services.ApplicationService
 
-import scala.concurrent.Future
+import scala.concurrent.{ExecutionContext, Future}
 
 class UnitApplicationControllerSpec extends BaseSpecWithApplication with MockFactory{
 
@@ -170,6 +170,33 @@ class UnitApplicationControllerSpec extends BaseSpecWithApplication with MockFac
 
       status(deleteResult) shouldBe Status.BAD_REQUEST
       contentAsJson(deleteResult) shouldBe Json.toJson("could not delete user")
+
+    }
+
+  }
+
+
+  "ApplicationController unit test .deleteFile()" should {
+
+    "find a file in a repository and delete it" in {
+
+
+      val deleteRequest = buildDelete("/github/users/test/repos/testRepo/file/delete/testFile").withBody[JsValue](Json.toJson("delete message"))
+      (mockService.deleteFile(_: String, _: String, _: String, _: Request[JsValue])(_: ExecutionContext)).expects(*, *, *, deleteRequest, executionContext).returning(Future(Right(DeletedReturn(None)))).once()
+      val deleteResult = UnitTestApplicationController.deleteFile("test", "testRepo", "testfile")(deleteRequest)
+
+      status(deleteResult) shouldBe Status.ACCEPTED
+
+    }
+
+    "cannot find a file to delete it in the repository as repository does not exist" in {
+
+      val deleteRequest = buildDelete("/github/users/test/repos/testRepo/file/delete/noFile").withBody[JsValue](Json.toJson("delete message"))
+      (mockService.deleteFile(_: String, _: String, _: String, _: Request[JsValue])(_: ExecutionContext)).expects(*, *, *, deleteRequest, executionContext).returning(Future(Left(APIError.BadAPIResponse(404, "could not delete file")))).once()
+      val deleteResult = UnitTestApplicationController.deleteFile("test", "testRepo", "noFile")(deleteRequest)
+
+      status(deleteResult) shouldBe Status.NOT_FOUND
+      contentAsJson(deleteResult) shouldBe Json.toJson("could not delete file")
 
     }
 

@@ -6,14 +6,23 @@
   <component name="ChangeListManager">
     <list default="true" id="b409524c-8667-4684-be72-0a22047a43d5" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/connectors/ApplicationConnector.scala" beforeDir="false" afterPath="$PROJECT_DIR$/app/connectors/ApplicationConnector.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/ApplicationController.scala" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/ApplicationController.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/DeletedReturn.scala" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/DeletedReturn.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/services/ApplicationService.scala" beforeDir="false" afterPath="$PROJECT_DIR$/app/services/ApplicationService.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.13/classes/connectors/ApplicationConnector.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.13/classes/connectors/ApplicationConnector.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/scala-2.13/test-classes/connectors/WireMockAppConnectorSpec$$anon$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.13/test-classes/connectors/WireMockAppConnectorSpec$$anon$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.13/test-classes/connectors/WireMockAppConnectorSpec$Test.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.13/test-classes/connectors/WireMockAppConnectorSpec$Test.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/scala-2.13/test-classes/connectors/WireMockAppConnectorSpec.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.13/test-classes/connectors/WireMockAppConnectorSpec.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.13/test-classes/helpers/WireMockMethods$DELETE$.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.13/test-classes/helpers/WireMockMethods$DELETE$.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.13/test-classes/helpers/WireMockMethods.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.13/test-classes/helpers/WireMockMethods.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/scala-2.13/test-classes/stubs/ApplicationConnectorStub$.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.13/test-classes/stubs/ApplicationConnectorStub$.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/scala-2.13/test-classes/stubs/ApplicationConnectorStub.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.13/test-classes/stubs/ApplicationConnectorStub.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/connectors/UnitApplicationConnectorSpec.scala" beforeDir="false" afterPath="$PROJECT_DIR$/test/connectors/UnitApplicationConnectorSpec.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test/connectors/WireMockAppConnectorSpec.scala" beforeDir="false" afterPath="$PROJECT_DIR$/test/connectors/WireMockAppConnectorSpec.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test/controllers/ApplicationControllerSpec.scala" beforeDir="false" afterPath="$PROJECT_DIR$/test/controllers/ApplicationControllerSpec.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test/controllers/UnitApplicationControllerSpec.scala" beforeDir="false" afterPath="$PROJECT_DIR$/test/controllers/UnitApplicationControllerSpec.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/helpers/WireMockMethods.scala" beforeDir="false" afterPath="$PROJECT_DIR$/test/helpers/WireMockMethods.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/service/ApplicationServiceUnitSpec.scala" beforeDir="false" afterPath="$PROJECT_DIR$/test/service/ApplicationServiceUnitSpec.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test/stubs/ApplicationConnectorStub.scala" beforeDir="false" afterPath="$PROJECT_DIR$/test/stubs/ApplicationConnectorStub.scala" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -63,22 +72,21 @@
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;
   }
 }</component>
-  <component name="RunManager" selected="ScalaTest.WireMockAppConnectorSpec.ApplicationConnector .getFileContent() should get the content of a user directory from the github api&#10;ApplicationConnector .getFileContent() should get a error from the github api when trying to get content of a user directory">
-    <configuration name="WireMockAppConnectorSpec.ApplicationConnector .getDirContent() should get a user from the github api&#10;ApplicationConnector .getDirContent() should get a error from the github api when trying to get user" type="ScalaTestRunConfiguration" factoryName="ScalaTest" temporary="true" nameIsGenerated="true" show_console_on_std_err="false" show_console_on_std_out="false">
+  <component name="RunManager" selected="ScalaTest.WireMockAppConnectorSpec">
+    <configuration name="WireMockAppConnectorSpec" type="ScalaTestRunConfiguration" factoryName="ScalaTest" temporary="true" nameIsGenerated="true" show_console_on_std_err="false" show_console_on_std_out="false">
       <module name="gitHub-ex" />
       <option name="allowRunningInParallel" value="false" />
       <option name="projectPathOnTarget" />
       <option name="selectedOptions">
         <list />
       </option>
-      <option name="testKind" value="Test name" />
+      <option name="testKind" value="Class" />
       <option name="testClassPath" value="connectors.WireMockAppConnectorSpec" />
-      <option name="testName" value="ApplicationConnector .getDirContent() should get a user from the github api&#10;ApplicationConnector .getDirContent() should get a error from the github api when trying to get user" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="WireMockAppConnectorSpec.ApplicationConnector .getFileContent() should get a error from the github api when trying to get content of a user directory" type="ScalaTestRunConfiguration" factoryName="ScalaTest" temporary="true" nameIsGenerated="true" show_console_on_std_err="false" show_console_on_std_out="false">
+    <configuration name="WireMockAppConnectorSpec.ApplicationConnector .downloadTar() should get a error from the github api when trying to get readme of a repository that does not exist" type="ScalaTestRunConfiguration" factoryName="ScalaTest" temporary="true" nameIsGenerated="true" show_console_on_std_err="false" show_console_on_std_out="false">
       <module name="gitHub-ex" />
       <option name="allowRunningInParallel" value="false" />
       <option name="projectPathOnTarget" />
@@ -87,12 +95,12 @@
       </option>
       <option name="testKind" value="Test name" />
       <option name="testClassPath" value="connectors.WireMockAppConnectorSpec" />
-      <option name="testName" value="ApplicationConnector .getFileContent() should get a error from the github api when trying to get content of a user directory" />
+      <option name="testName" value="ApplicationConnector .downloadTar() should get a error from the github api when trying to get readme of a repository that does not exist" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="WireMockAppConnectorSpec.ApplicationConnector .getFileContent() should get the content of a ser directory from the github api" type="ScalaTestRunConfiguration" factoryName="ScalaTest" temporary="true" nameIsGenerated="true" show_console_on_std_err="false" show_console_on_std_out="false">
+    <configuration name="WireMockAppConnectorSpec.ApplicationConnector .downloadTar() should get repository readme from the github api" type="ScalaTestRunConfiguration" factoryName="ScalaTest" temporary="true" nameIsGenerated="true" show_console_on_std_err="false" show_console_on_std_out="false">
       <module name="gitHub-ex" />
       <option name="allowRunningInParallel" value="false" />
       <option name="projectPathOnTarget" />
@@ -101,12 +109,12 @@
       </option>
       <option name="testKind" value="Test name" />
       <option name="testClassPath" value="connectors.WireMockAppConnectorSpec" />
-      <option name="testName" value="ApplicationConnector .getFileContent() should get the content of a ser directory from the github api" />
+      <option name="testName" value="ApplicationConnector .downloadTar() should get repository readme from the github api" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="WireMockAppConnectorSpec.ApplicationConnector .getFileContent() should get the content of a user directory from the github api&#10;ApplicationConnector .getFileContent() should get a error from the github api when trying to get content of a user directory" type="ScalaTestRunConfiguration" factoryName="ScalaTest" temporary="true" nameIsGenerated="true" show_console_on_std_err="false" show_console_on_std_out="false">
+    <configuration name="WireMockAppConnectorSpec.ApplicationConnector .downloadTar() should get repository readme from the github api&#10;ApplicationConnector .downloadTar() should get a error from the github api when trying to get readme of a repository that does not exist" type="ScalaTestRunConfiguration" factoryName="ScalaTest" temporary="true" nameIsGenerated="true" show_console_on_std_err="false" show_console_on_std_out="false">
       <module name="gitHub-ex" />
       <option name="allowRunningInParallel" value="false" />
       <option name="projectPathOnTarget" />
@@ -115,12 +123,12 @@
       </option>
       <option name="testKind" value="Test name" />
       <option name="testClassPath" value="connectors.WireMockAppConnectorSpec" />
-      <option name="testName" value="ApplicationConnector .getFileContent() should get the content of a user directory from the github api&#10;ApplicationConnector .getFileContent() should get a error from the github api when trying to get content of a user directory" />
+      <option name="testName" value="ApplicationConnector .downloadTar() should get repository readme from the github api&#10;ApplicationConnector .downloadTar() should get a error from the github api when trying to get readme of a repository that does not exist" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="WireMockAppConnectorSpec.ApplicationConnector .getRepoContent() should get a user from the github api&#10;ApplicationConnector .getRepoContent() should get a error from the github api when trying to get user" type="ScalaTestRunConfiguration" factoryName="ScalaTest" temporary="true" nameIsGenerated="true" show_console_on_std_err="false" show_console_on_std_out="false">
+    <configuration name="WireMockAppConnectorSpec.ApplicationConnector .downloadZip() should download zip from the github api&#10;ApplicationConnector .downloadZip() should get a error from the github api when trying to download zip" type="ScalaTestRunConfiguration" factoryName="ScalaTest" temporary="true" nameIsGenerated="true" show_console_on_std_err="false" show_console_on_std_out="false">
       <module name="gitHub-ex" />
       <option name="allowRunningInParallel" value="false" />
       <option name="projectPathOnTarget" />
@@ -129,18 +137,18 @@
       </option>
       <option name="testKind" value="Test name" />
       <option name="testClassPath" value="connectors.WireMockAppConnectorSpec" />
-      <option name="testName" value="ApplicationConnector .getRepoContent() should get a user from the github api&#10;ApplicationConnector .getRepoContent() should get a error from the github api when trying to get user" />
+      <option name="testName" value="ApplicationConnector .downloadZip() should download zip from the github api&#10;ApplicationConnector .downloadZip() should get a error from the github api when trying to download zip" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="ScalaTest.WireMockAppConnectorSpec.ApplicationConnector .getFileContent() should get the content of a user directory from the github api&#10;ApplicationConnector .getFileContent() should get a error from the github api when trying to get content of a user directory" />
-        <item itemvalue="ScalaTest.WireMockAppConnectorSpec.ApplicationConnector .getFileContent() should get a error from the github api when trying to get content of a user directory" />
-        <item itemvalue="ScalaTest.WireMockAppConnectorSpec.ApplicationConnector .getFileContent() should get the content of a ser directory from the github api" />
-        <item itemvalue="ScalaTest.WireMockAppConnectorSpec.ApplicationConnector .getDirContent() should get a user from the github api&#10;ApplicationConnector .getDirContent() should get a error from the github api when trying to get user" />
-        <item itemvalue="ScalaTest.WireMockAppConnectorSpec.ApplicationConnector .getRepoContent() should get a user from the github api&#10;ApplicationConnector .getRepoContent() should get a error from the github api when trying to get user" />
+        <item itemvalue="ScalaTest.WireMockAppConnectorSpec" />
+        <item itemvalue="ScalaTest.WireMockAppConnectorSpec.ApplicationConnector .downloadZip() should download zip from the github api&#10;ApplicationConnector .downloadZip() should get a error from the github api when trying to download zip" />
+        <item itemvalue="ScalaTest.WireMockAppConnectorSpec.ApplicationConnector .downloadTar() should get a error from the github api when trying to get readme of a repository that does not exist" />
+        <item itemvalue="ScalaTest.WireMockAppConnectorSpec.ApplicationConnector .downloadTar() should get repository readme from the github api" />
+        <item itemvalue="ScalaTest.WireMockAppConnectorSpec.ApplicationConnector .downloadTar() should get repository readme from the github api&#10;ApplicationConnector .downloadTar() should get a error from the github api when trying to get readme of a repository that does not exist" />
       </list>
     </recent_temporary>
   </component>
