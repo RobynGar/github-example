@@ -1,13 +1,14 @@
 package controllers
 
 import baseSpec.BaseSpecWithApplication
-import models.{APIError, Content, DeletedReturn, ReturnCreatedFile, User}
+import models.{APIError, DeletedReturn, FFitems, File, Repository, User}
 import org.scalamock.scalatest.MockFactory
+import org.scalatest.matchers.must.Matchers.convertToAnyMustWrapper
 import play.api.http.Status
 import play.api.libs.json.{JsValue, Json}
-import play.api.mvc.{AnyContent, AnyContentAsEmpty, Request, Result}
+import play.api.mvc.{AnyContent, Request, Result}
 import play.api.test.FakeRequest
-import play.api.test.Helpers.{GET, contentAsJson, contentType, defaultAwaitTimeout, route, status, writeableOf_AnyContentAsEmpty}
+import play.api.test.Helpers.{contentAsJson, contentAsString, contentType, defaultAwaitTimeout, status}
 import services.ApplicationService
 
 import scala.concurrent.{ExecutionContext, Future}
@@ -36,10 +37,25 @@ class UnitApplicationControllerSpec extends BaseSpecWithApplication with MockFac
     20
   )
 
-
-
   private val emptyUserSequence: Seq[User] = Seq()
   private val userSequence: Seq[User] = Seq(user)
+
+  private val repo: Repository = Repository(
+    "test",
+    "testRepo",
+    false,
+    "testURL",
+    "testhtmlURL"
+  )
+  private val foldersFiles: FFitems = FFitems(
+    "test folder", "dir", "app/service", "testurl", "shalala"
+  )
+  private val file: File = File(
+    "test file", "fggtyhuyju", "file", "service/ApplicationService", "http://", "testurl", "base64", "decoded url"
+  )
+
+  private val repoNameList: List[String] = List("test", "repo1", "repo2", "test-repo1")
+
 
   "ApplicationController unit test .index" should {
 
@@ -175,6 +191,289 @@ class UnitApplicationControllerSpec extends BaseSpecWithApplication with MockFac
 
   }
 
+  "ApplicationController unit test .readFromAPI()" should {
+
+    "find a user from github api and return" in {
+
+      val request = buildGet("/github/users/api/test")
+      (mockService.getUser(_: String)(_: ExecutionContext))
+        .expects(*, executionContext)
+        .returning(Future(Right(user)))
+        .once()
+      val result = UnitTestApplicationController.readFromAPI("test")(request)
+
+      status(result) shouldBe Status.OK
+      contentAsJson(result) shouldBe Json.toJson(user)
+
+    }
+    "unable to find a user from github api" in {
+
+      val request = buildGet("/github/users/api/noUser")
+      (mockService.getUser(_: String)(_: ExecutionContext))
+        .expects(*, executionContext)
+        .returning(Future(Left(APIError.BadAPIResponse(400, "could not find user"))))
+        .once()
+      val result = UnitTestApplicationController.readFromAPI("test")(request)
+
+      status(result) shouldBe Status.BAD_REQUEST
+      contentAsJson(result) shouldBe Json.toJson("could not find user")
+
+    }
+
+  }
+
+  "ApplicationController unit test .addFromAPI()" should {
+
+    "find a user from github api and add to database" in {
+
+      val request = buildGet("/github/users/add/test")
+
+      (mockService.addApiUser(_: String))
+        .expects(*)
+        .returning(Future(Right(user)))
+        .once()
+
+      val result = UnitTestApplicationController.addFromAPI("test")(request)
+
+      status(result) shouldBe Status.CREATED
+      contentAsJson(result) shouldBe Json.toJson(user)
+
+    }
+    "unable to find a user from github api and  cannot add to database" in {
+
+      val request = buildGet("/github/users/add/test")
+
+      (mockService.addApiUser(_: String))
+        .expects(*)
+        .returning(Future(Left(APIError.BadAPIResponse(400, "could not add user"))))
+        .once()
+
+      val result = UnitTestApplicationController.addFromAPI("test")(request)
+
+      status(result) shouldBe Status.BAD_REQUEST
+      contentAsJson(result) shouldBe Json.toJson("could not add user")
+
+    }
+  }
+
+  "ApplicationController unit test .showUser()" should {
+
+    "find a user from github api and display on html page" in {
+
+      val request = buildGet("/github/userspage/test")
+
+      (mockService.getUser(_: String)(_: ExecutionContext))
+        .expects(*, executionContext)
+        .returning(Future(Right(user)))
+        .once()
+
+      val result = UnitTestApplicationController.showUser("test")(request)
+
+      status(result) shouldBe Status.OK
+      contentType(result) shouldBe Some("text/html")
+      contentAsString(result) must include ("test")
+
+    }
+
+    "unable to find a user from github api return error" in {
+
+      val request = buildGet("/github/userspage/noUser")
+
+      (mockService.getUser(_: String)(_: ExecutionContext))
+        .expects(*, executionContext)
+        .returning(Future(Left(APIError.BadAPIResponse(400, "could not find user"))))
+        .once()
+
+      val result = UnitTestApplicationController.showUser("noUser")(request)
+
+      status(result) shouldBe Status.BAD_REQUEST
+      contentAsJson(result) shouldBe Json.toJson("could not find user")
+
+    }
+  }
+
+
+  "ApplicationController unit test .usersRepos()" should {
+
+    "find a user's repos from github api and display list on html page" in {
+
+      val request = buildGet("/github/users/test/repos")
+
+      (mockService.getUsersRepo(_: String)(_: ExecutionContext))
+        .expects(*, executionContext)
+        .returning(Future(Right(repoNameList)))
+        .once()
+
+      val result = UnitTestApplicationController.usersRepos("test")(request)
+
+      status(result) shouldBe Status.OK
+      contentType(result) shouldBe Some("text/html")
+      contentAsString(result) must include ("repo1")
+
+    }
+
+    "unable to find a user's repos from github api return error" in {
+
+      val request = buildGet("/github/users/noUser/repos")
+
+      (mockService.getUsersRepo(_: String)(_: ExecutionContext))
+        .expects(*, executionContext)
+        .returning(Future(Left(APIError.BadAPIResponse(400, "could not find any repositories associated with that user"))))
+        .once()
+
+      val result = UnitTestApplicationController.usersRepos("noUser")(request)
+
+      status(result) shouldBe Status.BAD_REQUEST
+      contentAsJson(result) shouldBe Json.toJson("could not find any repositories associated with that user")
+
+    }
+  }
+
+  "ApplicationController unit test .usersRepoInfo()" should {
+
+    "find a user's repos from github api and display repos information on html page" in {
+
+      val request = buildGet("/github/users/test/testRepo")
+
+      (mockService.getUsersRepoInfo(_: String, _: String)(_: ExecutionContext))
+        .expects(*, *, executionContext)
+        .returning(Future(Right(repo)))
+        .once()
+
+      val result = UnitTestApplicationController.usersRepoInfo("test", "testRepo")(request)
+
+      status(result) shouldBe Status.OK
+      contentType(result) shouldBe Some("text/html")
+      contentAsString(result) must include ("testRepo")
+
+    }
+
+    "unable to find repository and display information from github api return error" in {
+
+      val request = buildGet("/github/users/test/noRepo")
+
+      (mockService.getUsersRepoInfo(_: String, _: String)(_: ExecutionContext))
+        .expects(*, *, executionContext)
+        .returning(Future(Left(APIError.BadAPIResponse(400, "could not find any repositories information"))))
+        .once()
+
+      val result = UnitTestApplicationController.usersRepoInfo("test", "noRepo")(request)
+
+      status(result) shouldBe Status.BAD_REQUEST
+      contentAsJson(result) shouldBe Json.toJson("could not find any repositories information")
+
+    }
+  }
+
+  "ApplicationController unit test .repoContent()" should {
+
+    "find a user's repos and display content from github api on html page" in {
+
+      val request = buildGet("/github/users/test/repos/testRepo")
+
+      (mockService.getRepoContent(_: String, _: String)(_: ExecutionContext))
+        .expects(*, *, executionContext)
+        .returning(Future(Right(Seq(foldersFiles))))
+        .once()
+
+      val result = UnitTestApplicationController.repoContent("test", "testRepo")(request)
+
+      status(result) shouldBe Status.OK
+      contentType(result) shouldBe Some("text/html")
+      contentAsString(result) must include ("Folders")
+
+    }
+
+    "unable to find repository and display content from github api return error" in {
+
+      val request = buildGet("/github/users/test/repos/noRepo")
+
+      (mockService.getRepoContent(_: String, _: String)(_: ExecutionContext))
+        .expects(*, *, executionContext)
+        .returning(Future(Left(APIError.BadAPIResponse(400, "could not find any repository files"))))
+        .once()
+
+      val result = UnitTestApplicationController.repoContent("test", "testRepo")(request)
+
+      status(result) shouldBe Status.BAD_REQUEST
+      contentAsJson(result) shouldBe Json.toJson("could not find any repository files")
+
+    }
+  }
+
+  "ApplicationController unit test .dirContent()" should {
+
+    "find a user's directory and display content from github api on html page" in {
+
+      val request = buildGet("/github/users/test/repos/testRepo/testDir")
+
+      (mockService.getDirContent(_: String, _: String, _: String)(_: ExecutionContext))
+        .expects(*, *, *, executionContext)
+        .returning(Future(Right(Seq(foldersFiles))))
+        .once()
+
+      val result = UnitTestApplicationController.dirContent("testDir", "test", "testRepo")(request)
+
+      status(result) shouldBe Status.OK
+      contentType(result) shouldBe Some("text/html")
+      contentAsString(result) must include ("Folders")
+
+    }
+
+    "unable to find directory and display content from github api return error" in {
+
+        val request = buildGet("/github/users/test/repos/testRepo/noDir")
+
+        (mockService.getDirContent(_: String, _: String, _: String)(_: ExecutionContext))
+          .expects(*, *, *, executionContext)
+          .returning(Future(Left(APIError.BadAPIResponse(400, "could not find any repository files"))))
+          .once()
+
+        val result = UnitTestApplicationController.dirContent("noDir", "test", "testRepo")(request)
+
+
+      status(result) shouldBe Status.BAD_REQUEST
+      contentAsJson(result) shouldBe Json.toJson("could not find any repository files")
+
+    }
+  }
+
+  "ApplicationController unit test .fileContent()" should {
+
+    "find a user's directory and display content from github api on html page" in {
+
+      val request = buildGet("/github/users/test/repos/testRepo/testDir")
+
+      (mockService.getFileContent(_: String, _: String, _: String)(_: ExecutionContext))
+        .expects(*, *, *, executionContext)
+        .returning(Future(Right(file)))
+        .once()
+
+      val result = UnitTestApplicationController.fileContent("testFile", "test", "testRepo")(request)
+
+      status(result) shouldBe Status.OK
+      contentType(result) shouldBe Some("text/html")
+      contentAsString(result) must include ("test file")
+
+    }
+
+//    "unable to find directory and display content from github api return error" in {
+//
+//      val request = buildGet("/github/users/test/repos/testRepo/noDir")
+//
+//      (mockService.getDirContent(_: String, _: String, _: String)(_: ExecutionContext))
+//        .expects(*, *, *, executionContext)
+//        .returning(Future(Left(APIError.BadAPIResponse(400, "could not find any repository files"))))
+//        .once()
+//
+//      val result = UnitTestApplicationController.dirContent("noDir", "test", "testRepo")(request)
+//
+//
+//      status(result) shouldBe Status.BAD_REQUEST
+//      contentAsJson(result) shouldBe Json.toJson("could not find any repository files")
+//
+//    }
+  }
 
   "ApplicationController unit test .deleteFile()" should {
 
