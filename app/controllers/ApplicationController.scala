@@ -110,7 +110,7 @@ class ApplicationController @Inject()(val controllerComponents: ControllerCompon
 
   def createFile(login: String, repoName: String, filePath: String): Action[JsValue] = Action.async(parse.json) { implicit request =>
     service.createFile(login = login, repoName = repoName, filePath= filePath, newFile= request).map{
-      case Right(file) => Ok(Json.toJson(file))
+      case Right(file) => Created(Json.toJson(file))
       case Left(error) => Status(error.httpResponseStatus)(Json.toJson(error.reason))
     }
   }

@@ -96,7 +96,7 @@ class ApplicationService @Inject()(connector: ApplicationConnector, dataReposito
         case Right(file) =>
           connector.updateFile[ReturnCreatedFile](validatedFile, s"https://api.github.com/repos/$login/$repoName/contents/$filePath", file.sha)
         case Left(value) =>
-          Future(Left(APIError.BadAPIResponse(400, "could not update file")))
+          Future(Left(APIError.BadAPIResponse(400, "could not find file to update")))
       }
     case JsError(errors) => Future(Left(APIError.BadAPIResponse(400, "could not validate file")))
     }
