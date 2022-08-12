@@ -620,7 +620,7 @@ class ApplicationControllerSpec extends BaseSpecWithApplication {
       val apiCreatedRequest: FakeRequest[JsValue] = buildPut("/github/users/RobynGar/repos/git_practice/file/create/newFile3.txt").withBody[JsValue](Json.toJson(createFile))
       val apiCreatedResult = TestApplicationController.createFile("RobynGar", "git_practice", "newFile3.txt")(apiCreatedRequest)
 
-      status(apiCreatedResult) shouldBe Status.OK
+      status(apiCreatedResult) shouldBe Status.CREATED
 
       val apiDeleteRequest: FakeRequest[JsValue] = buildDelete("/github/users/RobynGar/repos/git_practice/file/delete/newFile3.txt").withBody[JsValue](Json.toJson("delete file"))
       val apiDeleteResult = TestApplicationController.deleteFile("RobynGar", "git_practice", "newFile3.txt")(apiDeleteRequest)
@@ -633,7 +633,7 @@ class ApplicationControllerSpec extends BaseSpecWithApplication {
       val apiCreatedRequest: FakeRequest[JsValue] = buildPut("/github/users/RobynGar/repos/git_practice/file/create/app/newFile3.txt").withBody[JsValue](Json.toJson(createFile))
       val apiCreatedResult = TestApplicationController.createFile("RobynGar", "git_practice", "app/newFile3.txt")(apiCreatedRequest)
 
-      status(apiCreatedResult) shouldBe Status.OK
+      status(apiCreatedResult) shouldBe Status.CREATED
 
       val apiDeleteRequest: FakeRequest[JsValue] = buildDelete("/github/users/RobynGar/repos/git_practice/file/delete/app/newFile3.txt").withBody[JsValue](Json.toJson("delete file"))
       val apiDeleteResult = TestApplicationController.deleteFile("RobynGar", "git_practice", "app/newFile3.txt")(apiDeleteRequest)
@@ -678,7 +678,7 @@ class ApplicationControllerSpec extends BaseSpecWithApplication {
       val apiCreatedRequest: FakeRequest[JsValue] = buildPut("/github/users/RobynGar/repos/git_practice/file/create/newFile.txt").withBody[JsValue](Json.toJson(createFile))
       val apiCreatedResult = TestApplicationController.createFile("RobynGar", "git_practice", "newFile.txt")(apiCreatedRequest)
 
-      status(apiCreatedResult) shouldBe Status.OK
+      status(apiCreatedResult) shouldBe Status.CREATED
 
       val apiUpdateRequest: FakeRequest[JsValue] = buildPut("/github/users/RobynGar/repos/git_practice/file/update/newFile.txt").withBody[JsValue](Json.toJson(updateFile))
       val apiUpdateResult = TestApplicationController.updateFile("RobynGar", "git_practice", "newFile.txt")(apiUpdateRequest)

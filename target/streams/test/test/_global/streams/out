@@ -1,10 +1,8 @@
 [0m[[0m[0mdebug[0m] [0m[0mjavaOptions: Vector()[0m
 [0m[[0m[0mdebug[0m] [0m[0mForking tests - parallelism = false[0m
 [0m[[0m[0mdebug[0m] [0m[0mCreate a single-thread test executor[0m
-[0m[[0m[0mdebug[0m] [0m[0mRunner for org.scalatest.tools.Framework produced 8 initial tasks for 8 tests.[0m
-[0m[[0m[0mdebug[0m] [0m[0m  Running TaskDef(connectors.ConnectorWireMockSpec, sbt.ForkMain$SubclassFingerscan@3a40397a, false, [SuiteSelector])[0m
-[0m[[0m[0minfo[0m] [0m[0m[32mConnectorWireMockSpec:[0m[0m
-[0m[[0m[0mdebug[0m] [0m[0m  Running TaskDef(controllers.UnitApplicationControllerSpec, sbt.ForkMain$SubclassFingerscan@1cd3c1a6, false, [SuiteSelector])[0m
+[0m[[0m[0mdebug[0m] [0m[0mRunner for org.scalatest.tools.Framework produced 7 initial tasks for 7 tests.[0m
+[0m[[0m[0mdebug[0m] [0m[0m  Running TaskDef(controllers.UnitApplicationControllerSpec, sbt.ForkMain$SubclassFingerscan@4cc47081, false, [SuiteSelector])[0m
 [0m[[0m[0minfo[0m] [0m[0m[32mUnitApplicationControllerSpec:[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[32mApplicationController unit test .index[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[32m- should return when there are no users[0m[0m
@@ -21,27 +19,77 @@
 [0m[[0m[0minfo[0m] [0m[0m[32mApplicationController unit test .delete()[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[32m- should find a user in the database by login and delete[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[32m- should cannot find a user in the database as login does not exist do not delete[0m[0m
-[0m[[0m[0mdebug[0m] [0m[0m    Produced 0 nested tasks and 10 events.[0m
-[0m[[0m[0mdebug[0m] [0m[0m  Running TaskDef(controllers.HomeControllerSpec, sbt.ForkMain$SubclassFingerscan@2bad0c53, false, [SuiteSelector])[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mApplicationController unit test .readFromAPI()[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should find a user from github api and return[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should unable to find a user from github api[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mApplicationController unit test .addFromAPI()[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should find a user from github api and add to database[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should unable to find a user from github api and  cannot add to database[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mApplicationController unit test .showUser()[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should find a user from github api and display on html page[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should unable to find a user from github api return error[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mApplicationController unit test .usersRepos()[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should find a user's repos from github api and display list on html page[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should unable to find a user's repos from github api return error[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mApplicationController unit test .usersRepoInfo()[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should find a user's repos from github api and display repos information on html page[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should unable to find repository and display information from github api return error[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mApplicationController unit test .repoContent()[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should find a user's repos and display content from github api on html page[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should unable to find repository and display content from github api return error[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mApplicationController unit test .dirContent()[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should find a user's directory and display content from github api on html page[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should unable to find directory and display content from github api return error[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mApplicationController unit test .fileContent()[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should find a user's file and display content from github api on html page[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should unable to find a user's file and return error[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mApplicationController unit test .createFile()[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should create a file and add it to repository specified on github api[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should cannot create a file as repository does not exist[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should cannot validate create file request return error[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mApplicationController unit test .updateFile()[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should update a file in the repository specified on github api[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should cannot update a file as file does not exist[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should cannot validate create file request return error[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should cannot validate return of updating a file[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mApplicationController unit test .deleteFile()[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should find a file in a repository and delete it[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should cannot find a file to delete it in the repository as repository does not exist[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mApplicationController unit test .repoReadMe()[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should find a repositories readme and return[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should cannot find readme for a repository[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mApplicationController unit test .dirReadMe()[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should find a directories readme and return[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should cannot find readme for a directory[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should cannot validate the return of finding a readme for a directory[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should error that is not anticipated caught be wildcard case[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mApplicationController unit test .downloadTar()[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should download a repositories tarball[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should cannot find repository to download tarball[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mApplicationController unit test .downloadZip()[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should download a repositories zipball[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should cannot find repository to download zipball[0m[0m
+[0m[[0m[0mdebug[0m] [0m[0m    Produced 0 nested tasks and 45 events.[0m
+[0m[[0m[0mdebug[0m] [0m[0m  Running TaskDef(controllers.HomeControllerSpec, sbt.ForkMain$SubclassFingerscan@1a9f4974, false, [SuiteSelector])[0m
 [0m[[0m[0minfo[0m] [0m[0m[32mHomeControllerSpec:[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[32mHomeController GET[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[32m- should render the index page from a new instance of controller[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[32m- should render the index page from the application[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[32m- should render the index page from the router[0m[0m
 [0m[[0m[0mdebug[0m] [0m[0m    Produced 0 nested tasks and 3 events.[0m
-[0m[[0m[0mdebug[0m] [0m[0m  Running TaskDef(controllers.ApplicationControllerSpec, sbt.ForkMain$SubclassFingerscan@43675833, false, [SuiteSelector])[0m
+[0m[[0m[0mdebug[0m] [0m[0m  Running TaskDef(controllers.ApplicationControllerSpec, sbt.ForkMain$SubclassFingerscan@1f7b4bd4, false, [SuiteSelector])[0m
 [0m[[0m[0minfo[0m] [0m[0m[32mApplicationControllerSpec:[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[32mApplicationController .index[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[32m- should return when there are no users[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m- should return all users in the database *** FAILED ***[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  List() was not equal to List(User(test,now,Some(test location),2,0)) (ApplicationControllerSpec.scala:76)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should return all users in the database[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[32m- should return json from the router[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[32mApplicationController .create()[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[32m- should create a user in the database[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[32m- should try to create a user in the database with wrong format[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[32m- should return json from the router[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[32mApplicationController .read()[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[32m- should find a user in the database by login[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m- should find a user in the database by login *** FAILED ***[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  400 was not equal to 200 (ApplicationControllerSpec.scala:134)[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[32m- should cannot find a user in the database as login does not exist[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[32m- should return json from the router[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[32mApplicationController .update()[0m[0m
@@ -67,52 +115,63 @@
 [0m[[0m[0minfo[0m] [0m[0m[32m- should login to find user's repositories and return their names in list [0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[32m- should use incorrect login return api error[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[32m- should use login for user with no repositories, return api error[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[32m- should render the repositories page from the router[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m- should render the repositories page from the router *** FAILED ***[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  400 was not equal to 200 (ApplicationControllerSpec.scala:388)[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[32m- should unable to render the repositories Page due to incorrect username from the router[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[32mApplicationController() .usersRepoInfo()[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[32m- should login to find user's repositories under the name specified and return info about that repo [0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m- should login to find user's repositories under the name specified and return info about that repo  *** FAILED ***[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  400 was not equal to 200 (ApplicationControllerSpec.scala:411)[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[32m- should use incorrect login return api error[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[32m- should use login for user with no repositories, return api error[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[32m- should render the repoInfo page from the router[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m- should render the repoInfo page from the router *** FAILED ***[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  400 was not equal to 200 (ApplicationControllerSpec.scala:441)[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[32m- should unable to render the repositories Page due to incorrect username from the router[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[32mApplicationController() .repoContent()[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[32m- should login to find user's repositories under the name specified and return info about that repo [0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m- should login to find user's repositories under the name specified and return info about that repo  *** FAILED ***[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  400 was not equal to 200 (ApplicationControllerSpec.scala:464)[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[32m- should use incorrect login return api error[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[32m- should use login for user with no repositories, return api error[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[32m- should render the repoInfo page from the router[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m- should render the repoInfo page from the router *** FAILED ***[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  400 was not equal to 200 (ApplicationControllerSpec.scala:494)[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[32m- should unable to render the repositories Page due to incorrect username from the router[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[32mApplicationController() .dirContent()[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[32m- should login to find user's repositories under the name specified and return folders and files form that repo [0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m- should login to find user's repositories under the name specified and return folders and files form that repo  *** FAILED ***[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  400 was not equal to 200 (ApplicationControllerSpec.scala:518)[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[32m- should use incorrect login return api error[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[32m- should use login for user with no repositories, return api error[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[32m- should render the foldersAndFiles page from the router[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m- should render the foldersAndFiles page from the router *** FAILED ***[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  400 was not equal to 200 (ApplicationControllerSpec.scala:548)[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[32m- should unable to render the foldersAndFiles Page due to incorrect username from the router[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[32mApplicationController() .fileContent()[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[32m- should login to find user's repositories under the name specified and return folders and files form that repo [0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m- should login to find user's repositories under the name specified and return folders and files form that repo  *** FAILED ***[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  400 was not equal to 200 (ApplicationControllerSpec.scala:571)[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[32m- should use incorrect login return api error[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[32m- should use login for user with no repositories, return api error[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[32m- should render the foldersAndFiles page from the router[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m- should render the foldersAndFiles page from the router *** FAILED ***[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  400 was not equal to 200 (ApplicationControllerSpec.scala:601)[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[32m- should unable to render the foldersAndFiles Page due to incorrect username from the router[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[32mApplicationController() .createFile()[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[32m- should login to find user's repositories under the name specified and create file[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[32m- should create folder and file[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[32m- should correct login but repository does not exist[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m- should login to find user's repositories under the name specified and create file *** FAILED ***[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  400 was not equal to 201 (ApplicationControllerSpec.scala:623)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m- should create folder and file *** FAILED ***[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  400 was not equal to 201 (ApplicationControllerSpec.scala:636)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m- should correct login but repository does not exist *** FAILED ***[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  "could not create file" was not equal to "could not find create file" (ApplicationControllerSpec.scala:649)[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[32m- should unable to validate file trying to be created[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[32m- should correct route for creating a file[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m- should correct route for creating a file *** FAILED ***[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  400 was not equal to 200 (ApplicationControllerSpec.scala:664)[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[32m- should route for creating a file with non-existing repository[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[32mApplicationController() .updateFile()[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[31m- should login to find user's repositories under the name specified and update file *** FAILED ***[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  400 was not equal to 200 (ApplicationControllerSpec.scala:683)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[32m- should correct login and repository but file does not exist[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  400 was not equal to 201 (ApplicationControllerSpec.scala:681)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m- should correct login and repository but file does not exist *** FAILED ***[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  "could not find file to update" was not equal to "could not update file" (ApplicationControllerSpec.scala:695)[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[32m- should unable to validate file trying to be created[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[32m- should correct route for updating a file[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m- should correct route for updating a file *** FAILED ***[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  400 was not equal to 200 (ApplicationControllerSpec.scala:711)[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[32m- should route for creating a file with non-existing repository[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[32mApplicationController() .deleteFile()[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m- should login to find user's repositories under the name specified and delete file *** FAILED ***[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  400 was not equal to 200 (ApplicationControllerSpec.scala:730)[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[32m- should correct login and repository but file does not exist[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m- should correct route for deleting a file *** FAILED ***[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  404 was not equal to 202 (ApplicationControllerSpec.scala:750)[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[32m- should route for deleting a file with non-existing repository[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[32mApplicationController() .repoReadMe()[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[32m- should login to find user's repositories under the name specified and get readMe[0m[0m
@@ -138,8 +197,8 @@
 [0m[[0m[0minfo[0m] [0m[0m[32m- should return ok http response for zip download from the router and when a branch is provided[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[32m- should correct login but no repository exists[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[32m- should route for getting readme with non-existing repository[0m[0m
-[0m[[0m[0mdebug[0m] [0m[0m    Produced 0 nested tasks and 83 events.[0m
-[0m[[0m[0mdebug[0m] [0m[0m  Running TaskDef(connectors.UnitApplicationConnectorSpec, sbt.ForkMain$SubclassFingerscan@22ef38ab, false, [SuiteSelector])[0m
+[0m[[0m[0mdebug[0m] [0m[0m    Produced 0 nested tasks and 81 events.[0m
+[0m[[0m[0mdebug[0m] [0m[0m  Running TaskDef(connectors.UnitApplicationConnectorSpec, sbt.ForkMain$SubclassFingerscan@67d393e, false, [SuiteSelector])[0m
 [0m[[0m[0minfo[0m] [0m[0m[32mUnitApplicationConnectorSpec:[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[32mApplicationConnector .get()[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[32m- should get a user from the github api[0m[0m
@@ -148,58 +207,80 @@
 [0m[[0m[0minfo[0m] [0m[0m[32m- should get a user's repo name list from the github api[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[32m- should return error when trying to get a user repo names from the github api when user does not exist[0m[0m
 [0m[[0m[0mdebug[0m] [0m[0m    Produced 0 nested tasks and 4 events.[0m
-[0m[[0m[0mdebug[0m] [0m[0m  Running TaskDef(connectors.ApplicationConnectorSpec, sbt.ForkMain$SubclassFingerscan@1a0991b3, false, [SuiteSelector])[0m
+[0m[[0m[0mdebug[0m] [0m[0m  Running TaskDef(connectors.ApplicationConnectorSpec, sbt.ForkMain$SubclassFingerscan@4835dc4f, false, [SuiteSelector])[0m
 [0m[[0m[0minfo[0m] [0m[0m[32mApplicationConnectorSpec:[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[32mApplicationConnector .get()[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[31m- should return a user from the github api *** FAILED ***[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  Right(User(octocat,2011-01-25T18:44:36Z,Some(San Francisco),6548,9)) was not equal to Right(User(octocat,2011-01-25T18:44:36Z,Some(San Francisco),6537,9)) (ApplicationConnectorSpec.scala:43)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  Left(BadAPIResponse(400,could not find user)) was not equal to Right(User(octocat,2011-01-25T18:44:36Z,Some(San Francisco),6537,9)) (ApplicationConnectorSpec.scala:43)[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[32m- should not return a user from the github api as username does not exist[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[32mApplicationConnector .getUserRepo()[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[32m- should return a user's repository names from the github api[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m- should return a user's repository names from the github api *** FAILED ***[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  Left(BadAPIResponse(400,could not find any repositories associated with that user)) was not equal to Right(List("octocat", "boysenberry-repo-1", "git-consortium", "MIT License", "hello-worId", "Hello-World", "linguist", "MIT License", "octocat.github.io", "Spoon-Knife", "test-repo1")) (ApplicationConnectorSpec.scala:64)[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[32m- should not return a user's repository names from the github api as user does not exist[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[32mApplicationConnector .getRepoContent()[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[32m- should return a seq of a user's repos folders and files from the github api[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m- should return a seq of a user's repos folders and files from the github api *** FAILED ***[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  Left(BadAPIResponse(400,could not find any repository files)) was not equal to Right(List(FFitems(README.md,file,README.md,https://api.github.com/repos/octocat/boysenberry-repo-1/contents/README.md?ref=master,dbae7e62708b8f5fe7fdc474e4cc27f63cea6a3d), FFitems(READTHIS.md,file,READTHIS.md,https://api.github.com/repos/octocat/boysenberry-repo-1/contents/READTHIS.md?ref=master,e69de29bb2d1d6434b8b29ae775ad8c2e48c5391), FFitems(_config.yml,file,_config.yml,https://api.github.com/repos/octocat/boysenberry-repo-1/contents/_config.yml?ref=master,06bbaece1a494835566a68b5032ee3474d92fd65))) (ApplicationConnectorSpec.scala:84)[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[32m- should not return repos folders and files from the github api as repo does not exist[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[32mApplicationConnector .getDirContent()[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[32m- should return a seq of a user's repos folders and files in a directory from the github api[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m- should return a seq of a user's repos folders and files in a directory from the github api *** FAILED ***[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  Left(BadAPIResponse(400,could not find any repository files)) was not equal to Right(List(FFitems(git-linguist,file,bin/git-linguist,https://api.github.com/repos/octocat/linguist/contents/bin/git-linguist?ref=master,9e525bb5b0719762180d8f961cb75129b88506e8), FFitems(linguist,file,bin/linguist,https://api.github.com/repos/octocat/linguist/contents/bin/linguist?ref=master,d1d9c306eca3750bff68941932e13b2ffdf5b50c))) (ApplicationConnectorSpec.scala:104)[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[32m- should not return a seq of a user's repos folders and files in a directory from the github api directory does not exist[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[32mApplicationConnector .getFileContent()[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[32m- should return a file from a user's repos from the github api[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m- should return a file from a user's repos from the github api *** FAILED ***[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  Left(BadAPIResponse(400,could not find any file contents)) was not equal to Right(File(README,980a0d5f19a64b4b30a87d4206aade58726b60e3,file,README,https://api.github.com/repos/octocat/Hello-World/contents/README?ref=master,https://raw.githubusercontent.com/octocat/Hello-World/master/README,SGVsbG8gV29ybGQhCg==[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  ,Hello World![0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  )) (ApplicationConnectorSpec.scala:123)[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[32m- should not return a file from a user's repos from the github api as file does not exist[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[32mApplicationConnector .getUserRepoInfo()[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[32m- should return a user's repository from the github api[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m- should return a user's repository from the github api *** FAILED ***[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  Left(BadAPIResponse(400,could not find any repositories information)) was not equal to Right(Repository(octocat,Hello-World,false,https://api.github.com/repos/octocat/Hello-World,https://github.com/octocat/Hello-World)) (ApplicationConnectorSpec.scala:144)[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[32m- should not return a user's repository from the github api as repo does not exist[0m[0m
 [0m[[0m[0mdebug[0m] [0m[0m    Produced 0 nested tasks and 12 events.[0m
-[0m[[0m[0mdebug[0m] [0m[0m  Running TaskDef(connectors.WireMockAppConnectorSpec, sbt.ForkMain$SubclassFingerscan@4d642a75, false, [SuiteSelector])[0m
+[0m[[0m[0mdebug[0m] [0m[0m  Running TaskDef(connectors.WireMockAppConnectorSpec, sbt.ForkMain$SubclassFingerscan@421268f3, false, [SuiteSelector])[0m
 [0m[[0m[0minfo[0m] [0m[0m[32mWireMockAppConnectorSpec:[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[32mApplicationConnector .get()[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m- should get a user from the github api *** FAILED ***[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  java.lang.IllegalArgumentException: Invalid URL user/test/octocat[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at play.api.libs.ws.ahc.StandaloneAhcWSClient.validate(StandaloneAhcWSClient.scala:100)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at play.api.libs.ws.ahc.StandaloneAhcWSClient.url(StandaloneAhcWSClient.scala:56)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at play.api.libs.ws.ahc.AhcWSClient.url(AhcWSClient.scala:37)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at connectors.ApplicationConnector.get(ApplicationConnector.scala:19)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at connectors.WireMockAppConnectorSpec$$anon$1.<init>(WireMockAppConnectorSpec.scala:34)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at connectors.WireMockAppConnectorSpec.$anonfun$new$2(WireMockAppConnectorSpec.scala:27)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at org.scalatest.OutcomeOf.outcomeOf(OutcomeOf.scala:85)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at org.scalatest.OutcomeOf.outcomeOf$(OutcomeOf.scala:83)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at org.scalatest.OutcomeOf$.outcomeOf(OutcomeOf.scala:104)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at org.scalatest.Transformer.apply(Transformer.scala:22)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  ...[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  Cause: java.lang.IllegalArgumentException: user/test/octocat could not be parsed into a proper Uri, missing scheme[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at play.shaded.ahc.org.asynchttpclient.uri.Uri.create(Uri.java:70)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at play.shaded.ahc.org.asynchttpclient.uri.Uri.create(Uri.java:62)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at play.api.libs.ws.ahc.StandaloneAhcWSClient.validate(StandaloneAhcWSClient.scala:97)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at play.api.libs.ws.ahc.StandaloneAhcWSClient.url(StandaloneAhcWSClient.scala:56)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at play.api.libs.ws.ahc.AhcWSClient.url(AhcWSClient.scala:37)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at connectors.ApplicationConnector.get(ApplicationConnector.scala:19)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at connectors.WireMockAppConnectorSpec$$anon$1.<init>(WireMockAppConnectorSpec.scala:34)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at connectors.WireMockAppConnectorSpec.$anonfun$new$2(WireMockAppConnectorSpec.scala:27)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at org.scalatest.OutcomeOf.outcomeOf(OutcomeOf.scala:85)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at org.scalatest.OutcomeOf.outcomeOf$(OutcomeOf.scala:83)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  ...[0m[0m
-[0m[[0m[0mdebug[0m] [0m[0m    Produced 0 nested tasks and 1 events.[0m
-[0m[[0m[0mdebug[0m] [0m[0m  Running TaskDef(service.ApplicationServiceUnitSpec, sbt.ForkMain$SubclassFingerscan@ed52974, false, [SuiteSelector])[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should get a user from the github api[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should get a error from the github api when trying to get user[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mApplicationConnector .getUserRepo()[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should get a user repositories from the github api[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should get a error from the github api when trying to get user repositories[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mApplicationConnector .getRepoContent()[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should get a user repository content from the github api[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should get a error from the github api when trying to get user repository content[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mApplicationConnector .getDirContent()[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should get the content of a ser directory from the github api[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should get a error from the github api when trying to get content of a user directory[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mApplicationConnector .getFileContent()[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should get the content of a user directory from the github api[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should get a error from the github api when trying to get content of a user directory[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mApplicationConnector .getUserRepoInfo()[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should get information about a user repository from the github api[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should get a error from the github api when trying to get information of a user repository[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mApplicationConnector .createFile()[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should create a file in a user repository in the github api[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should get a error from the github api when trying to create a file in a user's repository[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mApplicationConnector .updateFile()[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should update a file in a user repository in the github api[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should get a error from the github api when trying to update a file in a user's repository[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mApplicationConnector .deleteFile()[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should delete a file in a user repository in the github api[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should get a error from the github api when trying to delete a file in a user's repository[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mApplicationConnector .repoReadMe()[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should get repository readme from the github api[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should get a error from the github api when trying to get readme of a repository that does not exist[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mApplicationConnector .dirReadMe()[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should get directory readme from the github api[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should get a not-found error from the github api when trying to get readme of a directory that does not exist[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should get a UNPROCESSABLE-entity error from the github api when trying to get readme of a directory that does not exist[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should get a 200 http response but unable to validate response as a file[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mApplicationConnector .downloadTar()[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should download tarball from the github api[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should get a error when trying to download tarball from the github api[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mApplicationConnector .downloadZip()[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should download zip from the github api[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should get a error from the github api when trying to download zip[0m[0m
+[0m[[0m[0mdebug[0m] [0m[0m    Produced 0 nested tasks and 28 events.[0m
+[0m[[0m[0mdebug[0m] [0m[0m  Running TaskDef(service.ApplicationServiceUnitSpec, sbt.ForkMain$SubclassFingerscan@12a09209, false, [SuiteSelector])[0m
 [0m[[0m[0minfo[0m] [0m[0m[32mApplicationServiceUnitSpec:[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[32mApplicationService .index[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[32m- should return when there are no users[0m[0m
@@ -239,24 +320,37 @@
 [0m[[0m[0minfo[0m] [0m[0m[32mApplicationService .addApiUser()[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[32m- should add a user from github api to mongodb[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[32m- should unable to return a user from api, incorrect login[0m[0m
-[0m[[0m[0mdebug[0m] [0m[0m    Produced 0 nested tasks and 26 events.[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mApplicationService .createFile()[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should create file on github api in a repository[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should unable to create file in a repository on the github api as unable to validate return from api [0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should unable to create file in a repository on the github api as unable to validate create file request[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mApplicationService .updateFile()[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should update file on github api in a repository[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m- should unable to update file in a repository on the github api as unable to find file *** FAILED ***[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  Left(BadAPIResponse(400,could not find file to update)) was not equal to Left(BadAPIResponse(400,could not update file)) (ApplicationServiceUnitSpec.scala:408)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should unable to update file in a repository on the github api as unable to validate update request[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should unable to update file in a repository on the github api as unable to validate api's return[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mApplicationService .deleteFile()[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should delete file from github api repository[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should unable to delete file from github api repository as repository does not exist[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should unable to delete file from github api repository[0m[0m
+[0m[[0m[0mdebug[0m] [0m[0m    Produced 0 nested tasks and 36 events.[0m
 [0m[[0m[0mdebug[0m] [0m[0mRunner for com.novocode.junit.JUnitFramework produced 0 initial tasks for 0 tests.[0m
 [0m[[0m[0minfo[0m] [0m[0mScalaTest[0m
-[0m[[0m[0minfo[0m] [0m[0m[36mRun completed in 32 seconds, 322 milliseconds.[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[36mTotal number of tests run: 139[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[36mSuites: completed 8, aborted 0[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[36mTests: succeeded 133, failed 6, canceled 0, ignored 0, pending 0[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m*** 6 TESTS FAILED ***[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[36mRun completed in 24 seconds, 525 milliseconds.[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[36mTotal number of tests run: 209[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[36mSuites: completed 7, aborted 0[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[36mTests: succeeded 185, failed 24, canceled 0, ignored 0, pending 0[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m*** 24 TESTS FAILED ***[0m[0m
 [0m[[0m[0mdebug[0m] [0m[0mSummary for JUnit not available.[0m
-[0m[[0m[31merror[0m] [0m[0mFailed: Total 139, Failed 6, Errors 0, Passed 133[0m
+[0m[[0m[31merror[0m] [0m[0mFailed: Total 209, Failed 24, Errors 0, Passed 185[0m
 [0m[[0m[0mdebug[0m] [0m[0mPassed tests:[0m
-[0m[[0m[0mdebug[0m] [0m[0m	connectors.ConnectorWireMockSpec[0m
 [0m[[0m[0mdebug[0m] [0m[0m	controllers.UnitApplicationControllerSpec[0m
 [0m[[0m[0mdebug[0m] [0m[0m	controllers.HomeControllerSpec[0m
 [0m[[0m[0mdebug[0m] [0m[0m	connectors.UnitApplicationConnectorSpec[0m
-[0m[[0m[0mdebug[0m] [0m[0m	service.ApplicationServiceUnitSpec[0m
+[0m[[0m[0mdebug[0m] [0m[0m	connectors.WireMockAppConnectorSpec[0m
 [0m[[0m[31merror[0m] [0m[0mFailed tests:[0m
 [0m[[0m[31merror[0m] [0m[0m	controllers.ApplicationControllerSpec[0m
 [0m[[0m[31merror[0m] [0m[0m	connectors.ApplicationConnectorSpec[0m
-[0m[[0m[31merror[0m] [0m[0m	connectors.WireMockAppConnectorSpec[0m
+[0m[[0m[31merror[0m] [0m[0m	service.ApplicationServiceUnitSpec[0m
 [0m[[0m[31merror[0m] [0m[0m(Test / [31mtest[0m) sbt.TestsFailedException: Tests unsuccessful[0m
