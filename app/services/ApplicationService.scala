@@ -37,12 +37,7 @@ class ApplicationService @Inject()(connector: ApplicationConnector, dataReposito
   }
 
 
-  def addApiUser(login: String): Future[Either[APIError, User]]= {
-    getUser(login = login) flatMap  {
-      case Right(user: User) => dataRepository.create(user)
-      case Left(error) => Future(Left(APIError.BadAPIResponse(400, "could not add user")))
-    }
-  }
+
 
   def update(login: String, input: Request[JsValue]): Future[Either[APIError, User]] = {
     input.body.validate[User] match {
@@ -62,7 +57,12 @@ class ApplicationService @Inject()(connector: ApplicationConnector, dataReposito
     connector.get[User](s"https://api.github.com/users/$login")
   }
 
-
+  def addApiUser(login: String): Future[Either[APIError, User]]= {
+    getUser(login = login) flatMap  {
+      case Right(user: User) => dataRepository.create(user)
+      case Left(error) => Future(Left(APIError.BadAPIResponse(400, "could not add user")))
+    }
+  }
   def getUsersRepo(login: String)(implicit ec: ExecutionContext): Future[Either[APIError, List[String]]] = {
     connector.getUserRepo[Repository](s"https://api.github.com/users/$login/repos")
   }
@@ -75,11 +75,11 @@ class ApplicationService @Inject()(connector: ApplicationConnector, dataReposito
     connector.getRepoContent[FFitems](s"https://api.github.com/repos/$login/$repoName/contents")
   }
 
-  def getDirContent(urlOverride: Option[String] = None, dirName: String, login: String, repoName: String)(implicit ec: ExecutionContext): Future[Either[APIError, Seq[FFitems]]] = {
+  def getDirContent(dirName: String, login: String, repoName: String)(implicit ec: ExecutionContext): Future[Either[APIError, Seq[FFitems]]] = {
     connector.getDirContent[FFitems](s"https://api.github.com/repos/$login/$repoName/contents/$dirName")
   }
 
-  def getFileContent(urlOverride: Option[String] = None, filePath: String, login: String, repoName: String)(implicit ec: ExecutionContext): Future[Either[APIError, File]] = {
+  def getFileContent(filePath: String, login: String, repoName: String)(implicit ec: ExecutionContext): Future[Either[APIError, File]] = {
     connector.getFileContent[File](s"https://api.github.com/repos/$login/$repoName/contents/$filePath")
   }
 
@@ -96,7 +96,7 @@ class ApplicationService @Inject()(connector: ApplicationConnector, dataReposito
         case Right(file) =>
           connector.updateFile[ReturnCreatedFile](validatedFile, s"https://api.github.com/repos/$login/$repoName/contents/$filePath", file.sha)
         case Left(value) =>
-          Future(Left(APIError.BadAPIResponse(400, "could not update file")))
+          Future(Left(APIError.BadAPIResponse(400, "could not find file to update")))
       }
     case JsError(errors) => Future(Left(APIError.BadAPIResponse(400, "could not validate file")))
     }

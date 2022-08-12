@@ -1,18 +1,19 @@
 package controllers
 
 import baseSpec.BaseSpecWithApplication
-import models.{APIError, Content, DeletedReturn, ReturnCreatedFile, User}
+import models.{APIError, Content, CreateFile, DeletedReturn, FFitems, File, Repository, ReturnCreatedFile, User}
 import org.scalamock.scalatest.MockFactory
+import org.scalatest.matchers.must.Matchers.convertToAnyMustWrapper
 import play.api.http.Status
 import play.api.libs.json.{JsValue, Json}
-import play.api.mvc.{AnyContent, AnyContentAsEmpty, Request, Result}
+import play.api.mvc.{AnyContent, Request, Result}
 import play.api.test.FakeRequest
-import play.api.test.Helpers.{GET, contentAsJson, contentType, defaultAwaitTimeout, route, status, writeableOf_AnyContentAsEmpty}
+import play.api.test.Helpers.{contentAsJson, contentAsString, contentType, defaultAwaitTimeout, status}
 import services.ApplicationService
 
 import scala.concurrent.{ExecutionContext, Future}
 
-class UnitApplicationControllerSpec extends BaseSpecWithApplication with MockFactory{
+class UnitApplicationControllerSpec extends BaseSpecWithApplication with MockFactory {
 
   val mockService: ApplicationService = mock[ApplicationService]
 
@@ -36,21 +37,36 @@ class UnitApplicationControllerSpec extends BaseSpecWithApplication with MockFac
     20
   )
 
-
-
   private val emptyUserSequence: Seq[User] = Seq()
   private val userSequence: Seq[User] = Seq(user)
+
+  private val repo: Repository = Repository(
+    "test",
+    "testRepo",
+    false,
+    "testURL",
+    "testhtmlURL"
+  )
+  private val foldersFiles: FFitems = FFitems(
+    "test folder", "dir", "app/service", "testurl", "shalala"
+  )
+  private val file: File = File(
+    "test file", "fggtyhuyju", "file", "service/ApplicationService", "http://", "testurl", "base64", "decoded url"
+  )
+
+  private val repoNameList: List[String] = List("test", "repo1", "repo2", "test-repo1")
+
 
   "ApplicationController unit test .index" should {
 
     "return when there are no users" in {
 
-          val request: FakeRequest[AnyContent] = buildGet("/github/users")
-          (() => mockService.index()).expects().returning(Future(Right(emptyUserSequence))).once()
-          val indexResult: Future[Result] = UnitTestApplicationController.index()(request)
+      val request: FakeRequest[AnyContent] = buildGet("/github/users")
+      (() => mockService.index()).expects().returning(Future(Right(emptyUserSequence))).once()
+      val indexResult: Future[Result] = UnitTestApplicationController.index()(request)
 
-          status(indexResult) shouldBe Status.OK
-          contentAsJson(indexResult).as[Seq[User]] shouldBe emptyUserSequence
+      status(indexResult) shouldBe Status.OK
+      contentAsJson(indexResult).as[Seq[User]] shouldBe emptyUserSequence
 
 
     }
@@ -175,6 +191,402 @@ class UnitApplicationControllerSpec extends BaseSpecWithApplication with MockFac
 
   }
 
+  "ApplicationController unit test .readFromAPI()" should {
+
+    "find a user from github api and return" in {
+
+      val request = buildGet("/github/users/api/test")
+      (mockService.getUser(_: String)(_: ExecutionContext))
+        .expects(*, executionContext)
+        .returning(Future(Right(user)))
+        .once()
+      val result = UnitTestApplicationController.readFromAPI("test")(request)
+
+      status(result) shouldBe Status.OK
+      contentAsJson(result) shouldBe Json.toJson(user)
+
+    }
+    "unable to find a user from github api" in {
+
+      val request = buildGet("/github/users/api/noUser")
+      (mockService.getUser(_: String)(_: ExecutionContext))
+        .expects(*, executionContext)
+        .returning(Future(Left(APIError.BadAPIResponse(400, "could not find user"))))
+        .once()
+      val result = UnitTestApplicationController.readFromAPI("test")(request)
+
+      status(result) shouldBe Status.BAD_REQUEST
+      contentAsJson(result) shouldBe Json.toJson("could not find user")
+
+    }
+
+  }
+
+  "ApplicationController unit test .addFromAPI()" should {
+
+    "find a user from github api and add to database" in {
+
+      val request = buildGet("/github/users/add/test")
+
+      (mockService.addApiUser(_: String))
+        .expects(*)
+        .returning(Future(Right(user)))
+        .once()
+
+      val result = UnitTestApplicationController.addFromAPI("test")(request)
+
+      status(result) shouldBe Status.CREATED
+      contentAsJson(result) shouldBe Json.toJson(user)
+
+    }
+    "unable to find a user from github api and  cannot add to database" in {
+
+      val request = buildGet("/github/users/add/test")
+
+      (mockService.addApiUser(_: String))
+        .expects(*)
+        .returning(Future(Left(APIError.BadAPIResponse(400, "could not add user"))))
+        .once()
+
+      val result = UnitTestApplicationController.addFromAPI("test")(request)
+
+      status(result) shouldBe Status.BAD_REQUEST
+      contentAsJson(result) shouldBe Json.toJson("could not add user")
+
+    }
+  }
+
+  "ApplicationController unit test .showUser()" should {
+
+    "find a user from github api and display on html page" in {
+
+      val request = buildGet("/github/userspage/test")
+
+      (mockService.getUser(_: String)(_: ExecutionContext))
+        .expects(*, executionContext)
+        .returning(Future(Right(user)))
+        .once()
+
+      val result = UnitTestApplicationController.showUser("test")(request)
+
+      status(result) shouldBe Status.OK
+      contentType(result) shouldBe Some("text/html")
+      contentAsString(result) must include("test")
+
+    }
+
+    "unable to find a user from github api return error" in {
+
+      val request = buildGet("/github/userspage/noUser")
+
+      (mockService.getUser(_: String)(_: ExecutionContext))
+        .expects(*, executionContext)
+        .returning(Future(Left(APIError.BadAPIResponse(400, "could not find user"))))
+        .once()
+
+      val result = UnitTestApplicationController.showUser("noUser")(request)
+
+      status(result) shouldBe Status.BAD_REQUEST
+      contentAsJson(result) shouldBe Json.toJson("could not find user")
+
+    }
+  }
+
+
+  "ApplicationController unit test .usersRepos()" should {
+
+    "find a user's repos from github api and display list on html page" in {
+
+      val request = buildGet("/github/users/test/repos")
+
+      (mockService.getUsersRepo(_: String)(_: ExecutionContext))
+        .expects(*, executionContext)
+        .returning(Future(Right(repoNameList)))
+        .once()
+
+      val result = UnitTestApplicationController.usersRepos("test")(request)
+
+      status(result) shouldBe Status.OK
+      contentType(result) shouldBe Some("text/html")
+      contentAsString(result) must include("repo1")
+
+    }
+
+    "unable to find a user's repos from github api return error" in {
+
+      val request = buildGet("/github/users/noUser/repos")
+
+      (mockService.getUsersRepo(_: String)(_: ExecutionContext))
+        .expects(*, executionContext)
+        .returning(Future(Left(APIError.BadAPIResponse(400, "could not find any repositories associated with that user"))))
+        .once()
+
+      val result = UnitTestApplicationController.usersRepos("noUser")(request)
+
+      status(result) shouldBe Status.BAD_REQUEST
+      contentAsJson(result) shouldBe Json.toJson("could not find any repositories associated with that user")
+
+    }
+  }
+
+  "ApplicationController unit test .usersRepoInfo()" should {
+
+    "find a user's repos from github api and display repos information on html page" in {
+
+      val request = buildGet("/github/users/test/testRepo")
+
+      (mockService.getUsersRepoInfo(_: String, _: String)(_: ExecutionContext))
+        .expects(*, *, executionContext)
+        .returning(Future(Right(repo)))
+        .once()
+
+      val result = UnitTestApplicationController.usersRepoInfo("test", "testRepo")(request)
+
+      status(result) shouldBe Status.OK
+      contentType(result) shouldBe Some("text/html")
+      contentAsString(result) must include("testRepo")
+
+    }
+
+    "unable to find repository and display information from github api return error" in {
+
+      val request = buildGet("/github/users/test/noRepo")
+
+      (mockService.getUsersRepoInfo(_: String, _: String)(_: ExecutionContext))
+        .expects(*, *, executionContext)
+        .returning(Future(Left(APIError.BadAPIResponse(400, "could not find any repositories information"))))
+        .once()
+
+      val result = UnitTestApplicationController.usersRepoInfo("test", "noRepo")(request)
+
+      status(result) shouldBe Status.BAD_REQUEST
+      contentAsJson(result) shouldBe Json.toJson("could not find any repositories information")
+
+    }
+  }
+
+  "ApplicationController unit test .repoContent()" should {
+
+    "find a user's repos and display content from github api on html page" in {
+
+      val request = buildGet("/github/users/test/repos/testRepo")
+
+      (mockService.getRepoContent(_: String, _: String)(_: ExecutionContext))
+        .expects(*, *, executionContext)
+        .returning(Future(Right(Seq(foldersFiles))))
+        .once()
+
+      val result = UnitTestApplicationController.repoContent("test", "testRepo")(request)
+
+      status(result) shouldBe Status.OK
+      contentType(result) shouldBe Some("text/html")
+      contentAsString(result) must include("Folders")
+
+    }
+
+    "unable to find repository and display content from github api return error" in {
+
+      val request = buildGet("/github/users/test/repos/noRepo")
+
+      (mockService.getRepoContent(_: String, _: String)(_: ExecutionContext))
+        .expects(*, *, executionContext)
+        .returning(Future(Left(APIError.BadAPIResponse(400, "could not find any repository files"))))
+        .once()
+
+      val result = UnitTestApplicationController.repoContent("test", "testRepo")(request)
+
+      status(result) shouldBe Status.BAD_REQUEST
+      contentAsJson(result) shouldBe Json.toJson("could not find any repository files")
+
+    }
+  }
+
+  "ApplicationController unit test .dirContent()" should {
+
+    "find a user's directory and display content from github api on html page" in {
+
+      val request = buildGet("/github/users/test/repos/testRepo/testDir")
+
+      (mockService.getDirContent(_: String, _: String, _: String)(_: ExecutionContext))
+        .expects(*, *, *, executionContext)
+        .returning(Future(Right(Seq(foldersFiles))))
+        .once()
+
+      val result = UnitTestApplicationController.dirContent("testDir", "test", "testRepo")(request)
+
+      status(result) shouldBe Status.OK
+      contentType(result) shouldBe Some("text/html")
+      contentAsString(result) must include("Folders")
+
+    }
+
+    "unable to find directory and display content from github api return error" in {
+
+      val request = buildGet("/github/users/test/repos/testRepo/noDir")
+
+      (mockService.getDirContent(_: String, _: String, _: String)(_: ExecutionContext))
+        .expects(*, *, *, executionContext)
+        .returning(Future(Left(APIError.BadAPIResponse(400, "could not find any repository files"))))
+        .once()
+
+      val result = UnitTestApplicationController.dirContent("noDir", "test", "testRepo")(request)
+
+
+      status(result) shouldBe Status.BAD_REQUEST
+      contentAsJson(result) shouldBe Json.toJson("could not find any repository files")
+
+    }
+  }
+
+  "ApplicationController unit test .fileContent()" should {
+
+    "find a user's file and display content from github api on html page" in {
+
+      val request = buildGet("/github/users/test/repos/testRepo/file/testFile")
+
+      (mockService.getFileContent(_: String, _: String, _: String)(_: ExecutionContext))
+        .expects(*, *, *, executionContext)
+        .returning(Future(Right(file)))
+        .once()
+
+      val result = UnitTestApplicationController.fileContent("testFile", "test", "testRepo")(request)
+
+      status(result) shouldBe Status.OK
+      contentType(result) shouldBe Some("text/html")
+      contentAsString(result) must include("test file")
+
+    }
+
+    "unable to find a user's file and return error" in {
+
+      val request = buildGet("/github/users/test/repos/testRepo/file/noFile")
+
+      (mockService.getFileContent(_: String, _: String, _: String)(_: ExecutionContext))
+        .expects(*, *, *, executionContext)
+        .returning(Future(Left(APIError.BadAPIResponse(400, "could not find any file contents"))))
+        .once()
+
+      val result = UnitTestApplicationController.fileContent("noFile", "test", "testRepo")(request)
+
+      status(result) shouldBe Status.BAD_REQUEST
+      contentAsJson(result) shouldBe Json.toJson("could not find any file contents")
+
+    }
+  }
+
+  "ApplicationController unit test .createFile()" should {
+
+    "create a file and add it to repository specified on github api" in {
+
+      val request = buildPut("/github/users/test/repos/testRepo/file/create/newFile.txt").withBody(Json.toJson(CreateFile("add file", "content of new file")))
+
+      (mockService.createFile(_: String, _: String, _: String, _: Request[JsValue])(_: ExecutionContext))
+        .expects(*, *, *, *, executionContext)
+        .returning(Future(Right(ReturnCreatedFile(Content("newFile.txt", "newFile.txt", "file")))))
+        .once()
+
+      val result = UnitTestApplicationController.createFile("test", "testRepo", "newFile.txt")(request)
+
+      status(result) shouldBe Status.CREATED
+      contentAsJson(result) shouldBe Json.toJson(ReturnCreatedFile(Content("newFile.txt", "newFile.txt", "file")))
+    }
+
+
+    "cannot create a file as repository does not exist" in {
+
+      val request = buildPut("/github/users/test/repos/noRepo/file/create/newFile.txt").withBody(Json.toJson(CreateFile("add file", "content of new file")))
+
+      (mockService.createFile(_: String, _: String, _: String, _: Request[JsValue])(_: ExecutionContext))
+        .expects(*, *, *, *, executionContext)
+        .returning(Future(Left(APIError.BadAPIResponse(400, "could not create file"))))
+        .once()
+
+      val result = UnitTestApplicationController.createFile("testFile", "test", "testRepo")(request)
+
+      status(result) shouldBe Status.BAD_REQUEST
+      contentAsJson(result) shouldBe Json.toJson("could not create file")
+    }
+
+    "cannot validate create file request return error" in {
+
+      val request = buildPut("/github/users/test/repos/noRepo/file/create/newFile.txt").withBody(Json.obj())
+
+      (mockService.createFile(_: String, _: String, _: String, _: Request[JsValue])(_: ExecutionContext))
+        .expects(*, *, *, *, executionContext)
+        .returning(Future(Left(APIError.BadAPIResponse(400, "could not validate file"))))
+        .once()
+
+      val result = UnitTestApplicationController.createFile("testFile", "test", "testRepo")(request)
+
+      status(result) shouldBe Status.BAD_REQUEST
+      contentAsJson(result) shouldBe Json.toJson("could not validate file")
+    }
+  }
+
+  "ApplicationController unit test .updateFile()" should {
+
+    "update a file in the repository specified on github api" in {
+
+      val request = buildPut("/github/users/test/repos/testRepo/file/create/newFile.txt").withBody(Json.toJson(CreateFile("update file", "updated content of file")))
+
+      (mockService.updateFile(_: String, _: String, _: String, _: Request[JsValue])(_: ExecutionContext))
+        .expects(*, *, *, *, executionContext)
+        .returning(Future(Right(ReturnCreatedFile(Content("newFile.txt", "newFile.txt", "file")))))
+        .once()
+
+      val result = UnitTestApplicationController.updateFile("test", "testRepo", "newFile.txt")(request)
+
+      status(result) shouldBe Status.OK
+      contentAsJson(result) shouldBe Json.toJson(ReturnCreatedFile(Content("newFile.txt", "newFile.txt", "file")))
+    }
+
+
+    "cannot update a file as file does not exist" in {
+
+      val request = buildPut("/github/users/test/repos/testRepo/file/create/noFile.txt").withBody(Json.toJson(CreateFile("update file", "updated content of file")))
+
+      (mockService.updateFile(_: String, _: String, _: String, _: Request[JsValue])(_: ExecutionContext))
+        .expects(*, *, *, *, executionContext)
+        .returning(Future(Left(APIError.BadAPIResponse(400, "could not find file to update"))))
+        .once()
+
+      val result = UnitTestApplicationController.updateFile("test", "testRepo", "newFile.txt")(request)
+
+      status(result) shouldBe Status.BAD_REQUEST
+      contentAsJson(result) shouldBe Json.toJson("could not find file to update")
+    }
+
+    "cannot validate create file request return error" in {
+
+      val request = buildPut("/github/users/test/repos/testRepo/file/create/noFile.txt").withBody(Json.obj())
+
+      (mockService.updateFile(_: String, _: String, _: String, _: Request[JsValue])(_: ExecutionContext))
+        .expects(*, *, *, *, executionContext)
+        .returning(Future(Left(APIError.BadAPIResponse(400, "could not validate file"))))
+        .once()
+
+      val result = UnitTestApplicationController.updateFile("test", "testRepo", "newFile.txt")(request)
+
+      status(result) shouldBe Status.BAD_REQUEST
+      contentAsJson(result) shouldBe Json.toJson("could not validate file")
+    }
+
+    "cannot validate return of updating a file" in {
+
+      val request = buildPut("/github/users/test/repos/testRepo/file/create/noFile.txt").withBody(Json.toJson(CreateFile("update file", "updated content of file")))
+
+      (mockService.updateFile(_: String, _: String, _: String, _: Request[JsValue])(_: ExecutionContext))
+        .expects(*, *, *, *, executionContext)
+        .returning(Future(Left(APIError.BadAPIResponse(400, "could not update file"))))
+        .once()
+
+      val result = UnitTestApplicationController.updateFile("test", "testRepo", "newFile.txt")(request)
+
+      status(result) shouldBe Status.BAD_REQUEST
+      contentAsJson(result) shouldBe Json.toJson("could not update file")
+    }
+  }
+
 
   "ApplicationController unit test .deleteFile()" should {
 
@@ -202,9 +614,161 @@ class UnitApplicationControllerSpec extends BaseSpecWithApplication with MockFac
 
   }
 
+  "ApplicationController unit test .repoReadMe()" should {
+
+    "find a repositories readme and return" in {
+
+      val request = buildGet("/github/users/test/repos/testRepo/get/readme")
+      (mockService.repoReadMe(_: String, _: String)(_: ExecutionContext))
+        .expects(*, *, executionContext)
+        .returning(Future(Right(file))).once()
+      val result = UnitTestApplicationController.repoReadMe("test", "testRepo")(request)
+
+      status(result) shouldBe Status.OK
+      contentType(result) shouldBe Some("text/html")
+      contentAsString(result) must include("test")
+
+    }
+
+    "cannot find readme for a repository" in {
+
+      val request = buildGet("/github/users/test/repos/testRepo/get/readme")
+      (mockService.repoReadMe(_: String, _: String)(_: ExecutionContext))
+        .expects(*, *, executionContext)
+        .returning(Future(Left(APIError.BadAPIResponse(400, "could not find readme for this repository")))).once()
+      val result = UnitTestApplicationController.repoReadMe("test", "testRepo")(request)
+
+      status(result) shouldBe Status.BAD_REQUEST
+      contentAsJson(result) shouldBe Json.toJson("could not find readme for this repository")
+
+    }
+
+  }
+
+  "ApplicationController unit test .dirReadMe()" should {
+
+    "find a directories readme and return" in {
+
+      val request = buildGet("/github/users/test/repos/testRepo/get/readme/testDir")
+      (mockService.dirReadMe(_: String, _: String, _: String)(_: ExecutionContext))
+        .expects(*, *, *, executionContext)
+        .returning(Future(Right(file))).once()
+      val result = UnitTestApplicationController.dirReadMe("test", "testRepo", "testDir")(request)
+
+      status(result) shouldBe Status.OK
+      contentType(result) shouldBe Some("text/html")
+      contentAsString(result) must include("test")
+
+    }
+
+    "cannot find readme for a directory" in {
+
+      val request = buildGet("/github/users/test/repos/testRepo/get/readme/testDir")
+      (mockService.dirReadMe(_: String, _: String, _: String)(_: ExecutionContext))
+        .expects(*, *, *, executionContext)
+        .returning(Future(Left(APIError.BadAPIResponse(404, "resource not found")))).once()
+      val result = UnitTestApplicationController.dirReadMe("test", "testRepo", "testDir")(request)
+
+      status(result) shouldBe Status.NOT_FOUND
+      contentAsJson(result) shouldBe Json.toJson("resource not found")
+
+    }
+
+    "cannot validate the return of finding a readme for a directory" in {
+
+      val request = buildGet("/github/users/test/repos/testRepo/get/readme/testDir")
+      (mockService.dirReadMe(_: String, _: String, _: String)(_: ExecutionContext))
+        .expects(*, *, *, executionContext)
+        .returning(Future(Left(APIError.BadAPIResponse(400, "could not validate as file")))).once()
+      val result = UnitTestApplicationController.dirReadMe("test", "testRepo", "testDir")(request)
+
+      status(result) shouldBe Status.BAD_REQUEST
+      contentAsJson(result) shouldBe Json.toJson("could not validate as file")
+
+    }
+
+
+    "error that is not anticipated caught be wildcard case" in {
+
+      val request = buildGet("/github/users/test/repos/testRepo/get/readme/testDir")
+      (mockService.dirReadMe(_: String, _: String, _: String)(_: ExecutionContext))
+        .expects(*, *, *, executionContext)
+        .returning(Future(Left(APIError.BadAPIResponse(400, "could not find a readme file for this directory")))).once()
+      val result = UnitTestApplicationController.dirReadMe("test", "testRepo", "testDir")(request)
+
+      status(result) shouldBe Status.BAD_REQUEST
+      contentAsJson(result) shouldBe Json.toJson("could not find a readme file for this directory")
+
+    }
+
+  }
+
+  "ApplicationController unit test .downloadTar()" should {
+
+    "download a repositories tarball" in {
+
+      val request = buildGet("/github/users/test/repos/testRepo/download/tarball")
+      (mockService.downloadTar(_: String, _: String, _: Option[String])(_: ExecutionContext))
+        .expects(*, *, *, executionContext)
+        .returning(Future(Right(302))).once()
+      val result = UnitTestApplicationController.downloadTar("test", "testRepo", None)(request)
+
+      status(result) shouldBe Status.OK
+      contentAsJson(result) shouldBe Json.toJson("Downloaded")
+
+    }
+
+    "cannot find repository to download tarball" in {
+
+      val request = buildGet("/github/users/test/repos/noRepo/download/tarball")
+      (mockService.downloadTar(_: String, _: String, _: Option[String])(_: ExecutionContext))
+        .expects(*, *, *, executionContext)
+        .returning(Future(Left(APIError.BadAPIResponse(400, "could not download tar")))).once()
+      val result = UnitTestApplicationController.downloadTar("test", "noRepo", None)(request)
+
+      status(result) shouldBe Status.BAD_REQUEST
+      contentAsJson(result) shouldBe Json.toJson("could not download tar")
+
+    }
+
+  }
+
+
+  "ApplicationController unit test .downloadZip()" should {
+
+    "download a repositories zipball" in {
+
+      val request = buildGet("/github/users/test/repos/testRepo/download/zipball")
+      (mockService.downloadZip(_: String, _: String, _: String)(_: ExecutionContext))
+        .expects(*, *, *, executionContext)
+        .returning(Future(Right(302))).once()
+      val result = UnitTestApplicationController.downloadZip("test", "testRepo", "main")(request)
+
+      status(result) shouldBe Status.OK
+      contentAsJson(result) shouldBe Json.toJson("Downloaded")
+
+    }
+
+    "cannot find repository to download zipball" in {
+
+      val request = buildGet("/github/users/test/repos/noRepo/download/zipball")
+      (mockService.downloadZip(_: String, _: String, _: String)(_: ExecutionContext))
+        .expects(*, *, *, executionContext)
+        .returning(Future(Left(APIError.BadAPIResponse(400, "could not download zip")))).once()
+      val result = UnitTestApplicationController.downloadZip("test", "noRepo", "main")(request)
+
+      status(result) shouldBe Status.BAD_REQUEST
+      contentAsJson(result) shouldBe Json.toJson("could not download zip")
+
+    }
+
+  }
+
+
+
 
 
   //  override def beforeEach(): Unit = repository.deleteAll()
-// AS MOCKING I AM NOT ACTUALLY INTERACTING WITH DATABASE SO DO NOT NEED TO CLEAR IT EACH TEST
-//  override def afterEach(): Unit = repository.deleteAll()
+  // AS MOCKING I AM NOT ACTUALLY INTERACTING WITH DATABASE SO DO NOT NEED TO CLEAR IT EACH TEST
+  //  override def afterEach(): Unit = repository.deleteAll()
 }

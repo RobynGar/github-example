@@ -1,19 +1,17 @@
 package service
 
 import baseSpec.BaseSpecWithApplication
-import com.mongodb.internal.bulk.DeleteRequest
 import connectors.ApplicationConnector
 import models._
 import org.scalamock.scalatest.MockFactory
 import play.api.libs.json.{JsValue, Json, OFormat}
-import play.api.mvc.Request
 import play.api.test.FakeRequest
 import repositories.TraitDataRepo
 import services.ApplicationService
 
 import scala.concurrent.{ExecutionContext, Future}
 
-class ApplicationServiceUnitSpec extends BaseSpecWithApplication with MockFactory{
+class ApplicationServiceUnitSpec extends BaseSpecWithApplication with MockFactory {
 
   val mockRepository: TraitDataRepo = mock[TraitDataRepo]
   val mockConnector: ApplicationConnector = mock[ApplicationConnector]
@@ -56,7 +54,7 @@ class ApplicationServiceUnitSpec extends BaseSpecWithApplication with MockFactor
     "testhtmlURL"
   )
   private val listOfFF: FFitems = FFitems(
-    "test folder","dir", "app/service", "testurl", "shalala"
+    "test folder", "dir", "app/service", "testurl", "shalala"
   )
   private val file: File = File(
     "test file", "fggtyhuyju", "file", "service/ApplicationService", "http://", "testurl", "base64", "decoded url"
@@ -97,7 +95,7 @@ class ApplicationServiceUnitSpec extends BaseSpecWithApplication with MockFactor
     "could not validate user so should not add to mongodb or call create" in {
 
       val request: FakeRequest[JsValue] = buildPost("/github/users/create").withBody[JsValue](Json.obj())
-     (mockRepository.create(_: User)).expects(*).returning(Future(Left(APIError.BadAPIResponse(400, "could not add user")))).never()
+      (mockRepository.create(_: User)).expects(*).returning(Future(Left(APIError.BadAPIResponse(400, "could not add user")))).never()
 
       whenReady(TestApplicationService.create(request)) { result =>
         result shouldBe Left(APIError.BadAPIResponse(400, "could not add user"))
@@ -109,15 +107,15 @@ class ApplicationServiceUnitSpec extends BaseSpecWithApplication with MockFactor
 
       (mockRepository.create(_: User)).expects(*).returning(Future(Left(APIError.BadAPIResponse(400, "could not add user")))).once()
 
-      whenReady(TestApplicationService.create(request)) {result =>
+      whenReady(TestApplicationService.create(request)) { result =>
         result shouldBe Left(APIError.BadAPIResponse(400, "could not add user"))
       }
     }
   }
 
-  "ApplicationService .read()" should{
+  "ApplicationService .read()" should {
 
-    "return a user by login/username" in{
+    "return a user by login/username" in {
 
       (mockRepository.read(_: String)).expects(*).returning(Future(Right(user))).once()
 
@@ -126,7 +124,7 @@ class ApplicationServiceUnitSpec extends BaseSpecWithApplication with MockFactor
       }
     }
 
-    "does not return a user as incorrect login/username" in{
+    "does not return a user as incorrect login/username" in {
 
       (mockRepository.read(_: String)).expects(*).returning(Future(Left(APIError.BadAPIResponse(400, "could not find any users")))).once()
 
@@ -143,7 +141,7 @@ class ApplicationServiceUnitSpec extends BaseSpecWithApplication with MockFactor
 
       (mockRepository.update(_: String, _: User)).expects(*, *).returning(Future(Right(updatedUser))).once()
 
-      whenReady(TestApplicationService.update("test", request)) {result =>
+      whenReady(TestApplicationService.update("test", request)) { result =>
         result shouldBe Right(updatedUser)
       }
     }
@@ -153,7 +151,7 @@ class ApplicationServiceUnitSpec extends BaseSpecWithApplication with MockFactor
 
       (mockRepository.update(_: String, _: User)).expects(*, *).returning(Future(Left(APIError.BadAPIResponse(400, "could not update user information")))).never()
 
-      whenReady(TestApplicationService.update("45", request)) {result =>
+      whenReady(TestApplicationService.update("45", request)) { result =>
         result shouldBe Left(APIError.BadAPIResponse(400, "could not update user information"))
       }
     }
@@ -163,7 +161,7 @@ class ApplicationServiceUnitSpec extends BaseSpecWithApplication with MockFactor
 
       (mockRepository.update(_: String, _: User)).expects(*, *).returning(Future(Left(APIError.BadAPIResponse(400, "could not update user information")))).once()
 
-      whenReady(TestApplicationService.update("45", request)) {result =>
+      whenReady(TestApplicationService.update("45", request)) { result =>
         result shouldBe Left(APIError.BadAPIResponse(400, "could not update user information"))
       }
     }
@@ -174,7 +172,7 @@ class ApplicationServiceUnitSpec extends BaseSpecWithApplication with MockFactor
     "return a string upon deleting a user by login" in {
       (mockRepository.delete(_: String)).expects(*).returning(Future(Right("deleted"))).once()
 
-      whenReady(TestApplicationService.delete("test")) {result =>
+      whenReady(TestApplicationService.delete("test")) { result =>
         result shouldBe Right("deleted")
       }
     }
@@ -182,7 +180,7 @@ class ApplicationServiceUnitSpec extends BaseSpecWithApplication with MockFactor
     "return a error upon unsuccessfully trying to delete a user by login" in {
       (mockRepository.delete(_: String)).expects(*).returning(Future(Left(APIError.BadAPIResponse(400, "could not delete user")))).once()
 
-      whenReady(TestApplicationService.delete("45")) {result =>
+      whenReady(TestApplicationService.delete("45")) { result =>
         result shouldBe Left(APIError.BadAPIResponse(400, "could not delete user"))
       }
     }
@@ -202,7 +200,7 @@ class ApplicationServiceUnitSpec extends BaseSpecWithApplication with MockFactor
     "unable to return a user from api, incorrect login" in {
       (mockConnector.get[User](_: String)(_: OFormat[User], _: ExecutionContext)).expects(*, *, *).returning(Future(Left(APIError.BadAPIResponse(400, "could not find user")))).once()
 
-      whenReady(TestApplicationService.getUser(login = "45")) {result =>
+      whenReady(TestApplicationService.getUser(login = "45")) { result =>
         result shouldBe Left(APIError.BadAPIResponse(400, "could not find user"))
       }
     }
@@ -232,7 +230,7 @@ class ApplicationServiceUnitSpec extends BaseSpecWithApplication with MockFactor
     "return a users information by login for github api" in {
       (mockConnector.getUserRepoInfo[Repository](_: String)(_: OFormat[Repository], _: ExecutionContext)).expects(*, *, *).returning(Future(Right(repo))).once()
 
-      whenReady(TestApplicationService.getUsersRepoInfo(login = "test", repoName= "test repo")) { result =>
+      whenReady(TestApplicationService.getUsersRepoInfo(login = "test", repoName = "test repo")) { result =>
         result shouldBe Right(repo)
       }
     }
@@ -251,7 +249,7 @@ class ApplicationServiceUnitSpec extends BaseSpecWithApplication with MockFactor
     "return a user repositories content by login for github api" in {
       (mockConnector.getRepoContent[FFitems](_: String)(_: OFormat[FFitems], _: ExecutionContext)).expects(*, *, *).returning(Future(Right(Seq(listOfFF)))).once()
 
-      whenReady(TestApplicationService.getRepoContent(login = "test", repoName= "test repo")) { result =>
+      whenReady(TestApplicationService.getRepoContent(login = "test", repoName = "test repo")) { result =>
         result shouldBe Right(Seq(listOfFF))
       }
     }
@@ -270,7 +268,7 @@ class ApplicationServiceUnitSpec extends BaseSpecWithApplication with MockFactor
     "return a user's repository folder contents by login for github api" in {
       (mockConnector.getDirContent[FFitems](_: String)(_: OFormat[FFitems], _: ExecutionContext)).expects(*, *, *).returning(Future(Right(Seq(listOfFF)))).once()
 
-      whenReady(TestApplicationService.getDirContent(login = "test", repoName= "test repo", dirName = "service")) { result =>
+      whenReady(TestApplicationService.getDirContent(login = "test", repoName = "test repo", dirName = "service")) { result =>
         result shouldBe Right(Seq(listOfFF))
       }
     }
@@ -289,7 +287,7 @@ class ApplicationServiceUnitSpec extends BaseSpecWithApplication with MockFactor
     "return a user's repository folder contents by login for github api" in {
       (mockConnector.getFileContent[File](_: String)(_: OFormat[File], _: ExecutionContext)).expects(*, *, *).returning(Future(Right(file))).once()
 
-      whenReady(TestApplicationService.getFileContent(filePath = "service/ApplicationService", login = "test", repoName= "test repo")) { result =>
+      whenReady(TestApplicationService.getFileContent(filePath = "service/ApplicationService", login = "test", repoName = "test repo")) { result =>
         result shouldBe Right(file)
       }
     }
@@ -324,9 +322,134 @@ class ApplicationServiceUnitSpec extends BaseSpecWithApplication with MockFactor
     }
   }
 
+  "ApplicationService .createFile()" should {
+
+    "create file on github api in a repository" in {
+
+      val request: FakeRequest[JsValue] = buildPut("/github/users/test/repos/testRepo/file/create/testFile").withBody[JsValue](Json.toJson(CreateFile("add new test file", "this is a new file")))
+
+      (mockConnector.createFile[CreateFile](_: CreateFile, _: String)(_: OFormat[CreateFile], _: ExecutionContext))
+        .expects(*, *, *, executionContext)
+        .returning(Future(Right(ReturnCreatedFile(Content("testFile", "testFile", "file")))))
+        .once()
+
+
+      whenReady(TestApplicationService.createFile("test", "testRepo", "testFile", request)) { result =>
+        result shouldBe Right(ReturnCreatedFile(Content("testFile", "testFile", "file")))
+      }
+    }
+
+    "unable to create file in a repository on the github api as unable to validate return from api " in {
+      val request: FakeRequest[JsValue] = buildPut("/github/users/test/repos/testRepo/file/create/testFile").withBody[JsValue](Json.toJson(CreateFile("add new test file", "this is a new file")))
+
+      (mockConnector.createFile[CreateFile](_: CreateFile, _: String)(_: OFormat[CreateFile], _: ExecutionContext))
+        .expects(*, *, *, executionContext)
+        .returning(Future(Left(APIError.BadAPIResponse(400, "could not create file"))))
+        .once()
+
+
+      whenReady(TestApplicationService.createFile("test", "testRepo", "testFile", request)) { result =>
+        result shouldBe Left(APIError.BadAPIResponse(400, "could not create file"))
+      }
+    }
+
+    "unable to create file in a repository on the github api as unable to validate create file request" in {
+      val request: FakeRequest[JsValue] = buildPut("/github/users/test/repos/testRepo/file/delete/testFile").withBody[JsValue](Json.obj())
+
+      (mockConnector.createFile[CreateFile](_: CreateFile, _: String)(_: OFormat[CreateFile], _: ExecutionContext))
+        .expects(*, *, *, executionContext)
+        .returning(Future(Right(ReturnCreatedFile(Content("testFile", "testFile", "file")))))
+        .never()
+
+
+      whenReady(TestApplicationService.createFile("test", "testRepo", "testFile", request)) { result =>
+        result shouldBe Left(APIError.BadAPIResponse(400, "could not validate file"))
+      }
+    }
+
+  }
+
+
+  "ApplicationService .updateFile()" should {
+
+    "update file on github api in a repository" in {
+
+      val request: FakeRequest[JsValue] = buildPut("/github/users/test/repos/testRepo/file/update/testFile").withBody[JsValue](Json.toJson(CreateFile("add new test file", "this is a new file")))
+
+      (mockConnector.updateFile[CreateFile](_: CreateFile, _: String, _: String)(_: OFormat[CreateFile], _: ExecutionContext))
+        .expects(*, *, *, *, executionContext)
+        .returning(Future(Right(ReturnCreatedFile(Content("testFile", "testFile", "file")))))
+        .once()
+      (mockConnector.getFileContent[File](_: String)(_: OFormat[File], _: ExecutionContext))
+        .expects(*, *, *)
+        .returning(Future(Right(file)))
+        .once()
+
+
+      whenReady(TestApplicationService.updateFile("test", "testRepo", "testFile", request)) { result =>
+        result shouldBe Right(ReturnCreatedFile(Content("testFile", "testFile", "file")))
+      }
+    }
+
+    "unable to update file in a repository on the github api as unable to find file" in {
+      val request: FakeRequest[JsValue] = buildPut("/github/users/test/repos/testRepo/file/update/testFile").withBody[JsValue](Json.toJson(CreateFile("add new test file", "this is a new file")))
+
+      (mockConnector.updateFile[CreateFile](_: CreateFile, _: String, _: String)(_: OFormat[CreateFile], _: ExecutionContext))
+        .expects(*, *, *, *, executionContext)
+        .returning(Future(Right(ReturnCreatedFile(Content("testFile", "testFile", "file")))))
+        .never()
+      (mockConnector.getFileContent[File](_: String)(_: OFormat[File], _: ExecutionContext))
+        .expects(*, *, *)
+        .returning(Future(Left(APIError.BadAPIResponse(400, "could not find any file contents"))))
+        .once()
+
+
+      whenReady(TestApplicationService.updateFile("test", "testRepo", "testFile", request)) { result =>
+        result shouldBe Left(APIError.BadAPIResponse(400, "could not update file"))
+      }
+    }
+
+    "unable to update file in a repository on the github api as unable to validate update request" in {
+      val request: FakeRequest[JsValue] = buildPut("/github/users/test/repos/testRepo/file/update/testFile").withBody[JsValue](Json.obj())
+
+      (mockConnector.updateFile[CreateFile](_: CreateFile, _: String, _: String)(_: OFormat[CreateFile], _: ExecutionContext))
+        .expects(*, *, *, *, executionContext)
+        .returning(Future(Right(ReturnCreatedFile(Content("testFile", "testFile", "file")))))
+        .never()
+      (mockConnector.getFileContent[File](_: String)(_: OFormat[File], _: ExecutionContext))
+        .expects(*, *, *)
+        .returning(Future(Left(APIError.BadAPIResponse(400, "could not find any file contents"))))
+        .never()
+
+
+      whenReady(TestApplicationService.updateFile("test", "testRepo", "testFile", request)) { result =>
+        result shouldBe Left(APIError.BadAPIResponse(400, "could not validate file"))
+      }
+    }
+
+    "unable to update file in a repository on the github api as unable to validate api's return" in {
+      val request: FakeRequest[JsValue] = buildPut("/github/users/test/repos/testRepo/file/update/testFile").withBody[JsValue](Json.toJson(CreateFile("add new test file", "this is a new file")))
+
+      (mockConnector.updateFile[CreateFile](_: CreateFile, _: String, _: String)(_: OFormat[CreateFile], _: ExecutionContext))
+        .expects(*, *, *, *, executionContext)
+        .returning(Future(Left(APIError.BadAPIResponse(400, "could not update file"))))
+        .once()
+      (mockConnector.getFileContent[File](_: String)(_: OFormat[File], _: ExecutionContext))
+        .expects(*, *, *)
+        .returning(Future(Right(file)))
+        .once()
+
+
+      whenReady(TestApplicationService.updateFile("test", "testRepo", "testFile", request)) { result =>
+        result shouldBe Left(APIError.BadAPIResponse(400, "could not update file"))
+      }
+    }
+
+  }
+
   "ApplicationService .deleteFile()" should {
 
-    "add a user from github api to mongodb" in {
+    "delete file from github api repository" in {
 
       val request: FakeRequest[JsValue] = buildDelete("/github/users/test/repos/testRepo/file/delete/testFile").withBody[JsValue](Json.toJson("delete message"))
 
@@ -344,14 +467,42 @@ class ApplicationServiceUnitSpec extends BaseSpecWithApplication with MockFactor
       }
     }
 
-//    "unable to return a user from api, incorrect login" in {
-//      (mockConnector.get[User](_: String)(_: OFormat[User], _: ExecutionContext)).expects(*, *, *).returning(Future(Left(APIError.BadAPIResponse(400, "could not find user")))).once()
-//      (mockRepository.create(_: User)).expects(*).returning(Future(Right(apiUser))).never()
-//
-//      whenReady(TestApplicationService.addApiUser(login = "45")) { result =>
-//        result shouldBe Left(APIError.BadAPIResponse(400, "could not add user"))
-//      }
-//    }
+    "unable to delete file from github api repository as repository does not exist" in {
+
+      val request: FakeRequest[JsValue] = buildDelete("/github/users/test/repos/noRepo/file/delete/testFile").withBody[JsValue](Json.toJson("delete message"))
+
+      (mockConnector.deleteFile[DeletedReturn](_: String, _: RequestDelete)(_: OFormat[DeletedReturn], _: ExecutionContext))
+        .expects(*, *, *, executionContext)
+        .returning(Future(Right(DeletedReturn(None))))
+        .never()
+      (mockConnector.getFileContent[File](_: String)(_: OFormat[File], _: ExecutionContext))
+        .expects(*, *, *)
+        .returning(Future(Left(APIError.BadAPIResponse(400, "could not find any file contents"))))
+        .once()
+
+      whenReady(TestApplicationService.deleteFile("test", "noRepo", "testFile", request)) { result =>
+        result shouldBe Left(APIError.BadAPIResponse(404, "could not delete file"))
+      }
+    }
+
+    "unable to delete file from github api repository" in {
+
+      val request: FakeRequest[JsValue] = buildDelete("/github/users/test/repos/testRepo/file/delete/noFile").withBody[JsValue](Json.toJson("delete message"))
+
+      (mockConnector.deleteFile[DeletedReturn](_: String, _: RequestDelete)(_: OFormat[DeletedReturn], _: ExecutionContext))
+        .expects(*, *, *, executionContext)
+        .returning(Future(Left(APIError.BadAPIResponse(404, "could not delete file"))))
+        .once()
+      (mockConnector.getFileContent[File](_: String)(_: OFormat[File], _: ExecutionContext))
+        .expects(*, *, *)
+        .returning(Future(Right(file)))
+        .once()
+
+      whenReady(TestApplicationService.deleteFile("test", "testRepo", "noFile", request)) { result =>
+        result shouldBe Left(APIError.BadAPIResponse(404, "could not delete file"))
+      }
+    }
+
   }
 
 }
